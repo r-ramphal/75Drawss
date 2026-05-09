@@ -103,7 +103,7 @@ export default function OrderForm() {
                   <p style={{ fontSize: '0.875rem', color: '#555', fontWeight: 300, lineHeight: 1.7 }}>Thanks for reaching out. We'll review your details and reply within 1–2 business days.</p>
                 </div>
               ) : (
-                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" encType="multipart/form-data" onSubmit={handleSubmit}>
+                <form action="https://formspree.io/f/xjglazye" method="POST" encType="multipart/form-data" onSubmit={handleSubmit}>
                   <div className="form-grid">
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
