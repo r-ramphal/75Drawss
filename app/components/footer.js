@@ -21,7 +21,7 @@ export default function Footer() {
             <a href="#features" className="footer-link">Why us</a>
             <a href="#order" className="footer-link">Order</a>
           </div>
-          <p style={{ fontSize: '0.75rem', color: '#999', fontWeight: 300 }}>© 2025 75Drawss · Netherlands · hello@75drawss.nl</p>
+          <p style={{ fontSize: '0.75rem', color: '#999', fontWeight: 300 }}>© 2025 75Drawss · Netherlands · 75Drawss@gmail.com</p>
         </div>
       </footer>
     </>
