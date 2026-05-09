@@ -11,14 +11,24 @@ export default function HowItWorks() {
         .step { padding: 2.5rem 2rem; border-right: 1px solid #000; transition: background 0.2s; }
         .step:last-child { border-right: none; }
         .step:hover { background: #f8f8f8; }
+        .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid #000; }
+        .howitworks-section { padding: 7rem 3rem; }
+        @media (max-width: 640px) {
+          .howitworks-section { padding: 4rem 1.5rem !important; }
+          .steps-grid { grid-template-columns: 1fr 1fr !important; }
+          .step { border-right: 1px solid #000; border-bottom: 1px solid #000; }
+          .step:nth-child(2) { border-right: none; }
+          .step:nth-child(3) { border-right: 1px solid #000; border-bottom: none; }
+          .step:nth-child(4) { border-right: none; border-bottom: none; }
+        }
       `}</style>
       <div id="how-it-works" style={{ background: '#fff' }}>
-        <section style={{ padding: '7rem 3rem', maxWidth: '1200px', margin: '0 auto' }}>
+        <section className="howitworks-section" style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <p style={{ fontSize: '0.7rem', fontWeight: 500, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#999', marginBottom: '1rem' }}>The process</p>
           <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 300, letterSpacing: '-0.025em', lineHeight: 1.1, marginBottom: '4rem', color: '#000' }}>
             From idea to<br/>your doorstep
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', border: '1px solid #000' }}>
+          <div className="steps-grid">
             {steps.map((step, i) => (
               <div key={i} className="step">
                 <div style={{ fontFamily: 'Georgia, serif', fontSize: '2.75rem', fontWeight: 300, color: '#ddd', lineHeight: 1, marginBottom: '1.5rem', letterSpacing: '-0.04em' }}>{step.num}</div>
