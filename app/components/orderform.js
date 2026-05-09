@@ -1,18 +1,46 @@
 'use client'
 import { useState } from 'react'
 
+const CLOUDINARY_CLOUD = 'dk3d5ejyz'
+const CLOUDINARY_PRESET = '75drawss'
+
 export default function OrderForm() {
   const [qty, setQty] = useState(1)
   const [fileName, setFileName] = useState('')
+  const [fileUrl, setFileUrl] = useState('')
+  const [uploading, setUploading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  async function handleFileChange(e) {
+    const file = e.target.files[0]
+    if (!file) return
+    setFileName(file.name)
+    setUploading(true)
+    const data = new FormData()
+    data.append('file', file)
+    data.append('upload_preset', CLOUDINARY_PRESET)
+    try {
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/auto/upload`, {
+        method: 'POST',
+        body: data,
+      })
+      const json = await res.json()
+      setFileUrl(json.secure_url)
+    } catch {
+      alert('File upload failed. Please try again.')
+    }
+    setUploading(false)
+  }
 
   async function handleSubmit(e) {
     e.preventDefault()
     setLoading(true)
+    const formData = new FormData(e.target)
+    if (fileUrl) formData.set('design_file_url', fileUrl)
     const res = await fetch(e.target.action, {
       method: 'POST',
-      body: new FormData(e.target),
+      body: formData,
       headers: { 'Accept': 'application/json' },
     })
     if (res.ok) { setSubmitted(true) }
@@ -75,7 +103,7 @@ export default function OrderForm() {
                   <p style={{ fontSize: '0.875rem', color: '#555', fontWeight: 300, lineHeight: 1.7 }}>Thanks for reaching out. We'll review your details and reply within 1–2 business days.</p>
                 </div>
               ) : (
-                <form action="https://formspree.io/f/xjglazye" method="POST" encType="multipart/form-data" onSubmit={handleSubmit}>
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" encType="multipart/form-data" onSubmit={handleSubmit}>
                   <div className="form-grid">
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -140,15 +168,17 @@ export default function OrderForm() {
                     <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
                       <label style={label}>Design file upload</label>
                       <div style={{ border: '1px dashed #000', padding: '1.75rem', textAlign: 'center', background: '#fff', position: 'relative' }}>
-                        <input type="file" name="design_file" accept=".jpg,.jpeg,.png,.pdf,.ai,.psd,.svg"
-                          onChange={e => setFileName(e.target.files[0]?.name || '')}
+                        <input type="file" accept=".jpg,.jpeg,.png,.pdf,.ai,.psd,.svg"
+                          onChange={handleFileChange}
                           style={{ position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer', width: '100%', height: '100%' }} />
                         <p style={{ fontSize: '0.8rem', color: '#555', fontWeight: 300 }}>
                           <strong style={{ color: '#000', fontWeight: 500 }}>Click to upload</strong> or drag & drop
                         </p>
                         <p style={{ fontSize: '0.7rem', color: '#999', marginTop: '0.3rem' }}>JPG, PNG, PDF, AI, PSD, SVG · max 10MB</p>
-                        {fileName && <p style={{ fontSize: '0.75rem', color: '#000', marginTop: '0.5rem' }}>✓ {fileName}</p>}
+                        {uploading && <p style={{ fontSize: '0.75rem', color: '#555', marginTop: '0.5rem' }}>Uploading...</p>}
+                        {fileUrl && !uploading && <p style={{ fontSize: '0.75rem', color: '#000', marginTop: '0.5rem' }}>✓ {fileName} uploaded</p>}
                       </div>
+                      {fileUrl && <input type="hidden" name="design_file_url" value={fileUrl} />}
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
@@ -193,8 +223,8 @@ export default function OrderForm() {
                     <p style={{ fontSize: '0.75rem', color: '#999', fontWeight: 300, lineHeight: 1.6 }}>
                       No payment required yet.<br/>We'll reply within 1–2 business days.
                     </p>
-                    <button type="submit" className="submit-btn" disabled={loading}>
-                      {loading ? 'Sending...' : 'Send order request →'}
+                    <button type="submit" className="submit-btn" disabled={loading || uploading}>
+                      {loading ? 'Sending...' : uploading ? 'Uploading file...' : 'Send order request →'}
                     </button>
                   </div>
                 </form>
