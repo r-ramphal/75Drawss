@@ -14,7 +14,10 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "75Drawss - Custom Designer",
   description: "Fully custom designs built to your exact specifications. Upload your design, tell us your dimensions and we handle the rest",
-};
+  icons: {
+    icon: '/icon.png',
+  },
+}
 
 export default function RootLayout({ children }) {
   return (
