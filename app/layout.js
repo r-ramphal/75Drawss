@@ -15,7 +15,7 @@ export const metadata = {
   title: '75Drawss — Custom TCG Binders',
   description: 'Fully custom TCG binders built to your exact specifications. Upload your design, tell us your dimensions and we handle the rest.',
   icons: {
-    icon: '/icon.jpeg',
+    icon: '/icon.svg',
   },
 }
 
