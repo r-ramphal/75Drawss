@@ -33,19 +33,37 @@ export default function OrderForm() {
     setUploading(false)
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault()
-    setLoading(true)
-    const formData = new FormData(e.target)
-    if (fileUrl) formData.set('design_file_url', fileUrl)
-    const res = await fetch(e.target.action, {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' },
-    })
-    if (res.ok) { setSubmitted(true) }
-    else { alert('Something went wrong. Please try again.'); setLoading(false) }
+async function handleSubmit(e) {
+  e.preventDefault()
+  setLoading(true)
+  const data = {
+    access_key: '1149a1c9-e4f5-4f6b-84b6-d1f37306db73',
+    name: e.target.name.value,
+    email: e.target.email.value,
+    card_game: e.target.card_game.value,
+    pocket_layout: e.target.pocket_layout.value,
+    width_cm: e.target.width_cm.value,
+    height_cm: e.target.height_cm.value,
+    depth_cm: e.target.depth_cm.value,
+    quantity: qty,
+    design_file_url: fileUrl || 'No file uploaded',
+    design_description: e.target.design_description.value,
+    special_requirements: e.target.special_requirements.value,
+    budget: e.target.budget.value,
+    source: e.target.source.value,
+    subject: 'New 75Drawss Order Request',
   }
+  const res = await fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+  if (res.ok) { setSubmitted(true) }
+  else { alert('Something went wrong. Please try again.'); setLoading(false) }
+}
 
   const label = { fontSize: '0.7rem', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#999', marginBottom: '0.4rem', display: 'block' }
   const input = { background: '#fff', border: '1px solid #000', color: '#000', fontSize: '0.875rem', fontWeight: 300, padding: '0.75rem 1rem', borderRadius: 0, outline: 'none', width: '100%', fontFamily: 'inherit' }
@@ -103,7 +121,7 @@ export default function OrderForm() {
                   <p style={{ fontSize: '0.875rem', color: '#555', fontWeight: 300, lineHeight: 1.7 }}>Thanks for reaching out. We'll review your details and reply within 1–2 business days.</p>
                 </div>
               ) : (
-                <form action="https://formspree.io/f/xjglazye" method="POST" onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                   <div className="form-grid">
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
