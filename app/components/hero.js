@@ -36,7 +36,7 @@ export default function Hero() {
           display: 'flex', alignItems: 'center', gap: '0.75rem',
         }}>
           <span style={{ width: 28, height: 1, background: '#000', display: 'block', flexShrink: 0 }} />
-          Custom TCG Binders · Made in the Netherlands
+          Custom Design Studio · Made in the Netherlands
         </div>
 
         <h1 className="hero-h1" style={{
@@ -47,17 +47,17 @@ export default function Hero() {
           marginBottom: '3rem', maxWidth: '900px',
           color: '#000',
         }}>
-          Your cards deserve<br/>
-          a <em style={{ fontStyle: 'italic', color: '#999' }}>proper</em> home.
+          Your vision.<br/>
+          <em style={{ fontStyle: 'italic', color: '#999' }}>Beautifully</em> made.
         </h1>
 
         <div className="hero-bottom">
           <div className="hero-bottom-inner">
             <p className="hero-desc">
-              We build fully custom binders for your TCG collection — your design, your dimensions, your way. Pokémon, MTG, Yu-Gi-Oh! and more.
+              We design and craft custom products for collectors and creators — from TCG binders to playmats, deck boxes and beyond. Your design, your way.
             </p>
             <div className="hero-actions">
-              <a href="#order" className="btn-dark">Place an order →</a>
+              <a href="#order" className="btn-dark">Start your order →</a>
               <a href="#how-it-works" className="btn-outline">See how it works</a>
             </div>
           </div>

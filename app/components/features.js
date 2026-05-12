@@ -1,9 +1,25 @@
 export default function Features() {
   const features = [
-    { icon: '🎨', title: 'Fully custom design', desc: 'Upload your own artwork or describe your vision in detail. We bring it to life exactly as you imagined — no templates, no compromises.' },
-    { icon: '📐', title: 'Any size, any format', desc: 'Standard 9-pocket, oversized, side-loading — we work to your exact dimensions. If it holds cards, we can make a binder for it.' },
-    { icon: '🃏', title: 'All major TCGs supported', desc: 'Pokémon, MTG, Yu-Gi-Oh!, One Piece, Lorcana and more. We know the card sizes and sleeve dimensions inside out.' },
-    { icon: '📦', title: 'Fast, tracked shipping', desc: 'We ship across the Netherlands and internationally via PostNL and DHL — with full tracking so you always know where your order is.' },
+    {
+      icon: '🎨',
+      title: 'Fully custom design',
+      desc: 'Upload your own artwork or describe your vision. We bring it to life exactly as you imagined — no templates, no compromises, no limits.',
+    },
+    {
+      icon: '📐',
+      title: 'Any product, any size',
+      desc: 'Binders, playmats, deck boxes, display cases and more. If you can design it, we can make it. Any dimensions, any format.',
+    },
+    {
+      icon: '✏️',
+      title: 'Original designs',
+      desc: 'No copyrighted characters — just stunning original artwork. We create designs you actually own, built around your style and vision.',
+    },
+    {
+      icon: '📦',
+      title: 'Fast, tracked shipping',
+      desc: 'We ship across the Netherlands and internationally via PostNL and DHL — with full tracking so you always know where your order is.',
+    },
   ]
   return (
     <>
@@ -21,7 +37,7 @@ export default function Features() {
         <section className="features-section" style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <p style={{ fontSize: '0.7rem', fontWeight: 500, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#999', marginBottom: '1rem' }}>Why 75Drawss</p>
           <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 300, letterSpacing: '-0.025em', lineHeight: 1.1, marginBottom: '4rem', color: '#000' }}>
-            Built for collectors,<br/>by collectors
+            Built for collectors<br/>and creators
           </h2>
           <div className="features-grid">
             {features.map((f, i) => (

@@ -1,9 +1,25 @@
 export default function HowItWorks() {
   const steps = [
-    { num: '01', title: 'Fill in the form', desc: 'Tell us your dimensions, card game, pocket layout and design — or upload your own artwork.' },
-    { num: '02', title: 'We send a quote', desc: 'Within 1–2 business days you\'ll receive a price and timeline. No surprises, no hidden fees.' },
-    { num: '03', title: 'We craft your binder', desc: 'Once approved we get to work. Every binder is handcrafted to your exact specifications.' },
-    { num: '04', title: 'Delivered to you', desc: 'Ships via PostNL or DHL with tracking. Carefully packed so it arrives in perfect condition.' },
+    {
+      num: '01',
+      title: 'Tell us your idea',
+      desc: 'Fill in the order form with your product, design idea and any details. Upload your artwork or just describe what you have in mind.',
+    },
+    {
+      num: '02',
+      title: 'We send a quote',
+      desc: 'Within 1–2 business days you\'ll receive a price and timeline. No surprises, no hidden fees.',
+    },
+    {
+      num: '03',
+      title: 'We craft your product',
+      desc: 'Once approved we get to work. Every product is handcrafted to your exact specifications.',
+    },
+    {
+      num: '04',
+      title: 'Delivered to you',
+      desc: 'Ships via PostNL or DHL with tracking. Carefully packed so it arrives in perfect condition.',
+    },
   ]
   return (
     <>

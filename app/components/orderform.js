@@ -5,6 +5,7 @@ const CLOUDINARY_CLOUD = 'dk3d5ejyz'
 const CLOUDINARY_PRESET = '75drawss'
 
 export default function OrderForm() {
+  const [service, setService] = useState('build')
   const [qty, setQty] = useState(1)
   const [fileName, setFileName] = useState('')
   const [fileUrl, setFileUrl] = useState('')
@@ -33,37 +34,42 @@ export default function OrderForm() {
     setUploading(false)
   }
 
-async function handleSubmit(e) {
-  e.preventDefault()
-  setLoading(true)
-  const data = {
-    access_key: '1149a1c9-e4f5-4f6b-84b6-d1f37306db73',
-    name: e.target.name.value,
-    email: e.target.email.value,
-    card_game: e.target.card_game.value,
-    pocket_layout: e.target.pocket_layout.value,
-    width_cm: e.target.width_cm.value,
-    height_cm: e.target.height_cm.value,
-    depth_cm: e.target.depth_cm.value,
-    quantity: qty,
-    design_file_url: fileUrl || 'No file uploaded',
-    design_description: e.target.design_description.value,
-    special_requirements: e.target.special_requirements.value,
-    budget: e.target.budget.value,
-    source: e.target.source.value,
-    subject: 'New 75Drawss Order Request',
+  async function handleSubmit(e) {
+    e.preventDefault()
+    setLoading(true)
+    const form = e.target
+    const data = {
+      access_key: '1149a1c9-e4f5-4f6b-84b6-d1f37306db73',
+      subject: `New 75Drawss Order — ${service === 'build' ? 'Build My Product' : 'Customize My Product'}`,
+      service_type: service === 'build' ? 'Build my product' : 'Customize my product',
+      name: form.name.value,
+      email: form.email.value,
+      product_type: form.product_type.value,
+      card_game: form.card_game.value,
+      design_file_url: fileUrl || 'No file uploaded',
+      design_description: form.design_description.value,
+      special_requirements: form.special_requirements.value,
+      budget: form.budget.value,
+      source: form.source.value,
+      quantity: qty,
+      ...(service === 'build' && {
+        width_cm: form.width_cm.value,
+        height_cm: form.height_cm.value,
+        depth_cm: form.depth_cm.value,
+      }),
+      ...(service === 'customize' && {
+        binder_condition: form.binder_condition.value,
+        binder_brand: form.binder_brand.value,
+      }),
+    }
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    })
+    if (res.ok) { setSubmitted(true) }
+    else { alert('Something went wrong. Please try again.'); setLoading(false) }
   }
-  const res = await fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-  })
-  if (res.ok) { setSubmitted(true) }
-  else { alert('Something went wrong. Please try again.'); setLoading(false) }
-}
 
   const label = { fontSize: '0.7rem', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#999', marginBottom: '0.4rem', display: 'block' }
   const input = { background: '#fff', border: '1px solid #000', color: '#000', fontSize: '0.875rem', fontWeight: 300, padding: '0.75rem 1rem', borderRadius: 0, outline: 'none', width: '100%', fontFamily: 'inherit' }
@@ -81,6 +87,16 @@ async function handleSubmit(e) {
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
         .dim-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; }
         .form-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 2rem; padding-top: 1.75rem; border-top: 1px solid #000; gap: 1rem; flex-wrap: wrap; }
+        .service-toggle { display: flex; border: 1px solid #000; margin-bottom: 2rem; }
+        .service-btn { flex: 1; padding: 0.875rem 1rem; font-family: inherit; font-size: 0.85rem; font-weight: 500; cursor: pointer; border: none; transition: all 0.15s; text-align: center; }
+        .service-btn.active { background: #000; color: #fff; }
+        .service-btn.inactive { background: #fff; color: #000; }
+        .service-btn.inactive:hover { background: #f8f8f8; }
+        .send-in-box { background: #f8f8f8; border: 1px solid #000; padding: 1.5rem; margin-bottom: 1.25rem; grid-column: 1 / -1; }
+        .send-in-box h4 { font-size: 0.8rem; font-weight: 500; margin-bottom: 0.5rem; }
+        .send-in-box p { font-size: 0.8rem; color: #555; line-height: 1.7; font-weight: 300; }
+        .send-in-box ul { margin-top: 0.5rem; padding-left: 1.25rem; }
+        .send-in-box ul li { font-size: 0.8rem; color: #555; line-height: 1.8; font-weight: 300; }
         @media (max-width: 768px) {
           .order-section { padding: 4rem 1.5rem !important; }
           .order-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
@@ -95,16 +111,31 @@ async function handleSubmit(e) {
         <div className="order-section" style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div className="order-grid">
 
+            {/* LEFT INFO */}
             <div>
-              <p style={{ fontSize: '0.7rem', fontWeight: 500, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#999', marginBottom: '1rem' }}>Place an order</p>
+              <p style={{ fontSize: '0.7rem', fontWeight: 500, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#999', marginBottom: '1rem' }}>Start a project</p>
               <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 300, letterSpacing: '-0.025em', lineHeight: 1.1, marginBottom: '1rem', color: '#000' }}>
-                Tell us about<br/>your binder
+                Tell us about<br/>your idea
               </h2>
               <p style={{ fontSize: '0.875rem', color: '#555', lineHeight: 1.8, fontWeight: 300, marginBottom: '2.5rem' }}>
-                Fill in the form and we'll get back to you with a quote within 1–2 business days. No payment required yet.
+                {service === 'build'
+                  ? 'Tell us what you want made. We\'ll get back to you within 1–2 business days with a quote. No payment required yet.'
+                  : 'Send us your product and we\'ll customize it for you. Fill in the form and we\'ll reply with a quote and our shipping address.'}
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {['Free quote, no commitment', 'Upload your own artwork', 'Any dimensions, any TCG', 'Ships anywhere in NL and abroad', 'Reply within 1–2 business days'].map((item, i) => (
+                {(service === 'build' ? [
+                  'Free quote, no commitment',
+                  'Upload your own artwork',
+                  'Any product, any dimensions',
+                  'Ships anywhere in NL and abroad',
+                  'Reply within 1–2 business days',
+                ] : [
+                  'Free quote, no commitment',
+                  'Send your product to us',
+                  'We customize and send it back',
+                  'Upload your design or describe it',
+                  'Reply within 1–2 business days',
+                ]).map((item, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.8rem', color: '#555', fontWeight: 300 }}>
                     <span style={{ width: 5, height: 5, background: '#000', borderRadius: '50%', flexShrink: 0, display: 'block' }} />
                     {item}
@@ -113,16 +144,46 @@ async function handleSubmit(e) {
               </div>
             </div>
 
+            {/* FORM */}
             <div style={{ background: '#fff', border: '1px solid #000', padding: '2.5rem' }}>
               {submitted ? (
                 <div style={{ textAlign: 'center', padding: '3.5rem 2rem' }}>
                   <div style={{ width: 48, height: 48, background: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', color: '#fff', fontSize: '1.1rem' }}>✓</div>
                   <h3 style={{ fontFamily: 'Georgia, serif', fontSize: '1.5rem', fontWeight: 300, marginBottom: '0.75rem', color: '#000' }}>Order received</h3>
-                  <p style={{ fontSize: '0.875rem', color: '#555', fontWeight: 300, lineHeight: 1.7 }}>Thanks for reaching out. We'll review your details and reply within 1–2 business days.</p>
+                  <p style={{ fontSize: '0.875rem', color: '#555', fontWeight: 300, lineHeight: 1.7 }}>
+                    {service === 'build'
+                      ? 'Thanks for reaching out. We\'ll review your details and reply within 1–2 business days.'
+                      : 'Thanks! We\'ll reply within 1–2 business days with a quote and our shipping address so you can send your product.'}
+                  </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
+
+                  {/* SERVICE TOGGLE */}
+                  <div className="service-toggle">
+                    <button type="button" className={`service-btn ${service === 'build' ? 'active' : 'inactive'}`} onClick={() => setService('build')}>
+                      Build my product
+                    </button>
+                    <button type="button" className={`service-btn ${service === 'customize' ? 'active' : 'inactive'}`} onClick={() => setService('customize')}>
+                      Customize my product
+                    </button>
+                  </div>
+
                   <div className="form-grid">
+
+                    {/* SEND-IN INFO BOX */}
+                    {service === 'customize' && (
+                      <div className="send-in-box">
+                        <h4>How to send your product</h4>
+                        <p>After we confirm your quote, send your product to our address. Please make sure to:</p>
+                        <ul>
+                          <li>Pack it well in a sturdy box with bubble wrap</li>
+                          <li>Use PostNL or DHL with a tracking code</li>
+                          <li>For valuable items, use aangetekende post</li>
+                          <li>Keep your tracking code until it arrives</li>
+                        </ul>
+                      </div>
+                    )}
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <label style={label}>Full name <span style={{ color: '#000' }}>*</span></label>
@@ -135,8 +196,22 @@ async function handleSubmit(e) {
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <label style={label}>Card game <span style={{ color: '#000' }}>*</span></label>
-                      <select className="order-input" style={input} name="card_game" required defaultValue="">
+                      <label style={label}>Product type <span style={{ color: '#000' }}>*</span></label>
+                      <select className="order-input" style={input} name="product_type" required defaultValue="">
+                        <option value="" disabled>Select product...</option>
+                        <option>TCG Binder</option>
+                        <option>Playmat</option>
+                        <option>Deck Box</option>
+                        <option>Card Sleeves</option>
+                        <option>Display Case</option>
+                        <option>Custom Packaging</option>
+                        <option>Other</option>
+                      </select>
+                    </div>
+
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <label style={label}>Card game (if applicable)</label>
+                      <select className="order-input" style={input} name="card_game" defaultValue="">
                         <option value="" disabled>Select your TCG...</option>
                         <option>Pokémon</option>
                         <option>Magic: The Gathering</option>
@@ -144,45 +219,61 @@ async function handleSubmit(e) {
                         <option>One Piece TCG</option>
                         <option>Lorcana</option>
                         <option>Flesh and Blood</option>
+                        <option>Not applicable</option>
                         <option>Other</option>
                       </select>
                     </div>
 
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <label style={label}>Pocket layout <span style={{ color: '#000' }}>*</span></label>
-                      <select className="order-input" style={input} name="pocket_layout" required defaultValue="">
-                        <option value="" disabled>Select layout...</option>
-                        <option>4-pocket (2×2)</option>
-                        <option>9-pocket (3×3)</option>
-                        <option>12-pocket (3×4)</option>
-                        <option>Side-loading 9-pocket</option>
-                        <option>Custom / Not sure</option>
-                      </select>
-                    </div>
-
-                    <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
-                      <label style={label}>Binder dimensions (cm) <span style={{ color: '#000' }}>*</span></label>
-                      <div className="dim-row">
-                        <input className="order-input" style={input} type="number" name="width_cm" placeholder="Width" min="1" step="0.1" required />
-                        <input className="order-input" style={input} type="number" name="height_cm" placeholder="Height" min="1" step="0.1" required />
-                        <input className="order-input" style={input} type="number" name="depth_cm" placeholder="Spine depth" min="0.5" step="0.1" required />
+                    {/* BUILD ONLY — dimensions */}
+                    {service === 'build' && (
+                      <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
+                        <label style={label}>Dimensions (cm)</label>
+                        <div className="dim-row">
+                          <input className="order-input" style={input} type="number" name="width_cm" placeholder="Width" min="1" step="0.1" />
+                          <input className="order-input" style={input} type="number" name="height_cm" placeholder="Height" min="1" step="0.1" />
+                          <input className="order-input" style={input} type="number" name="depth_cm" placeholder="Depth" min="0.5" step="0.1" />
+                        </div>
                       </div>
-                    </div>
+                    )}
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
-                      <label style={label}>Quantity</label>
-                      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                        {[1, 2, 3, 5, 10].map(n => (
-                          <button key={n} type="button" className="qty-btn" onClick={() => setQty(n)} style={{
-                            background: qty === n ? '#000' : '#fff',
-                            border: '1px solid #000',
-                            color: qty === n ? '#fff' : '#000',
-                          }}>{n}{n === 10 ? '+' : ''}</button>
-                        ))}
+                    {/* CUSTOMIZE ONLY — product details */}
+                    {service === 'customize' && (
+                      <>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                          <label style={label}>Brand / model</label>
+                          <input className="order-input" style={input} type="text" name="binder_brand" placeholder="e.g. Ultra Pro, Dragon Shield..." />
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                          <label style={label}>Condition <span style={{ color: '#000' }}>*</span></label>
+                          <select className="order-input" style={input} name="binder_condition" required defaultValue="">
+                            <option value="" disabled>Select condition...</option>
+                            <option>New / unused</option>
+                            <option>Like new</option>
+                            <option>Good — minor wear</option>
+                            <option>Used — visible wear</option>
+                          </select>
+                        </div>
+                      </>
+                    )}
+
+                    {/* BUILD ONLY — quantity */}
+                    {service === 'build' && (
+                      <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
+                        <label style={label}>Quantity</label>
+                        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                          {[1, 2, 3, 5, 10].map(n => (
+                            <button key={n} type="button" className="qty-btn" onClick={() => setQty(n)} style={{
+                              background: qty === n ? '#000' : '#fff',
+                              border: '1px solid #000',
+                              color: qty === n ? '#fff' : '#000',
+                            }}>{n}{n === 10 ? '+' : ''}</button>
+                          ))}
+                        </div>
+                        <input type="hidden" name="quantity" value={qty} />
                       </div>
-                      <input type="hidden" name="quantity" value={qty} />
-                    </div>
+                    )}
 
+                    {/* DESIGN UPLOAD */}
                     <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
                       <label style={label}>Design file upload</label>
                       <div style={{ border: '1px dashed #000', padding: '1.75rem', textAlign: 'center', background: '#fff', position: 'relative' }}>
@@ -206,7 +297,7 @@ async function handleSubmit(e) {
 
                     <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
                       <label style={label}>Special requirements</label>
-                      <textarea className="order-input" style={{ ...input, minHeight: 80, resize: 'vertical' }} name="special_requirements" placeholder="Foil finish, specific materials, reinforced spine, deadline..." />
+                      <textarea className="order-input" style={{ ...input, minHeight: 80, resize: 'vertical' }} name="special_requirements" placeholder={service === 'build' ? 'Specific materials, finish, deadline...' : 'Anything specific about your product or the customization you want...'} />
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -233,6 +324,14 @@ async function handleSubmit(e) {
                         <option>Google</option>
                         <option>Other</option>
                       </select>
+                    </div>
+
+                    {/* CONSENT */}
+                    <div style={{ gridColumn: '1 / -1', display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                      <input type="checkbox" name="consent" required style={{ marginTop: '0.2rem', cursor: 'pointer', accentColor: '#000' }} />
+                      <label style={{ ...label, textTransform: 'none', letterSpacing: 0, fontSize: '0.8rem', color: '#555', fontWeight: 300 }}>
+                        I confirm that I own the rights to any artwork uploaded and agree to the order terms.
+                      </label>
                     </div>
 
                   </div>
