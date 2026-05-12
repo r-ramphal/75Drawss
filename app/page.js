@@ -15,9 +15,9 @@ export default function Home() {
       <Hero />
       <Ticker />
       <HowItWorks />
+      <SendIn />
       <Features />
       <OrderForm />
-      <SendIn />
       <FAQ />
       <Footer />
     </main>
