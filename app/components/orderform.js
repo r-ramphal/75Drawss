@@ -293,18 +293,30 @@ export default function OrderForm() {
                       <textarea className="order-input" style={{ ...input, minHeight: 80, resize: 'vertical' }} name="special_requirements" placeholder={service === 'build' ? 'Specific materials, finish, deadline...' : 'Anything specific about your product or the customization you want...'} />
                     </div>
 
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <label style={label}>Approximate budget (€)</label>
-                      <select className="order-input" style={input} name="budget" defaultValue="">
-                        <option value="" disabled>Select range...</option>
-                        <option>€30 – €60</option>
-                        <option>€60 – €100</option>
-                        <option>€100 – €150</option>
-                        <option>€150 – €200</option>
-                        <option>€200+</option>
-                        <option>Flexible</option>
-                      </select>
-                    </div>
+<div style={{ display: 'flex', flexDirection: 'column' }}>
+  <label style={label}>Approximate budget (€)</label>
+  {service === 'build' ? (
+    <select className="order-input" style={input} name="budget" defaultValue="">
+      <option value="" disabled>Select range...</option>
+      <option>€60 – €100</option>
+      <option>€100 – €150</option>
+      <option>€150 – €200</option>
+      <option>€200 – €300</option>
+      <option>€300+</option>
+      <option>Flexible</option>
+    </select>
+  ) : (
+    <select className="order-input" style={input} name="budget" defaultValue="">
+      <option value="" disabled>Select range...</option>
+      <option>€30 – €60</option>
+      <option>€60 – €100</option>
+      <option>€100 – €150</option>
+      <option>€150 – €200</option>
+      <option>€200+</option>
+      <option>Flexible</option>
+    </select>
+  )}
+</div>
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <label style={label}>How did you find us?</label>
