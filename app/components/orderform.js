@@ -200,11 +200,7 @@ export default function OrderForm() {
                       <select className="order-input" style={input} name="product_type" required defaultValue="">
                         <option value="" disabled>Select product...</option>
                         <option>TCG Binder</option>
-                        <option>Playmat</option>
                         <option>Deck Box</option>
-                        <option>Card Sleeves</option>
-                        <option>Display Case</option>
-                        <option>Custom Packaging</option>
                         <option>Other</option>
                       </select>
                     </div>
@@ -214,11 +210,8 @@ export default function OrderForm() {
                       <select className="order-input" style={input} name="card_game" defaultValue="">
                         <option value="" disabled>Select your TCG...</option>
                         <option>Pokémon</option>
-                        <option>Magic: The Gathering</option>
-                        <option>Yu-Gi-Oh!</option>
                         <option>One Piece TCG</option>
                         <option>Lorcana</option>
-                        <option>Flesh and Blood</option>
                         <option>Not applicable</option>
                         <option>Other</option>
                       </select>
@@ -304,10 +297,10 @@ export default function OrderForm() {
                       <label style={label}>Approximate budget (€)</label>
                       <select className="order-input" style={input} name="budget" defaultValue="">
                         <option value="" disabled>Select range...</option>
-                        <option>Under €30</option>
                         <option>€30 – €60</option>
                         <option>€60 – €100</option>
-                        <option>€100 – €200</option>
+                        <option>€100 – €150</option>
+                        <option>€150 – €200</option>
                         <option>€200+</option>
                         <option>Flexible</option>
                       </select>
@@ -320,7 +313,6 @@ export default function OrderForm() {
                         <option>Instagram</option>
                         <option>TikTok</option>
                         <option>Friend / Word of mouth</option>
-                        <option>Reddit</option>
                         <option>Google</option>
                         <option>Other</option>
                       </select>

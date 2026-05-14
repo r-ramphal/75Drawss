@@ -4,7 +4,7 @@ import { useState } from 'react'
 const faqs = [
   {
     q: 'What products can you make?',
-    a: 'We make a wide range of custom products for collectors and creators — TCG binders, playmats, deck boxes, card sleeves, display cases, custom packaging and more. If you have something specific in mind just get in touch and we\'ll see what we can do.',
+    a: 'We make a wide range of custom products for collectors and creators — TCG binders, deck boxes, display cases and more. If you have something specific in mind just get in touch and we\'ll see what we can do.',
   },
   {
     q: 'How does the ordering process work?',
@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     q: 'How long does it take to make my product?',
-    a: 'Production typically takes 5–7 business days after payment. Shipping time depends on your location — within the Netherlands usually 1–2 days via PostNL or DHL.',
+    a: 'Production typically takes 7–14 business days after payment. Shipping time depends on your location — within the Netherlands usually 1–2 days via PostNL or DHL.',
   },
   {
     q: 'Can I upload my own artwork?',
@@ -36,15 +36,11 @@ const faqs = [
   },
   {
     q: 'Do you ship internationally?',
-    a: 'Yes! We ship across the Netherlands and internationally via PostNL and DHL. All orders include tracking so you always know where your product is.',
+    a: 'Yes! We ship across the Netherlands, France, Germany and Belgium via PostNL and DHL. All orders include tracking so you always know where your product is.',
   },
   {
     q: 'When do I pay?',
     a: 'No payment is required when you submit the form. You only pay after we send you a quote and you approve it. We\'ll send a payment link directly to your email.',
-  },
-  {
-    q: 'What payment methods do you accept?',
-    a: 'We accept iDEAL, credit card, PayPal and most other common payment methods via our payment provider Mollie.',
   },
   {
     q: 'Can I order multiple products?',

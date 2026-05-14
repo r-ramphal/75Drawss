@@ -8,7 +8,7 @@ export default function Features() {
     {
       icon: '📐',
       title: 'Any product, any size',
-      desc: 'Binders, playmats, deck boxes, display cases and more. If you can design it, we can make it. Any dimensions, any format.',
+      desc: 'Binders, deck boxes, display cases and more. If you can design it, we can make it. Any dimensions, any format.',
     },
     {
       icon: '✏️',

@@ -54,7 +54,7 @@ export default function Hero() {
         <div className="hero-bottom">
           <div className="hero-bottom-inner">
             <p className="hero-desc">
-              We design and craft custom products for collectors and creators — from TCG binders to playmats, deck boxes and beyond. Your design, your way.
+              We design and craft custom products for collectors and creators — from TCG binders to deck boxes and beyond. Your design, your way.
             </p>
             <div className="hero-actions">
               <a href="#order" className="btn-dark">Start your order →</a>
