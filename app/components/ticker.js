@@ -1,6 +1,6 @@
 export default function Ticker() {
   const items = [
-    'Custom Binders', '·', 'Handdrawn', '·', 'Deck Boxes', '·',
+    'Custom Binders', '·', 'Hand-drawn', '·', 'Deck Boxes', '·',
     'Card Sleeves', '·', 'Display Cases', '·', 'Custom Packaging', '·',
     'TCG Accessories', '·', 'Made in the Netherlands', '·',
     'Custom Binders', '·','·', 'Deck Boxes', '·', 'Custom Packaging', '·',
