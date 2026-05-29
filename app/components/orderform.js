@@ -7,6 +7,9 @@ const CLOUDINARY_PRESET = '75drawss'
 export default function OrderForm() {
   const [service, setService] = useState('build')
   const [qty, setQty] = useState(1)
+  const [pocketSize, setPocketSize] = useState('9-pocket')
+  const [binderColor, setBinderColor] = useState('')
+  const [customColor, setCustomColor] = useState('')
   const [fileName, setFileName] = useState('')
   const [fileUrl, setFileUrl] = useState('')
   const [uploading, setUploading] = useState(false)
@@ -53,9 +56,8 @@ export default function OrderForm() {
       source: form.source.value,
       quantity: qty,
       ...(service === 'build' && {
-        width_cm: form.width_cm.value,
-        height_cm: form.height_cm.value,
-        depth_cm: form.depth_cm.value,
+        pocket_size: pocketSize,
+        binder_color: binderColor || customColor,
       }),
       ...(service === 'customize' && {
         binder_condition: form.binder_condition.value,
@@ -85,7 +87,6 @@ export default function OrderForm() {
         .order-section { padding: 7rem 3rem; }
         .order-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 6rem; align-items: start; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-        .dim-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; }
         .form-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 2rem; padding-top: 1.75rem; border-top: 1px solid #000; gap: 1rem; flex-wrap: wrap; }
         .service-toggle { display: flex; border: 1px solid #000; margin-bottom: 2rem; }
         .service-btn { flex: 1; padding: 0.875rem 1rem; font-family: inherit; font-size: 0.85rem; font-weight: 500; cursor: pointer; border: none; transition: all 0.15s; text-align: center; }
@@ -97,11 +98,11 @@ export default function OrderForm() {
         .send-in-box p { font-size: 0.8rem; color: #555; line-height: 1.7; font-weight: 300; }
         .send-in-box ul { margin-top: 0.5rem; padding-left: 1.25rem; }
         .send-in-box ul li { font-size: 0.8rem; color: #555; line-height: 1.8; font-weight: 300; }
+        .pocket-btn { font-size: 0.8rem; padding: 0.5rem 1.25rem; cursor: pointer; font-family: inherit; transition: all 0.15s; border: 1px solid #000; }
         @media (max-width: 768px) {
           .order-section { padding: 4rem 1.5rem !important; }
           .order-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
           .form-grid { grid-template-columns: 1fr !important; }
-          .dim-row { grid-template-columns: 1fr 1fr !important; }
           .form-footer { flex-direction: column; align-items: stretch; }
           .submit-btn { text-align: center; }
         }
@@ -217,19 +218,90 @@ export default function OrderForm() {
                       </select>
                     </div>
 
-                    {/* BUILD ONLY — dimensions */}
+                    {/* BUILD ONLY */}
                     {service === 'build' && (
-                      <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
-                        <label style={label}>Dimensions (cm)</label>
-                        <div className="dim-row">
-                          <input className="order-input" style={input} type="number" name="width_cm" placeholder="Width" min="1" step="0.1" />
-                          <input className="order-input" style={input} type="number" name="height_cm" placeholder="Height" min="1" step="0.1" />
-                          <input className="order-input" style={input} type="number" name="depth_cm" placeholder="Depth" min="0.5" step="0.1" />
+                      <>
+                        {/* POCKET SIZE */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
+                          <label style={label}>Pocket size <span style={{ color: '#000' }}>*</span></label>
+                          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                            {['4-pocket', '9-pocket', '12-pocket'].map(size => (
+                              <button
+                                key={size}
+                                type="button"
+                                className="pocket-btn"
+                                onClick={() => setPocketSize(size)}
+                                style={{
+                                  background: pocketSize === size ? '#000' : '#fff',
+                                  color: pocketSize === size ? '#fff' : '#000',
+                                }}
+                              >{size}</button>
+                            ))}
+                          </div>
+                          <input type="hidden" name="pocket_size" value={pocketSize} />
                         </div>
-                      </div>
+
+                        {/* BINDER COLOR */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
+                          <label style={label}>Binder color <span style={{ color: '#000' }}>*</span></label>
+                          <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '0.75rem' }}>
+                            {[
+                              { name: 'Black', hex: '#1a1a1a' },
+                              { name: 'White', hex: '#ffffff' },
+                              { name: 'Pink', hex: '#f4a0bc' },
+                              { name: 'Red', hex: '#d93030' },
+                              { name: 'Blue', hex: '#2D5BE3' },
+                              { name: 'Purple', hex: '#7c3aed' },
+                              { name: 'Green', hex: '#16a34a' },
+                              { name: 'Yellow', hex: '#f59e0b' },
+                            ].map(color => (
+                              <button
+                                key={color.name}
+                                type="button"
+                                onClick={() => { setBinderColor(color.name); setCustomColor('') }}
+                                title={color.name}
+                                style={{
+                                  width: 32, height: 32,
+                                  borderRadius: '50%',
+                                  background: color.hex,
+                                  border: binderColor === color.name ? '3px solid #000' : '1.5px solid #ccc',
+                                  cursor: 'pointer',
+                                  transition: 'all 0.15s',
+                                  flexShrink: 0,
+                                }}
+                              />
+                            ))}
+                          </div>
+                          <input
+                            className="order-input"
+                            style={input}
+                            type="text"
+                            placeholder="Custom / other color (e.g. mint green, orange...)"
+                            value={customColor}
+                            onChange={e => { setCustomColor(e.target.value); setBinderColor('') }}
+                          />
+                          <input type="hidden" name="binder_color" value={binderColor || customColor} />
+                          {binderColor && <p style={{ fontSize: '0.75rem', color: '#555', marginTop: '0.4rem' }}>Selected: {binderColor}</p>}
+                        </div>
+
+                        {/* QUANTITY */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
+                          <label style={label}>Quantity</label>
+                          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                            {[1, 2, 3, 5, 10].map(n => (
+                              <button key={n} type="button" className="qty-btn" onClick={() => setQty(n)} style={{
+                                background: qty === n ? '#000' : '#fff',
+                                border: '1px solid #000',
+                                color: qty === n ? '#fff' : '#000',
+                              }}>{n}{n === 10 ? '+' : ''}</button>
+                            ))}
+                          </div>
+                          <input type="hidden" name="quantity" value={qty} />
+                        </div>
+                      </>
                     )}
 
-                    {/* CUSTOMIZE ONLY — product details */}
+                    {/* CUSTOMIZE ONLY */}
                     {service === 'customize' && (
                       <>
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -247,23 +319,6 @@ export default function OrderForm() {
                           </select>
                         </div>
                       </>
-                    )}
-
-                    {/* BUILD ONLY — quantity */}
-                    {service === 'build' && (
-                      <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
-                        <label style={label}>Quantity</label>
-                        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                          {[1, 2, 3, 5, 10].map(n => (
-                            <button key={n} type="button" className="qty-btn" onClick={() => setQty(n)} style={{
-                              background: qty === n ? '#000' : '#fff',
-                              border: '1px solid #000',
-                              color: qty === n ? '#fff' : '#000',
-                            }}>{n}{n === 10 ? '+' : ''}</button>
-                          ))}
-                        </div>
-                        <input type="hidden" name="quantity" value={qty} />
-                      </div>
                     )}
 
                     {/* DESIGN UPLOAD */}
@@ -293,30 +348,30 @@ export default function OrderForm() {
                       <textarea className="order-input" style={{ ...input, minHeight: 80, resize: 'vertical' }} name="special_requirements" placeholder={service === 'build' ? 'Specific materials, finish, deadline...' : 'Anything specific about your product or the customization you want...'} />
                     </div>
 
-<div style={{ display: 'flex', flexDirection: 'column' }}>
-  <label style={label}>Approximate budget (€)</label>
-  {service === 'build' ? (
-    <select className="order-input" style={input} name="budget" defaultValue="">
-      <option value="" disabled>Select range...</option>
-      <option>€60 – €100</option>
-      <option>€100 – €150</option>
-      <option>€150 – €200</option>
-      <option>€200 – €300</option>
-      <option>€300+</option>
-      <option>Flexible</option>
-    </select>
-  ) : (
-    <select className="order-input" style={input} name="budget" defaultValue="">
-      <option value="" disabled>Select range...</option>
-      <option>€30 – €60</option>
-      <option>€60 – €100</option>
-      <option>€100 – €150</option>
-      <option>€150 – €200</option>
-      <option>€200+</option>
-      <option>Flexible</option>
-    </select>
-  )}
-</div>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <label style={label}>Approximate budget (€)</label>
+                      {service === 'build' ? (
+                        <select className="order-input" style={input} name="budget" defaultValue="">
+                          <option value="" disabled>Select range...</option>
+                          <option>€60 – €100</option>
+                          <option>€100 – €150</option>
+                          <option>€150 – €200</option>
+                          <option>€200 – €300</option>
+                          <option>€300+</option>
+                          <option>Flexible</option>
+                        </select>
+                      ) : (
+                        <select className="order-input" style={input} name="budget" defaultValue="">
+                          <option value="" disabled>Select range...</option>
+                          <option>€30 – €60</option>
+                          <option>€60 – €100</option>
+                          <option>€100 – €150</option>
+                          <option>€150 – €200</option>
+                          <option>€200+</option>
+                          <option>Flexible</option>
+                        </select>
+                      )}
+                    </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <label style={label}>How did you find us?</label>
