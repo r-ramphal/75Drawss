@@ -1,4 +1,8 @@
+import { useTranslations } from 'next-intl'
+import LanguageSwitcher from './languageswitcher'
+
 export default function Navbar() {
+  const t = useTranslations('nav')
   return (
     <>
       <style>{`
@@ -28,11 +32,13 @@ export default function Navbar() {
           box-shadow: none;
           transform: translate(3px, 3px);
         }
+        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
         .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+        .mobile-cta { display: none; }
         @media (max-width: 640px) {
           .nav-links { display: none; }
           .nav-wrap { padding: 1rem 1.5rem !important; }
-          .mobile-cta { display: block !important; }
+          .mobile-cta { display: inline-block; }
         }
       `}</style>
       <nav className="nav-wrap" style={{
@@ -44,7 +50,7 @@ export default function Navbar() {
         borderBottom: '2px solid var(--color-border)',
         fontFamily: 'var(--font-ui)',
       }}>
-        <a href="#" aria-label="75Drawss home" style={{
+        <a href="#" aria-label={t('home')} style={{
           fontFamily: 'var(--font-display)',
           fontSize: '1.15rem',
           fontWeight: 400,
@@ -58,12 +64,16 @@ export default function Navbar() {
           <span style={{ fontFamily: 'var(--font-ui)', fontWeight: 700, fontSize: '1.05rem' }}>75</span>
           <span>Drawss</span>
         </a>
-        <ul className="nav-links">
-          <li><a href="#how-it-works" className="nav-link">How it works</a></li>
-          <li><a href="#features" className="nav-link">Why us</a></li>
-          <li><a href="#order" className="nav-cta">Order now</a></li>
-        </ul>
-        <a href="#order" style={{ display: 'none' }} className="mobile-cta nav-cta">Order now</a>
+
+        <div className="nav-right">
+          <ul className="nav-links">
+            <li><a href="#how-it-works" className="nav-link">{t('howItWorks')}</a></li>
+            <li><a href="#features" className="nav-link">{t('whyUs')}</a></li>
+            <li><a href="#order" className="nav-cta">{t('orderNow')}</a></li>
+          </ul>
+          <LanguageSwitcher />
+          <a href="#order" className="nav-cta mobile-cta">{t('orderNow')}</a>
+        </div>
       </nav>
     </>
   )

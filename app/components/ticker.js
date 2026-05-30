@@ -1,11 +1,14 @@
+import { useTranslations } from 'next-intl'
+
 export default function Ticker() {
-  const items = [
-    'Custom Binders', '·', 'Deck Boxes', '·', 'Card Sleeves', '·',
-    'Display Cases', '·', 'Custom Packaging', '·', 'TCG Accessories', '·',
-    'Made in the Netherlands', '·',
-  ]
-  // Duplicate for seamless infinite loop
-  const track = [...items, ...items]
+  const t = useTranslations('ticker')
+  const labels = t.raw('items')
+
+  // Interleave with separators, then duplicate for a seamless loop
+  const base = []
+  labels.forEach((label) => { base.push(label, '·') })
+  const track = [...base, ...base]
+
   return (
     <>
       <style>{`

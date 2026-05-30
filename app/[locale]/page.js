@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import { setRequestLocale } from 'next-intl/server'
 import Navbar from '@/app/components/navbar'
 import Hero from '@/app/components/hero'
 import Ticker from '@/app/components/ticker'
@@ -11,7 +12,10 @@ const OrderForm = dynamic(() => import('@/app/components/orderform'))
 const FAQ = dynamic(() => import('@/app/components/faq'))
 const Footer = dynamic(() => import('@/app/components/footer'))
 
-export default function Home() {
+export default async function Home({ params }) {
+  const { locale } = await params
+  setRequestLocale(locale)
+
   return (
     <main>
       <Navbar />

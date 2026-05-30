@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl'
+
 const IconPalette = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
@@ -30,29 +32,12 @@ const IconTruck = () => (
   </svg>
 )
 
+const icons = [IconPalette, IconRuler, IconStar, IconTruck]
+
 export default function Features() {
-  const features = [
-    {
-      Icon: IconPalette,
-      title: 'Fully custom design',
-      desc: 'Upload your own artwork or describe your vision. We bring it to life exactly as you imagined — no templates, no compromises, no limits.',
-    },
-    {
-      Icon: IconRuler,
-      title: 'Any product, any size',
-      desc: 'Binders, deck boxes, display cases and more. If you can design it, we can make it. Any dimensions, any format.',
-    },
-    {
-      Icon: IconStar,
-      title: 'Original designs',
-      desc: 'No copyrighted characters — just stunning original artwork. We create designs you actually own, built around your style and vision.',
-    },
-    {
-      Icon: IconTruck,
-      title: 'Fast, tracked shipping',
-      desc: 'We ship across the Netherlands and internationally via PostNL and DHL — with full tracking so you always know where your order is.',
-    },
-  ]
+  const t = useTranslations('features')
+  const items = t.raw('items')
+
   return (
     <>
       <style>{`
@@ -97,20 +82,23 @@ export default function Features() {
       `}</style>
       <div id="features" style={{ borderTop: '2px solid var(--color-border)', background: 'var(--color-bg)' }}>
         <section className="features-section" style={{ maxWidth: '1200px', margin: '0 auto', fontFamily: 'var(--font-ui)' }}>
-          <p style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '1rem' }}>Why 75Drawss</p>
+          <p style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '1rem' }}>{t('eyebrow')}</p>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 300, letterSpacing: '-0.025em', lineHeight: 1.1, marginBottom: '4rem', color: 'var(--color-text)' }}>
-            Built for collectors<br/>and creators
+            {t('titleLine1')}<br/>{t('titleLine2')}
           </h2>
           <div className="features-grid">
-            {features.map(({ Icon, title, desc }, i) => (
-              <div key={i} className="feature">
-                <div className="feature-icon">
-                  <Icon />
+            {items.map((f, i) => {
+              const Icon = icons[i]
+              return (
+                <div key={i} className="feature">
+                  <div className="feature-icon">
+                    <Icon />
+                  </div>
+                  <h3 style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.5rem', color: 'var(--color-text)', letterSpacing: '-0.01em' }}>{f.title}</h3>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', lineHeight: 1.75, fontWeight: 400 }}>{f.desc}</p>
                 </div>
-                <h3 style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.5rem', color: 'var(--color-text)', letterSpacing: '-0.01em' }}>{title}</h3>
-                <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', lineHeight: 1.75, fontWeight: 400 }}>{desc}</p>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </section>
       </div>

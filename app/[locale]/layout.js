@@ -1,0 +1,113 @@
+import { Rubik } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
+import "../globals.css";
+
+const rubik = Rubik({
+  variable: "--font-rubik",
+  subsets: ["latin"],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+});
+
+const SITE_URL = 'https://www.75drawss.com';
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'meta' });
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: t('title'),
+      template: '%s | 75Drawss',
+    },
+    description: t('description'),
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        en: '/en',
+        nl: '/nl',
+        'x-default': '/en',
+      },
+    },
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      type: 'website',
+      url: `${SITE_URL}/${locale}`,
+      siteName: '75Drawss',
+      locale: locale === 'nl' ? 'nl_NL' : 'en_NL',
+      alternateLocale: locale === 'nl' ? ['en_NL'] : ['nl_NL'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
+    },
+    icons: { icon: '/icon.svg' },
+    verification: {
+      google: '4n7f3GSEAdSc6A9H4XlPCpjwmtHAGZAkjUIXEHTGLOY',
+    },
+  };
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Store',
+  name: '75Drawss',
+  description: 'Custom TCG binder, deck box and accessory design, handcrafted to order in the Netherlands.',
+  url: SITE_URL,
+  email: '75Drawss@gmail.com',
+  image: `${SITE_URL}/icon.svg`,
+  sameAs: [
+    'https://www.instagram.com/75.drawss',
+    'https://www.tiktok.com/@75drawss',
+  ],
+  priceRange: '€€',
+  knowsLanguage: ['en', 'nl'],
+  areaServed: [
+    { '@type': 'Country', name: 'Netherlands' },
+    { '@type': 'Country', name: 'Belgium' },
+    { '@type': 'Country', name: 'Germany' },
+    { '@type': 'Country', name: 'France' },
+  ],
+  address: { '@type': 'PostalAddress', addressCountry: 'NL' },
+  makesOffer: [
+    { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Custom TCG Binder' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Custom Deck Box' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Custom Display Case' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Custom Card Sleeves & Accessories' } },
+  ],
+};
+
+export default async function LocaleLayout({ children, params }) {
+  const { locale } = await params;
+
+  if (!routing.locales.includes(locale)) {
+    notFound();
+  }
+
+  setRequestLocale(locale);
+  const messages = await getMessages();
+
+  return (
+    <html lang={locale} className={rubik.variable}>
+      <body>
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </body>
+    </html>
+  );
+}

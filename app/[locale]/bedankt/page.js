@@ -1,12 +1,20 @@
-import Link from 'next/link'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { Link } from '@/i18n/navigation'
 
-export const metadata = {
-  title: 'Thank you — order received',
-  // Keep the thank-you page out of search results
-  robots: { index: false, follow: false },
+export async function generateMetadata({ params }) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'thankYou' })
+  return {
+    title: t('title'),
+    robots: { index: false, follow: false },
+  }
 }
 
-export default function Bedankt() {
+export default async function Bedankt({ params }) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations({ locale, namespace: 'thankYou' })
+
   return (
     <div style={{
       minHeight: '100vh',
@@ -19,10 +27,7 @@ export default function Bedankt() {
       background: 'var(--color-bg)',
       gap: '1.5rem',
       textAlign: 'center',
-      position: 'relative',
-      overflow: 'hidden',
     }}>
-      {/* Success badge */}
       <div style={{
         width: 56, height: 56, borderRadius: '50%',
         background: 'var(--color-accent)',
@@ -37,13 +42,13 @@ export default function Bedankt() {
       </div>
 
       <p style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)' }}>
-        Order received
+        {t('eyebrow')}
       </p>
       <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', fontWeight: 300, letterSpacing: '-0.025em', color: 'var(--color-text)', lineHeight: 1.05 }}>
-        Thank you!
+        {t('heading')}
       </h1>
       <p style={{ fontSize: '0.95rem', color: 'var(--color-text-secondary)', maxWidth: '440px', lineHeight: 1.75 }}>
-        We&apos;ve received your request and will get back to you within 1–2 business days with a quote. Keep an eye on your inbox — check your spam folder just in case.
+        {t('body')}
       </p>
 
       <Link href="/" style={{
@@ -60,7 +65,7 @@ export default function Bedankt() {
         display: 'inline-block',
         fontFamily: 'var(--font-ui)',
       }}>
-        Back to home →
+        {t('back')}
       </Link>
     </div>
   )

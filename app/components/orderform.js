@@ -1,6 +1,7 @@
 'use client'
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useMemo } from 'react'
+import { useTranslations } from 'next-intl'
+import { useRouter } from '@/i18n/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -11,21 +12,24 @@ const CLOUDINARY_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_PRESET
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'application/pdf', 'image/svg+xml']
 const MAX_FILE_SIZE = 10 * 1024 * 1024
 
-const schema = z.object({
-  name: z.string().min(2, { message: 'Enter your full name' }),
-  email: z.string().email({ message: 'Enter a valid email address' }),
-  product_type: z.string().min(1, { message: 'Select a product type' }),
-  card_game: z.string().optional(),
-  design_description: z.string().optional(),
-  special_requirements: z.string().optional(),
-  budget: z.string().optional(),
-  source: z.string().optional(),
-  binder_brand: z.string().optional(),
-  binder_condition: z.string().optional(),
-  consent: z.boolean().refine(val => val === true, 'You must confirm to continue'),
-})
+const POCKET_SIZES = ['4-pocket', '9-pocket', '12-pocket']
+const COLORS = [
+  { name: 'Black', hex: '#1a1a1a' },
+  { name: 'White', hex: '#ffffff' },
+  { name: 'Pink', hex: '#f4a0bc' },
+  { name: 'Red', hex: '#d93030' },
+  { name: 'Blue', hex: '#2D5BE3' },
+  { name: 'Purple', hex: '#7c3aed' },
+  { name: 'Green', hex: '#16a34a' },
+  { name: 'Yellow', hex: '#f59e0b' },
+]
+const QUANTITIES = [1, 2, 3, 5, 10]
 
 export default function OrderForm() {
+  const t = useTranslations('order')
+  const tThanks = useTranslations('thankYou')
+  const router = useRouter()
+
   const [service, setService] = useState('build')
   const [qty, setQty] = useState(1)
   const [pocketSize, setPocketSize] = useState('9-pocket')
@@ -38,7 +42,20 @@ export default function OrderForm() {
   const [submitted, setSubmitted] = useState(false)
   const [submitError, setSubmitError] = useState('')
   const [binderColorError, setBinderColorError] = useState('')
-  const router = useRouter()
+
+  const schema = useMemo(() => z.object({
+    name: z.string().min(2, { message: t('errName') }),
+    email: z.string().email({ message: t('errEmail') }),
+    product_type: z.string().min(1, { message: t('errProduct') }),
+    card_game: z.string().optional(),
+    design_description: z.string().optional(),
+    special_requirements: z.string().optional(),
+    budget: z.string().optional(),
+    source: z.string().optional(),
+    binder_brand: z.string().optional(),
+    binder_condition: z.string().optional(),
+    consent: z.boolean().refine(val => val === true, t('errConsent')),
+  }), [t])
 
   const { register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm({
     resolver: zodResolver(schema),
@@ -57,11 +74,11 @@ export default function OrderForm() {
     if (!file) return
     setFileError('')
     if (file.size > MAX_FILE_SIZE) {
-      setFileError('File must be under 10MB')
+      setFileError(t('errFileSize'))
       return
     }
     if (!ALLOWED_TYPES.includes(file.type) && !file.name.match(/\.(ai|psd)$/i)) {
-      setFileError('Unsupported file type. Use JPG, PNG, PDF, AI, PSD, or SVG')
+      setFileError(t('errFileType'))
       return
     }
     setFileName(file.name)
@@ -77,18 +94,18 @@ export default function OrderForm() {
       const json = await res.json()
       setFileUrl(json.secure_url)
     } catch {
-      setFileError('Upload failed. Please try again.')
+      setFileError(t('errUpload'))
     }
     setUploading(false)
   }
 
   async function onSubmit(data) {
     if (service === 'build' && !binderColor && !customColor) {
-      setBinderColorError('Select or enter a binder color')
+      setBinderColorError(t('errColor'))
       return
     }
     if (service === 'customize' && !data.binder_condition) {
-      setError('binder_condition', { message: 'Select the condition of your product' })
+      setError('binder_condition', { message: t('errCondition') })
       return
     }
     setBinderColorError('')
@@ -127,17 +144,20 @@ export default function OrderForm() {
       setSubmitted(true)
       router.push('/bedankt')
     } else {
-      setSubmitError('Something went wrong. Please try again.')
+      setSubmitError(t('errSubmit'))
     }
   }
 
   const labelStyle = { fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '0.4rem', display: 'block', fontFamily: 'var(--font-ui)' }
   const inputStyle = { background: 'var(--color-surface)', color: 'var(--color-text)', fontSize: '0.875rem', fontWeight: 400, padding: '0.75rem 1rem', borderRadius: 0, outline: 'none', width: '100%', fontFamily: 'var(--font-ui)' }
   const errorStyle = { fontSize: '0.72rem', color: '#c00', marginTop: '0.35rem', display: 'block', fontFamily: 'var(--font-ui)' }
+  const req = <span style={{ color: 'var(--color-text)' }}>*</span>
 
   function inputBorder(fieldError) {
     return { border: fieldError ? '2px solid #c00' : '2px solid var(--color-border)' }
   }
+
+  const bullets = service === 'build' ? t.raw('bulletsBuild') : t.raw('bulletsCustomize')
 
   return (
     <>
@@ -190,31 +210,17 @@ export default function OrderForm() {
 
             {/* LEFT INFO */}
             <div>
-              <p style={{ fontSize: '0.7rem', fontWeight: 500, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#999', marginBottom: '1rem' }}>Start a project</p>
-              <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 300, letterSpacing: '-0.025em', lineHeight: 1.1, marginBottom: '1rem', color: '#000' }}>
-                Tell us about<br/>your idea
+              <p style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '1rem', fontFamily: 'var(--font-ui)' }}>{t('eyebrow')}</p>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 300, letterSpacing: '-0.025em', lineHeight: 1.1, marginBottom: '1rem', color: 'var(--color-text)' }}>
+                {t('titleLine1')}<br/>{t('titleLine2')}
               </h2>
-              <p style={{ fontSize: '0.875rem', color: '#555', lineHeight: 1.8, fontWeight: 300, marginBottom: '2.5rem' }}>
-                {service === 'build'
-                  ? 'Tell us what you want made. We\'ll get back to you within 1–2 business days with a quote. No payment required yet.'
-                  : 'Send us your product and we\'ll customize it for you. Fill in the form and we\'ll reply with a quote and our shipping address.'}
+              <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', lineHeight: 1.8, fontWeight: 400, marginBottom: '2.5rem', fontFamily: 'var(--font-ui)' }}>
+                {service === 'build' ? t('introBuild') : t('introCustomize')}
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {(service === 'build' ? [
-                  'Free quote, no commitment',
-                  'Upload your own artwork',
-                  'Any product, any dimensions',
-                  'Ships anywhere in NL and abroad',
-                  'Reply within 1–2 business days',
-                ] : [
-                  'Free quote, no commitment',
-                  'Send your product to us',
-                  'We customize and send it back',
-                  'Upload your design or describe it',
-                  'Reply within 1–2 business days',
-                ]).map((item, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.8rem', color: '#555', fontWeight: 300 }}>
-                    <span style={{ width: 5, height: 5, background: '#000', borderRadius: '50%', flexShrink: 0, display: 'block' }} />
+                {bullets.map((item, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: 400, fontFamily: 'var(--font-ui)' }}>
+                    <span style={{ width: 5, height: 5, background: 'var(--color-accent)', borderRadius: '50%', flexShrink: 0, display: 'block' }} />
                     {item}
                   </div>
                 ))}
@@ -225,12 +231,10 @@ export default function OrderForm() {
             <div style={{ background: 'var(--color-surface)', border: '2px solid var(--color-border)', padding: '2.5rem', boxShadow: 'var(--shadow-hard-lg)' }}>
               {submitted ? (
                 <div style={{ textAlign: 'center', padding: '3.5rem 2rem' }}>
-                  <div style={{ width: 48, height: 48, background: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', color: '#fff', fontSize: '1.1rem' }}>✓</div>
-                  <h3 style={{ fontFamily: 'Georgia, serif', fontSize: '1.5rem', fontWeight: 300, marginBottom: '0.75rem', color: '#000' }}>Order received</h3>
-                  <p style={{ fontSize: '0.875rem', color: '#555', fontWeight: 300, lineHeight: 1.7 }}>
-                    {service === 'build'
-                      ? 'Thanks for reaching out. We\'ll review your details and reply within 1–2 business days.'
-                      : 'Thanks! We\'ll reply within 1–2 business days with a quote and our shipping address so you can send your product.'}
+                  <div style={{ width: 48, height: 48, background: 'var(--color-text)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', color: '#fff', fontSize: '1.1rem' }}>✓</div>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 300, marginBottom: '0.75rem', color: 'var(--color-text)' }}>{tThanks('heading')}</h3>
+                  <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', fontWeight: 400, lineHeight: 1.7, fontFamily: 'var(--font-ui)' }}>
+                    {tThanks('body')}
                   </p>
                 </div>
               ) : (
@@ -239,10 +243,10 @@ export default function OrderForm() {
                   {/* SERVICE TOGGLE */}
                   <div className="service-toggle">
                     <button type="button" className={`service-btn ${service === 'build' ? 'active' : 'inactive'}`} onClick={() => setService('build')}>
-                      Build my product
+                      {t('serviceBuild')}
                     </button>
                     <button type="button" className={`service-btn ${service === 'customize' ? 'active' : 'inactive'}`} onClick={() => setService('customize')}>
-                      Customize my product
+                      {t('serviceCustomize')}
                     </button>
                   </div>
 
@@ -251,49 +255,40 @@ export default function OrderForm() {
                     {/* SEND-IN INFO BOX */}
                     {service === 'customize' && (
                       <div className="send-in-box">
-                        <h4>How to send your product</h4>
-                        <p>After we confirm your quote, send your product to our address. Please make sure to:</p>
+                        <h4>{t('sendInTitle')}</h4>
+                        <p>{t('sendInIntro')}</p>
                         <ul>
-                          <li>Pack it well in a sturdy box with bubble wrap</li>
-                          <li>Use PostNL or DHL with a tracking code</li>
-                          <li>For valuable items, use aangetekende post</li>
-                          <li>Keep your tracking code until it arrives</li>
+                          {t.raw('sendInList').map((li, i) => <li key={i}>{li}</li>)}
                         </ul>
                       </div>
                     )}
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <label htmlFor="name" style={labelStyle}>Full name <span style={{ color: '#000' }}>*</span></label>
-                      <input id="name" className="order-input" style={{ ...inputStyle, ...inputBorder(errors.name) }} type="text" placeholder="Jan de Vries" {...register('name')} />
+                      <label htmlFor="name" style={labelStyle}>{t('labelName')} {req}</label>
+                      <input id="name" className="order-input" style={{ ...inputStyle, ...inputBorder(errors.name) }} type="text" placeholder={t('phName')} {...register('name')} />
                       {errors.name && <span style={errorStyle} role="alert">{errors.name.message}</span>}
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <label htmlFor="email" style={labelStyle}>Email address <span style={{ color: '#000' }}>*</span></label>
-                      <input id="email" className="order-input" style={{ ...inputStyle, ...inputBorder(errors.email) }} type="email" placeholder="jan@example.nl" {...register('email')} />
+                      <label htmlFor="email" style={labelStyle}>{t('labelEmail')} {req}</label>
+                      <input id="email" className="order-input" style={{ ...inputStyle, ...inputBorder(errors.email) }} type="email" placeholder={t('phEmail')} {...register('email')} />
                       {errors.email && <span style={errorStyle} role="alert">{errors.email.message}</span>}
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <label htmlFor="product_type" style={labelStyle}>Product type <span style={{ color: '#000' }}>*</span></label>
+                      <label htmlFor="product_type" style={labelStyle}>{t('labelProductType')} {req}</label>
                       <select id="product_type" className="order-input" style={{ ...inputStyle, ...inputBorder(errors.product_type) }} {...register('product_type')}>
-                        <option value="">Select product...</option>
-                        <option>TCG Binder</option>
-                        <option>Deck Box</option>
-                        <option>Other</option>
+                        <option value="">{t('phProduct')}</option>
+                        {t.raw('optProduct').map(o => <option key={o}>{o}</option>)}
                       </select>
                       {errors.product_type && <span style={errorStyle} role="alert">{errors.product_type.message}</span>}
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <label htmlFor="card_game" style={labelStyle}>Card game (if applicable)</label>
+                      <label htmlFor="card_game" style={labelStyle}>{t('labelCardGame')}</label>
                       <select id="card_game" className="order-input" style={{ ...inputStyle, ...inputBorder(errors.card_game) }} {...register('card_game')}>
-                        <option value="">Select your TCG...</option>
-                        <option>Pokémon</option>
-                        <option>One Piece TCG</option>
-                        <option>Lorcana</option>
-                        <option>Not applicable</option>
-                        <option>Other</option>
+                        <option value="">{t('phCardGame')}</option>
+                        {t.raw('optCardGame').map(o => <option key={o}>{o}</option>)}
                       </select>
                     </div>
 
@@ -302,9 +297,9 @@ export default function OrderForm() {
                       <>
                         {/* POCKET SIZE */}
                         <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
-                          <label style={labelStyle}>Pocket size <span style={{ color: '#000' }}>*</span></label>
+                          <label style={labelStyle}>{t('labelPocketSize')} {req}</label>
                           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                            {['4-pocket', '9-pocket', '12-pocket'].map(size => (
+                            {POCKET_SIZES.map(size => (
                               <button
                                 key={size}
                                 type="button"
@@ -312,8 +307,8 @@ export default function OrderForm() {
                                 onClick={() => setPocketSize(size)}
                                 aria-pressed={pocketSize === size}
                                 style={{
-                                  background: pocketSize === size ? '#000' : '#fff',
-                                  color: pocketSize === size ? '#fff' : '#000',
+                                  background: pocketSize === size ? 'var(--color-text)' : 'var(--color-surface)',
+                                  color: pocketSize === size ? '#fff' : 'var(--color-text)',
                                 }}
                               >{size}</button>
                             ))}
@@ -322,18 +317,9 @@ export default function OrderForm() {
 
                         {/* BINDER COLOR */}
                         <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
-                          <label style={labelStyle}>Binder color <span style={{ color: '#000' }}>*</span></label>
+                          <label style={labelStyle}>{t('labelBinderColor')} {req}</label>
                           <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '0.75rem' }}>
-                            {[
-                              { name: 'Black', hex: '#1a1a1a' },
-                              { name: 'White', hex: '#ffffff' },
-                              { name: 'Pink', hex: '#f4a0bc' },
-                              { name: 'Red', hex: '#d93030' },
-                              { name: 'Blue', hex: '#2D5BE3' },
-                              { name: 'Purple', hex: '#7c3aed' },
-                              { name: 'Green', hex: '#16a34a' },
-                              { name: 'Yellow', hex: '#f59e0b' },
-                            ].map(color => (
+                            {COLORS.map(color => (
                               <button
                                 key={color.name}
                                 type="button"
@@ -345,7 +331,7 @@ export default function OrderForm() {
                                   width: 32, height: 32,
                                   borderRadius: '50%',
                                   background: color.hex,
-                                  border: binderColor === color.name ? '3px solid #000' : '1.5px solid #ccc',
+                                  border: binderColor === color.name ? '3px solid var(--color-text)' : '1.5px solid #ccc',
                                   cursor: 'pointer',
                                   transition: 'all 0.15s',
                                   flexShrink: 0,
@@ -355,25 +341,25 @@ export default function OrderForm() {
                           </div>
                           <input
                             className="order-input"
-                            style={{ ...inputStyle, border: binderColorError ? '1px solid #c00' : '1px solid #000' }}
+                            style={{ ...inputStyle, border: binderColorError ? '2px solid #c00' : '2px solid var(--color-border)' }}
                             type="text"
-                            placeholder="Custom / other color (e.g. mint green, orange...)"
+                            placeholder={t('phCustomColor')}
                             value={customColor}
                             onChange={e => { setCustomColor(e.target.value); setBinderColor(''); setBinderColorError('') }}
                           />
-                          {binderColor && <p style={{ fontSize: '0.75rem', color: '#555', marginTop: '0.4rem' }}>Selected: {binderColor}</p>}
+                          {binderColor && <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '0.4rem', fontFamily: 'var(--font-ui)' }}>{t('selectedColor', { color: binderColor })}</p>}
                           {binderColorError && <span style={errorStyle} role="alert">{binderColorError}</span>}
                         </div>
 
                         {/* QUANTITY */}
                         <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
-                          <label style={labelStyle}>Quantity</label>
+                          <label style={labelStyle}>{t('labelQuantity')}</label>
                           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                            {[1, 2, 3, 5, 10].map(n => (
+                            {QUANTITIES.map(n => (
                               <button key={n} type="button" className="qty-btn" onClick={() => setQty(n)} aria-pressed={qty === n} style={{
-                                background: qty === n ? '#000' : '#fff',
-                                border: '1px solid #000',
-                                color: qty === n ? '#fff' : '#000',
+                                background: qty === n ? 'var(--color-text)' : 'var(--color-surface)',
+                                border: '2px solid var(--color-border)',
+                                color: qty === n ? '#fff' : 'var(--color-text)',
                               }}>{n}{n === 10 ? '+' : ''}</button>
                             ))}
                           </div>
@@ -385,17 +371,14 @@ export default function OrderForm() {
                     {service === 'customize' && (
                       <>
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
-                          <label htmlFor="binder_brand" style={labelStyle}>Brand / model</label>
-                          <input id="binder_brand" className="order-input" style={{ ...inputStyle, border: '1px solid #000' }} type="text" placeholder="e.g. Ultra Pro, Dragon Shield..." {...register('binder_brand')} />
+                          <label htmlFor="binder_brand" style={labelStyle}>{t('labelBrand')}</label>
+                          <input id="binder_brand" className="order-input" style={{ ...inputStyle, border: '2px solid var(--color-border)' }} type="text" placeholder={t('phBrand')} {...register('binder_brand')} />
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
-                          <label htmlFor="binder_condition" style={labelStyle}>Condition <span style={{ color: '#000' }}>*</span></label>
+                          <label htmlFor="binder_condition" style={labelStyle}>{t('labelCondition')} {req}</label>
                           <select id="binder_condition" className="order-input" style={{ ...inputStyle, ...inputBorder(errors.binder_condition) }} {...register('binder_condition')}>
-                            <option value="">Select condition...</option>
-                            <option>New / unused</option>
-                            <option>Like new</option>
-                            <option>Good — minor wear</option>
-                            <option>Used — visible wear</option>
+                            <option value="">{t('phCondition')}</option>
+                            {t.raw('optCondition').map(o => <option key={o}>{o}</option>)}
                           </select>
                           {errors.binder_condition && <span style={errorStyle} role="alert">{errors.binder_condition.message}</span>}
                         </div>
@@ -404,74 +387,53 @@ export default function OrderForm() {
 
                     {/* DESIGN UPLOAD */}
                     <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
-                      <label style={labelStyle}>Design file upload</label>
-                      <div style={{ border: fileError ? '1px dashed #c00' : '1px dashed #000', padding: '1.75rem', textAlign: 'center', background: '#fff', position: 'relative' }}>
+                      <label style={labelStyle}>{t('labelUpload')}</label>
+                      <div style={{ border: fileError ? '2px dashed #c00' : '2px dashed var(--color-border)', padding: '1.75rem', textAlign: 'center', background: 'var(--color-surface)', position: 'relative' }}>
                         <input type="file" accept=".jpg,.jpeg,.png,.pdf,.ai,.psd,.svg"
                           onChange={handleFileChange}
                           style={{ position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer', width: '100%', height: '100%' }} />
-                        <p style={{ fontSize: '0.8rem', color: '#555', fontWeight: 300 }}>
-                          <strong style={{ color: '#000', fontWeight: 500 }}>Click to upload</strong> or drag & drop
+                        <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: 400, fontFamily: 'var(--font-ui)' }}>
+                          <strong style={{ color: 'var(--color-text)', fontWeight: 600 }}>{t('uploadClick')}</strong> {t('uploadDrag')}
                         </p>
-                        <p style={{ fontSize: '0.7rem', color: '#999', marginTop: '0.3rem' }}>JPG, PNG, PDF, AI, PSD, SVG · max 10MB</p>
-                        {uploading && <p style={{ fontSize: '0.75rem', color: '#555', marginTop: '0.5rem' }}>Uploading...</p>}
-                        {fileUrl && !uploading && <p style={{ fontSize: '0.75rem', color: '#000', marginTop: '0.5rem' }}>✓ {fileName} uploaded</p>}
+                        <p style={{ fontSize: '0.7rem', color: 'var(--color-text-muted)', marginTop: '0.3rem', fontFamily: 'var(--font-ui)' }}>{t('uploadHint')}</p>
+                        {uploading && <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '0.5rem', fontFamily: 'var(--font-ui)' }}>{t('uploading')}</p>}
+                        {fileUrl && !uploading && <p style={{ fontSize: '0.75rem', color: 'var(--color-text)', marginTop: '0.5rem', fontFamily: 'var(--font-ui)' }}>{t('uploaded', { file: fileName })}</p>}
                       </div>
                       {fileError && <span style={errorStyle} role="alert">{fileError}</span>}
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
-                      <label htmlFor="design_description" style={labelStyle}>Design description</label>
-                      <textarea id="design_description" className="order-input" style={{ ...inputStyle, border: '1px solid #000', minHeight: 110, resize: 'vertical' }} placeholder="Describe your design — colours, theme, style, any text you want included, references, etc." {...register('design_description')} />
+                      <label htmlFor="design_description" style={labelStyle}>{t('labelDescription')}</label>
+                      <textarea id="design_description" className="order-input" style={{ ...inputStyle, border: '2px solid var(--color-border)', minHeight: 110, resize: 'vertical' }} placeholder={t('phDescription')} {...register('design_description')} />
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
-                      <label htmlFor="special_requirements" style={labelStyle}>Special requirements</label>
-                      <textarea id="special_requirements" className="order-input" style={{ ...inputStyle, border: '1px solid #000', minHeight: 80, resize: 'vertical' }} placeholder={service === 'build' ? 'Specific materials, finish, deadline...' : 'Anything specific about your product or the customization you want...'} {...register('special_requirements')} />
+                      <label htmlFor="special_requirements" style={labelStyle}>{t('labelSpecial')}</label>
+                      <textarea id="special_requirements" className="order-input" style={{ ...inputStyle, border: '2px solid var(--color-border)', minHeight: 80, resize: 'vertical' }} placeholder={service === 'build' ? t('phSpecialBuild') : t('phSpecialCustomize')} {...register('special_requirements')} />
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <label htmlFor="budget" style={labelStyle}>Approximate budget (€)</label>
-                      {service === 'build' ? (
-                        <select id="budget" className="order-input" style={{ ...inputStyle, border: '1px solid #000' }} {...register('budget')}>
-                          <option value="">Select range...</option>
-                          <option>€60 – €100</option>
-                          <option>€100 – €150</option>
-                          <option>€150 – €200</option>
-                          <option>€200 – €300</option>
-                          <option>€300+</option>
-                          <option>Flexible</option>
-                        </select>
-                      ) : (
-                        <select id="budget" className="order-input" style={{ ...inputStyle, border: '1px solid #000' }} {...register('budget')}>
-                          <option value="">Select range...</option>
-                          <option>€30 – €60</option>
-                          <option>€60 – €100</option>
-                          <option>€100 – €150</option>
-                          <option>€150 – €200</option>
-                          <option>€200+</option>
-                          <option>Flexible</option>
-                        </select>
-                      )}
+                      <label htmlFor="budget" style={labelStyle}>{t('labelBudget')}</label>
+                      <select id="budget" className="order-input" style={{ ...inputStyle, border: '2px solid var(--color-border)' }} {...register('budget')}>
+                        <option value="">{t('phBudget')}</option>
+                        {(service === 'build' ? t.raw('optBudgetBuild') : t.raw('optBudgetCustomize')).map(o => <option key={o}>{o}</option>)}
+                      </select>
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <label htmlFor="source" style={labelStyle}>How did you find us?</label>
-                      <select id="source" className="order-input" style={{ ...inputStyle, border: '1px solid #000' }} {...register('source')}>
-                        <option value="">Select...</option>
-                        <option>Instagram</option>
-                        <option>TikTok</option>
-                        <option>Friend / Word of mouth</option>
-                        <option>Google</option>
-                        <option>Other</option>
+                      <label htmlFor="source" style={labelStyle}>{t('labelSource')}</label>
+                      <select id="source" className="order-input" style={{ ...inputStyle, border: '2px solid var(--color-border)' }} {...register('source')}>
+                        <option value="">{t('phSource')}</option>
+                        {t.raw('optSource').map(o => <option key={o}>{o}</option>)}
                       </select>
                     </div>
 
                     {/* CONSENT */}
                     <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-                        <input id="consent" type="checkbox" style={{ marginTop: '0.2rem', cursor: 'pointer', accentColor: '#000' }} {...register('consent')} />
-                        <label htmlFor="consent" style={{ ...labelStyle, textTransform: 'none', letterSpacing: 0, fontSize: '0.8rem', color: '#555', fontWeight: 300 }}>
-                          I confirm that I own the rights to any artwork uploaded and agree to the order terms.
+                        <input id="consent" type="checkbox" style={{ marginTop: '0.2rem', cursor: 'pointer', accentColor: 'var(--color-text)' }} {...register('consent')} />
+                        <label htmlFor="consent" style={{ ...labelStyle, textTransform: 'none', letterSpacing: 0, fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: 400 }}>
+                          {t('consent')}
                         </label>
                       </div>
                       {errors.consent && <span style={errorStyle} role="alert">{errors.consent.message}</span>}
@@ -480,15 +442,15 @@ export default function OrderForm() {
                   </div>
 
                   {submitError && (
-                    <p style={{ fontSize: '0.8rem', color: '#c00', marginTop: '1rem' }} role="alert">{submitError}</p>
+                    <p style={{ fontSize: '0.8rem', color: '#c00', marginTop: '1rem', fontFamily: 'var(--font-ui)' }} role="alert">{submitError}</p>
                   )}
 
                   <div className="form-footer">
-                    <p style={{ fontSize: '0.75rem', color: '#999', fontWeight: 300, lineHeight: 1.6 }}>
-                      No payment required yet.<br/>We'll reply within 1–2 business days.
+                    <p style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', fontWeight: 400, lineHeight: 1.6, fontFamily: 'var(--font-ui)' }}>
+                      {t('footerNote')}
                     </p>
                     <button type="submit" className="submit-btn" disabled={isSubmitting || uploading}>
-                      {isSubmitting ? 'Sending...' : uploading ? 'Uploading file...' : 'Send order request →'}
+                      {isSubmitting ? t('submitSending') : uploading ? t('submitUploading') : t('submitDefault')}
                     </button>
                   </div>
                 </form>

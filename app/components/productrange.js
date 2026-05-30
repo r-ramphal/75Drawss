@@ -1,8 +1,9 @@
 /*
   Product range showcase. Each product uses a clean SVG illustration as a
-  placeholder. When you have real photos, drop the file in /public and set
-  `image: '/your-photo.jpg'` on that product — it replaces the illustration.
+  placeholder. When you have real photos, drop the file in /public and add an
+  `images` array mapping (see below).
 */
+import { useTranslations } from 'next-intl'
 
 const BinderArt = () => (
   <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" width="76" height="76">
@@ -41,38 +42,12 @@ const SleeveArt = () => (
   </svg>
 )
 
-const products = [
-  {
-    Art: BinderArt,
-    title: 'Custom Binders',
-    desc: '4, 9 or 12-pocket — any size, any artwork. Your design printed edge to edge.',
-    tag: 'Most popular',
-    image: null,
-  },
-  {
-    Art: DeckBoxArt,
-    title: 'Deck Boxes',
-    desc: 'Holds a full sleeved deck. Magnetic or slide-top, finished in your style.',
-    tag: null,
-    image: null,
-  },
-  {
-    Art: DisplayCaseArt,
-    title: 'Display Cases',
-    desc: 'Show off your graded slabs and grails with a custom case made to fit.',
-    tag: null,
-    image: null,
-  },
-  {
-    Art: SleeveArt,
-    title: 'Sleeves & Extras',
-    desc: 'Matching accessories — playmats, sleeves and packaging to complete the set.',
-    tag: null,
-    image: null,
-  },
-]
+const arts = [BinderArt, DeckBoxArt, DisplayCaseArt, SleeveArt]
 
 export default function ProductRange() {
+  const t = useTranslations('products')
+  const items = t.raw('items')
+
   return (
     <>
       <style>{`
@@ -129,31 +104,32 @@ export default function ProductRange() {
 
       <div id="products" style={{ background: 'var(--color-bg)', borderTop: '2px solid var(--color-border)' }}>
         <section className="products-section" style={{ fontFamily: 'var(--font-ui)' }}>
-          <p style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '1rem' }}>What we make</p>
+          <p style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '1rem' }}>{t('eyebrow')}</p>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '3.5rem' }}>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 300, letterSpacing: '-0.025em', lineHeight: 1.1, color: 'var(--color-text)' }}>
-              One studio,<br/>your whole collection
+              {t('titleLine1')}<br/>{t('titleLine2')}
             </h2>
             <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', lineHeight: 1.7, fontWeight: 400, maxWidth: '320px' }}>
-              Custom binder design, deck boxes, display cases and more — all handcrafted to order. Mix and match to build a set that's entirely your own.
+              {t('intro')}
             </p>
           </div>
 
           <div className="products-grid">
-            {products.map(({ Art, title, desc, tag, image }, i) => (
-              <article key={i} className="product-card">
-                {tag && <span className="product-tag">{tag}</span>}
-                <div className="product-visual">
-                  {image
-                    ? <img src={image} alt={title} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-                    : <Art />}
-                </div>
-                <div className="product-body">
-                  <h3 style={{ fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.5rem', color: 'var(--color-text)', letterSpacing: '-0.01em' }}>{title}</h3>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', lineHeight: 1.65, fontWeight: 400 }}>{desc}</p>
-                </div>
-              </article>
-            ))}
+            {items.map((item, i) => {
+              const Art = arts[i]
+              return (
+                <article key={i} className="product-card">
+                  {i === 0 && <span className="product-tag">{t('tagPopular')}</span>}
+                  <div className="product-visual">
+                    <Art />
+                  </div>
+                  <div className="product-body">
+                    <h3 style={{ fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.5rem', color: 'var(--color-text)', letterSpacing: '-0.01em' }}>{item.title}</h3>
+                    <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', lineHeight: 1.65, fontWeight: 400 }}>{item.desc}</p>
+                  </div>
+                </article>
+              )
+            })}
           </div>
 
           <div style={{ marginTop: '3rem', display: 'flex', justifyContent: 'center' }}>
@@ -163,7 +139,7 @@ export default function ProductRange() {
               borderRadius: '100px', textDecoration: 'none',
               border: '2px solid var(--color-border)', boxShadow: '4px 4px 0 var(--color-border)',
               display: 'inline-block', fontFamily: 'var(--font-ui)',
-            }}>Start your custom order →</a>
+            }}>{t('cta')}</a>
           </div>
         </section>
       </div>

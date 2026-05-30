@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl'
+
 const IconPackage = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M16.5 9.4 7.55 4.24"/>
@@ -21,42 +23,13 @@ const IconReturn = () => (
   </svg>
 )
 
-export default function SendIn() {
-  const steps = [
-    {
-      num: '01',
-      title: 'Request a quote',
-      desc: 'Fill in the order form and select "Customize my product". Tell us your design idea and we\'ll reply within 1–2 business days with a quote.',
-    },
-    {
-      num: '02',
-      title: 'Send your product',
-      desc: 'Once you approve the quote we\'ll send you our address. Pack your product well in a sturdy box with bubble wrap and ship it via PostNL or DHL with a tracking code.',
-    },
-    {
-      num: '03',
-      title: 'We customize it',
-      desc: 'We carefully customize your product to your exact specifications. Once done we pack it securely and ship it straight back to you.',
-    },
-  ]
+const infoIcons = [IconPackage, IconSearch, IconReturn]
+const stepNums = ['01', '02', '03']
 
-  const infoItems = [
-    {
-      Icon: IconPackage,
-      title: 'Pack it well',
-      desc: 'Use a sturdy box with bubble wrap around your product. We handle it with care on our end too.',
-    },
-    {
-      Icon: IconSearch,
-      title: 'Use tracked shipping',
-      desc: 'Always ship with a tracking code via PostNL or DHL. For valuable items use aangetekende post.',
-    },
-    {
-      Icon: IconReturn,
-      title: 'We ship it back',
-      desc: 'Return shipping is included in your quote. We pack your customized product securely before sending it back.',
-    },
-  ]
+export default function SendIn() {
+  const t = useTranslations('sendIn')
+  const steps = t.raw('steps')
+  const info = t.raw('info')
 
   return (
     <>
@@ -129,20 +102,20 @@ export default function SendIn() {
 
       <div id="send-in" style={{ borderTop: '2px solid var(--color-border)', background: 'var(--color-bg)' }}>
         <section className="sendin-section" style={{ maxWidth: '1200px', margin: '0 auto', fontFamily: 'var(--font-ui)' }}>
-          <p style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '1rem' }}>Send-in service</p>
+          <p style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '1rem' }}>{t('eyebrow')}</p>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '4rem', flexWrap: 'wrap', gap: '2rem' }}>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 300, letterSpacing: '-0.025em', lineHeight: 1.1, color: 'var(--color-text)' }}>
-              Already have a product?<br/>We'll make it <em style={{ fontStyle: 'italic', color: 'var(--color-accent)' }}>yours.</em>
+              {t('titleLine')}<br/>{t('titlePrefix')} <em style={{ fontStyle: 'italic', color: 'var(--color-accent)' }}>{t('titleEmphasis')}</em>
             </h2>
             <a href="#order" className="sendin-cta">
-              Customize my product →
+              {t('cta')}
             </a>
           </div>
 
           <div className="sendin-steps">
             {steps.map((step, i) => (
               <div key={i} className="sendin-step">
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '2.75rem', fontWeight: 300, color: '#D0D0CC', lineHeight: 1, marginBottom: '1.5rem', letterSpacing: '-0.04em' }}>{step.num}</div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '2.75rem', fontWeight: 300, color: '#D0D0CC', lineHeight: 1, marginBottom: '1.5rem', letterSpacing: '-0.04em' }}>{stepNums[i]}</div>
                 <h3 style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.5rem', color: 'var(--color-text)', letterSpacing: '-0.01em' }}>{step.title}</h3>
                 <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', lineHeight: 1.7, fontWeight: 400 }}>{step.desc}</p>
               </div>
@@ -150,13 +123,16 @@ export default function SendIn() {
           </div>
 
           <div className="sendin-info">
-            {infoItems.map(({ Icon, title, desc }, i) => (
-              <div key={i} className="sendin-info-item">
-                <div className="sendin-icon"><Icon /></div>
-                <h3 style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.4rem', color: 'var(--color-text)', letterSpacing: '-0.01em' }}>{title}</h3>
-                <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', lineHeight: 1.7, fontWeight: 400 }}>{desc}</p>
-              </div>
-            ))}
+            {info.map((item, i) => {
+              const Icon = infoIcons[i]
+              return (
+                <div key={i} className="sendin-info-item">
+                  <div className="sendin-icon"><Icon /></div>
+                  <h3 style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.4rem', color: 'var(--color-text)', letterSpacing: '-0.01em' }}>{item.title}</h3>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', lineHeight: 1.7, fontWeight: 400 }}>{item.desc}</p>
+                </div>
+              )
+            })}
           </div>
 
         </section>

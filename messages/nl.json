@@ -1,0 +1,199 @@
+{
+  "meta": {
+    "title": "Custom TCG Binder op Maat & Deckboxes | 75Drawss",
+    "description": "Ontwerp je eigen custom TCG binder, deckbox of displaycase. Volledig gepersonaliseerd en handgemaakt in Nederland — Pokémon, One Piece, Lorcana, Magic & meer."
+  },
+  "nav": {
+    "howItWorks": "Hoe het werkt",
+    "whyUs": "Waarom wij",
+    "orderNow": "Nu bestellen",
+    "home": "75Drawss home"
+  },
+  "hero": {
+    "badge": "Custom Design Studio",
+    "madeIn": "Gemaakt in Nederland",
+    "titleLine": "Maak je collectie",
+    "titleEmphasis": "helemaal van jou.",
+    "description": "Ontwerp je eigen custom TCG binder, deckbox of accessoire — precies zoals jij het voor je ziet. Geen templates, geen limieten.",
+    "inspiredBy": "Geïnspireerd door",
+    "ctaPrimary": "Start je bestelling →",
+    "ctaSecondary": "Bekijk wat we maken",
+    "stat1Value": "100%",
+    "stat1Label": "custom ontwerp",
+    "stat2Value": "7–14",
+    "stat2Label": "dagen productie",
+    "stat3Value": "NL",
+    "stat3Label": "handgemaakt",
+    "scrollAria": "Scroll naar producten"
+  },
+  "ticker": {
+    "items": ["Custom Binders", "Deckboxes", "Card Sleeves", "Displaycases", "Custom Verpakking", "TCG Accessoires", "Gemaakt in Nederland"]
+  },
+  "products": {
+    "eyebrow": "Wat we maken",
+    "titleLine1": "Eén studio,",
+    "titleLine2": "je hele collectie",
+    "intro": "Custom binders, deckboxes, displaycases en meer — allemaal met de hand gemaakt op bestelling. Combineer naar wens en bouw een set die helemaal van jou is.",
+    "tagPopular": "Meest populair",
+    "cta": "Start je custom bestelling →",
+    "items": [
+      { "title": "Custom Binders", "desc": "4, 9 of 12-pocket — elk formaat, elk ontwerp. Jouw design van rand tot rand gedrukt." },
+      { "title": "Deckboxes", "desc": "Voor een volledig gesleevde deck. Magnetisch of schuif-deksel, afgewerkt in jouw stijl." },
+      { "title": "Displaycases", "desc": "Laat je graded slabs en topkaarten zien in een case die precies past." },
+      { "title": "Sleeves & Extra's", "desc": "Bijpassende accessoires — playmats, sleeves en verpakking om de set compleet te maken." }
+    ]
+  },
+  "howItWorks": {
+    "eyebrow": "Het proces",
+    "titleLine1": "Van idee tot",
+    "titleLine2": "op je deurmat",
+    "steps": [
+      { "title": "Vertel ons je idee", "desc": "Vul het bestelformulier in met je product, ontwerpidee en alle details. Upload je artwork of beschrijf gewoon wat je voor je ziet." },
+      { "title": "Wij sturen een offerte", "desc": "Binnen 1–2 werkdagen ontvang je een prijs en planning. Geen verrassingen, geen verborgen kosten." },
+      { "title": "Wij maken je product", "desc": "Na akkoord gaan we aan de slag. Elk product wordt met de hand gemaakt naar jouw exacte specificaties." },
+      { "title": "Bij jou bezorgd", "desc": "Verzonden via PostNL of DHL met track & trace. Zorgvuldig verpakt zodat het perfect aankomt." }
+    ]
+  },
+  "sendIn": {
+    "eyebrow": "Opstuur-service",
+    "titleLine": "Heb je al een product?",
+    "titlePrefix": "Wij maken het",
+    "titleEmphasis": "van jou.",
+    "cta": "Customize mijn product →",
+    "steps": [
+      { "title": "Vraag een offerte aan", "desc": "Vul het bestelformulier in en kies \"Customize mijn product\". Vertel ons je ontwerpidee en we reageren binnen 1–2 werkdagen met een offerte." },
+      { "title": "Stuur je product op", "desc": "Na akkoord op de offerte sturen we je ons adres. Verpak je product goed in een stevige doos met bubbeltjesplastic en verstuur het via PostNL of DHL met een track & trace-code." },
+      { "title": "Wij customizen het", "desc": "We customizen je product zorgvuldig naar jouw exacte specificaties. Daarna verpakken we het veilig en sturen het direct terug." }
+    ],
+    "info": [
+      { "title": "Verpak het goed", "desc": "Gebruik een stevige doos met bubbeltjesplastic om je product. Wij gaan er aan onze kant ook voorzichtig mee om." },
+      { "title": "Verstuur met track & trace", "desc": "Verstuur altijd met een track & trace-code via PostNL of DHL. Voor waardevolle items: gebruik aangetekende post." },
+      { "title": "Wij sturen het terug", "desc": "Retourverzending zit in je offerte inbegrepen. We verpakken je gecustomizede product veilig voordat we het terugsturen." }
+    ]
+  },
+  "features": {
+    "eyebrow": "Waarom 75Drawss",
+    "titleLine1": "Gemaakt voor verzamelaars",
+    "titleLine2": "en creators",
+    "items": [
+      { "title": "Volledig custom ontwerp", "desc": "Upload je eigen artwork of beschrijf je visie. Wij brengen het precies tot leven zoals jij het bedacht — geen templates, geen compromissen, geen limieten." },
+      { "title": "Elk product, elk formaat", "desc": "Binders, deckboxes, displaycases en meer. Als je het kunt ontwerpen, kunnen wij het maken. Elke afmeting, elk formaat." },
+      { "title": "Originele designs", "desc": "Geen auteursrechtelijk beschermde personages — alleen prachtige originele artwork. Wij maken designs die echt van jou zijn, rond jouw stijl en visie." },
+      { "title": "Snelle, getrackte verzending", "desc": "We verzenden door heel Nederland en internationaal via PostNL en DHL — met volledige track & trace zodat je altijd weet waar je bestelling is." }
+    ]
+  },
+  "order": {
+    "eyebrow": "Start een project",
+    "titleLine1": "Vertel ons over",
+    "titleLine2": "je idee",
+    "introBuild": "Vertel ons wat je wilt laten maken. We komen binnen 1–2 werkdagen bij je terug met een offerte. Nog geen betaling nodig.",
+    "introCustomize": "Stuur ons je product en wij customizen het voor je. Vul het formulier in en we reageren met een offerte en ons verzendadres.",
+    "bulletsBuild": ["Gratis offerte, geen verplichting", "Upload je eigen artwork", "Elk product, elke afmeting", "Verzending door heel NL en daarbuiten", "Reactie binnen 1–2 werkdagen"],
+    "bulletsCustomize": ["Gratis offerte, geen verplichting", "Stuur je product naar ons op", "Wij customizen en sturen het terug", "Upload je ontwerp of beschrijf het", "Reactie binnen 1–2 werkdagen"],
+    "serviceBuild": "Maak mijn product",
+    "serviceCustomize": "Customize mijn product",
+    "sendInTitle": "Hoe stuur je je product op",
+    "sendInIntro": "Nadat we je offerte hebben bevestigd, stuur je je product naar ons adres. Zorg ervoor dat je:",
+    "sendInList": ["Het goed verpakt in een stevige doos met bubbeltjesplastic", "PostNL of DHL gebruikt met een track & trace-code", "Voor waardevolle items aangetekende post gebruikt", "Je track & trace-code bewaart tot het is aangekomen"],
+    "labelName": "Volledige naam",
+    "labelEmail": "E-mailadres",
+    "labelProductType": "Producttype",
+    "labelCardGame": "Card game (indien van toepassing)",
+    "labelPocketSize": "Pocket-grootte",
+    "labelBinderColor": "Binder-kleur",
+    "labelQuantity": "Aantal",
+    "labelBrand": "Merk / model",
+    "labelCondition": "Conditie",
+    "labelUpload": "Ontwerpbestand uploaden",
+    "labelDescription": "Ontwerpomschrijving",
+    "labelSpecial": "Speciale wensen",
+    "labelBudget": "Budget bij benadering (€)",
+    "labelSource": "Hoe heb je ons gevonden?",
+    "phName": "Jan de Vries",
+    "phEmail": "jan@example.nl",
+    "phProduct": "Kies product...",
+    "phCardGame": "Kies je TCG...",
+    "phCustomColor": "Custom / andere kleur (bijv. mintgroen, oranje...)",
+    "phBrand": "bijv. Ultra Pro, Dragon Shield...",
+    "phCondition": "Kies conditie...",
+    "phDescription": "Beschrijf je ontwerp — kleuren, thema, stijl, eventuele tekst, referenties, enz.",
+    "phSpecialBuild": "Specifieke materialen, afwerking, deadline...",
+    "phSpecialCustomize": "Iets specifieks over je product of de customization die je wilt...",
+    "phBudget": "Kies bereik...",
+    "phSource": "Kies...",
+    "optProduct": ["TCG Binder", "Deckbox", "Anders"],
+    "optCardGame": ["Pokémon", "One Piece TCG", "Lorcana", "Niet van toepassing", "Anders"],
+    "optCondition": ["Nieuw / ongebruikt", "Zo goed als nieuw", "Goed — lichte gebruikssporen", "Gebruikt — zichtbare slijtage"],
+    "optBudgetBuild": ["€60 – €100", "€100 – €150", "€150 – €200", "€200 – €300", "€300+", "Flexibel"],
+    "optBudgetCustomize": ["€30 – €60", "€60 – €100", "€100 – €150", "€150 – €200", "€200+", "Flexibel"],
+    "optSource": ["Instagram", "TikTok", "Vrienden / mond-tot-mond", "Google", "Anders"],
+    "selectedColor": "Gekozen: {color}",
+    "uploadClick": "Klik om te uploaden",
+    "uploadDrag": "of sleep & zet neer",
+    "uploadHint": "JPG, PNG, PDF, AI, PSD, SVG · max 10MB",
+    "uploading": "Uploaden...",
+    "uploaded": "✓ {file} geüpload",
+    "consent": "Ik bevestig dat ik de rechten heb op alle geüploade artwork en ga akkoord met de bestelvoorwaarden.",
+    "footerNote": "Nog geen betaling nodig. We reageren binnen 1–2 werkdagen.",
+    "submitSending": "Versturen...",
+    "submitUploading": "Bestand uploaden...",
+    "submitDefault": "Bestelaanvraag versturen →",
+    "errName": "Vul je volledige naam in",
+    "errEmail": "Vul een geldig e-mailadres in",
+    "errProduct": "Kies een producttype",
+    "errConsent": "Je moet bevestigen om door te gaan",
+    "errColor": "Kies of vul een binder-kleur in",
+    "errCondition": "Kies de conditie van je product",
+    "errFileSize": "Bestand moet kleiner zijn dan 10MB",
+    "errFileType": "Niet-ondersteund bestandstype. Gebruik JPG, PNG, PDF, AI, PSD of SVG",
+    "errUpload": "Uploaden mislukt. Probeer het opnieuw.",
+    "errSubmit": "Er ging iets mis. Probeer het opnieuw."
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "titleLine1": "Veelgestelde",
+    "titleLine2": "vragen",
+    "items": [
+      { "q": "Welke producten kunnen jullie maken?", "a": "We maken een breed scala aan custom producten voor verzamelaars en creators — TCG binders, deckboxes, displaycases en meer. Heb je iets specifieks in gedachten? Neem contact op en we kijken wat we kunnen doen." },
+      { "q": "Hoe werkt het bestelproces?", "a": "Vul het bestelformulier in met je productgegevens en ontwerpidee. We komen binnen 1–2 werkdagen bij je terug met een offerte. Zodra je akkoord gaat en de betaling rond is, beginnen we met je product." },
+      { "q": "Hoe lang duurt het om mijn product te maken?", "a": "De productie duurt meestal 7–14 werkdagen na betaling. De verzendtijd hangt af van je locatie — binnen Nederland meestal 1–2 dagen via PostNL of DHL." },
+      { "q": "Kan ik mijn eigen artwork uploaden?", "a": "Ja! Je kunt je ontwerp direct in het bestelformulier uploaden. We accepteren JPG, PNG, PDF, AI, PSD en SVG tot 10MB. Hoe hoger de resolutie, hoe beter de printkwaliteit." },
+      { "q": "En als ik geen ontwerp heb?", "a": "Geen probleem — beschrijf gewoon je idee in het bestelformulier. Vertel ons je kleuren, thema, stijl en eventuele tekst, en wij maken er iets moois van." },
+      { "q": "Kunnen jullie een Pokémon-geïnspireerde binder maken?", "a": "Zeker — we kunnen alleen geen officiële personages, logo's of beschermde beelden printen. Wat we wél kunnen: de exacte sfeer van elke TCG vangen — de kleuren, energie en stijl van Pokémon, One Piece, Lorcana, Magic, Yu-Gi-Oh en meer, in originele artwork die echt van jou is. Beschrijf de vibe — favoriete kleuren, tijdperk, gevoel — en wij maken iets dat helemaal in je collectie thuishoort." },
+      { "q": "Wat is de opstuur-service?", "a": "Als je al een product hebt — zoals een binder — en het wilt laten customizen, kun je het naar ons opsturen. Wij customizen het en sturen het terug. Vul het bestelformulier in en kies \"Customize mijn product\" om te beginnen." },
+      { "q": "Hoe stuur ik mijn product naar jullie op?", "a": "Nadat we je offerte hebben bevestigd, sturen we je ons adres. Verpak je product goed in een stevige doos met bubbeltjesplastic en verstuur het via PostNL of DHL met een track & trace-code. Voor waardevolle items raden we aangetekende post aan." },
+      { "q": "Verzenden jullie internationaal?", "a": "Ja! We verzenden door Nederland, Frankrijk, Duitsland en België via PostNL en DHL. Alle bestellingen hebben track & trace, zodat je altijd weet waar je product is." },
+      { "q": "Wanneer betaal ik?", "a": "Er is geen betaling nodig wanneer je het formulier verstuurt. Je betaalt pas nadat we je een offerte hebben gestuurd en je akkoord gaat. We sturen een betaallink direct naar je e-mail." },
+      { "q": "Kan ik meerdere producten bestellen?", "a": "Zeker — kies gewoon je aantal in het bestelformulier. Voor grotere bestellingen van 5 of meer kunnen we soms korting bieden; vermeld dit in het veld speciale wensen." }
+    ]
+  },
+  "footer": {
+    "howItWorks": "Hoe het werkt",
+    "whyUs": "Waarom wij",
+    "faq": "FAQ",
+    "order": "Bestellen",
+    "nav": "Footer-navigatie",
+    "instagram": "75Drawss op Instagram",
+    "tiktok": "75Drawss op TikTok",
+    "rights": "© 2025 75Drawss · Nederland"
+  },
+  "thankYou": {
+    "title": "Bedankt — bestelling ontvangen",
+    "eyebrow": "Bestelling ontvangen",
+    "heading": "Bedankt!",
+    "body": "We hebben je aanvraag ontvangen en komen binnen 1–2 werkdagen bij je terug met een offerte. Houd je inbox in de gaten — check voor de zekerheid ook je spamfolder.",
+    "back": "Terug naar home →"
+  },
+  "notFound": {
+    "eyebrow": "Pagina niet gevonden",
+    "heading": "Hier is niets",
+    "body": "De pagina die je zoekt bestaat niet. Ga terug naar home om onze producten te bekijken.",
+    "back": "Terug naar home →"
+  },
+  "error": {
+    "eyebrow": "Er ging iets mis",
+    "heading": "Onverwachte fout",
+    "body": "Er ging iets mis aan onze kant. Probeer de pagina te verversen of kom zo terug.",
+    "retry": "Opnieuw proberen"
+  }
+}

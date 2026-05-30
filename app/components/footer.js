@@ -1,4 +1,7 @@
+import { useTranslations } from 'next-intl'
+
 export default function Footer() {
+  const t = useTranslations('footer')
   return (
     <>
       <style>{`
@@ -62,14 +65,14 @@ export default function Footer() {
               <span>Drawss</span>
             </div>
             <div className="footer-social">
-              <a href="https://www.instagram.com/75.drawss" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="75Drawss on Instagram">
+              <a href="https://www.instagram.com/75.drawss" target="_blank" rel="noopener noreferrer" className="social-link" aria-label={t('instagram')}>
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                 </svg>
               </a>
-              <a href="https://www.tiktok.com/@75drawss" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="75Drawss on TikTok">
+              <a href="https://www.tiktok.com/@75drawss" target="_blank" rel="noopener noreferrer" className="social-link" aria-label={t('tiktok')}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
                 </svg>
@@ -77,16 +80,16 @@ export default function Footer() {
             </div>
           </div>
 
-          <nav className="footer-links" aria-label="Footer navigation">
-            <a href="#how-it-works" className="footer-link">How it works</a>
-            <a href="#features" className="footer-link">Why us</a>
-            <a href="#faq" className="footer-link">FAQ</a>
-            <a href="#order" className="footer-link">Order</a>
+          <nav className="footer-links" aria-label={t('nav')}>
+            <a href="#how-it-works" className="footer-link">{t('howItWorks')}</a>
+            <a href="#features" className="footer-link">{t('whyUs')}</a>
+            <a href="#faq" className="footer-link">{t('faq')}</a>
+            <a href="#order" className="footer-link">{t('order')}</a>
           </nav>
 
           <div className="footer-copy">
             <p style={{ fontSize: '0.72rem', color: '#888', fontWeight: 400, lineHeight: 1.6 }}>
-              © 2025 75Drawss · Netherlands<br/>
+              {t('rights')}<br/>
               <a href="mailto:75Drawss@gmail.com" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontWeight: 500 }}>75Drawss@gmail.com</a>
             </p>
           </div>

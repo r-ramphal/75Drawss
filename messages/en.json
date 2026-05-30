@@ -1,0 +1,199 @@
+{
+  "meta": {
+    "title": "Custom TCG Binder Design & Deck Boxes | 75Drawss",
+    "description": "Design your own custom TCG binder, deck box or display case. Fully personalised and handcrafted in the Netherlands — Pokémon, One Piece, Lorcana, Magic & more."
+  },
+  "nav": {
+    "howItWorks": "How it works",
+    "whyUs": "Why us",
+    "orderNow": "Order now",
+    "home": "75Drawss home"
+  },
+  "hero": {
+    "badge": "Custom Design Studio",
+    "madeIn": "Made in the Netherlands",
+    "titleLine": "Make your collection",
+    "titleEmphasis": "uniquely yours.",
+    "description": "Design your own custom TCG binder, deck box or accessory — built exactly to your vision. No templates, no limits.",
+    "inspiredBy": "Inspired by",
+    "ctaPrimary": "Start your order →",
+    "ctaSecondary": "See what we make",
+    "stat1Value": "100%",
+    "stat1Label": "custom design",
+    "stat2Value": "7–14",
+    "stat2Label": "day production",
+    "stat3Value": "NL",
+    "stat3Label": "handcrafted",
+    "scrollAria": "Scroll to products"
+  },
+  "ticker": {
+    "items": ["Custom Binders", "Deck Boxes", "Card Sleeves", "Display Cases", "Custom Packaging", "TCG Accessories", "Made in the Netherlands"]
+  },
+  "products": {
+    "eyebrow": "What we make",
+    "titleLine1": "One studio,",
+    "titleLine2": "your whole collection",
+    "intro": "Custom binder design, deck boxes, display cases and more — all handcrafted to order. Mix and match to build a set that's entirely your own.",
+    "tagPopular": "Most popular",
+    "cta": "Start your custom order →",
+    "items": [
+      { "title": "Custom Binders", "desc": "4, 9 or 12-pocket — any size, any artwork. Your design printed edge to edge." },
+      { "title": "Deck Boxes", "desc": "Holds a full sleeved deck. Magnetic or slide-top, finished in your style." },
+      { "title": "Display Cases", "desc": "Show off your graded slabs and grails with a custom case made to fit." },
+      { "title": "Sleeves & Extras", "desc": "Matching accessories — playmats, sleeves and packaging to complete the set." }
+    ]
+  },
+  "howItWorks": {
+    "eyebrow": "The process",
+    "titleLine1": "From idea to",
+    "titleLine2": "your doorstep",
+    "steps": [
+      { "title": "Tell us your idea", "desc": "Fill in the order form with your product, design idea and any details. Upload your artwork or just describe what you have in mind." },
+      { "title": "We send a quote", "desc": "Within 1–2 business days you'll receive a price and timeline. No surprises, no hidden fees." },
+      { "title": "We craft your product", "desc": "Once approved we get to work. Every product is handcrafted to your exact specifications." },
+      { "title": "Delivered to you", "desc": "Ships via PostNL or DHL with tracking. Carefully packed so it arrives in perfect condition." }
+    ]
+  },
+  "sendIn": {
+    "eyebrow": "Send-in service",
+    "titleLine": "Already have a product?",
+    "titlePrefix": "We'll make it",
+    "titleEmphasis": "yours.",
+    "cta": "Customize my product →",
+    "steps": [
+      { "title": "Request a quote", "desc": "Fill in the order form and select \"Customize my product\". Tell us your design idea and we'll reply within 1–2 business days with a quote." },
+      { "title": "Send your product", "desc": "Once you approve the quote we'll send you our address. Pack your product well in a sturdy box with bubble wrap and ship it via PostNL or DHL with a tracking code." },
+      { "title": "We customize it", "desc": "We carefully customize your product to your exact specifications. Once done we pack it securely and ship it straight back to you." }
+    ],
+    "info": [
+      { "title": "Pack it well", "desc": "Use a sturdy box with bubble wrap around your product. We handle it with care on our end too." },
+      { "title": "Use tracked shipping", "desc": "Always ship with a tracking code via PostNL or DHL. For valuable items use aangetekende post." },
+      { "title": "We ship it back", "desc": "Return shipping is included in your quote. We pack your customized product securely before sending it back." }
+    ]
+  },
+  "features": {
+    "eyebrow": "Why 75Drawss",
+    "titleLine1": "Built for collectors",
+    "titleLine2": "and creators",
+    "items": [
+      { "title": "Fully custom design", "desc": "Upload your own artwork or describe your vision. We bring it to life exactly as you imagined — no templates, no compromises, no limits." },
+      { "title": "Any product, any size", "desc": "Binders, deck boxes, display cases and more. If you can design it, we can make it. Any dimensions, any format." },
+      { "title": "Original designs", "desc": "No copyrighted characters — just stunning original artwork. We create designs you actually own, built around your style and vision." },
+      { "title": "Fast, tracked shipping", "desc": "We ship across the Netherlands and internationally via PostNL and DHL — with full tracking so you always know where your order is." }
+    ]
+  },
+  "order": {
+    "eyebrow": "Start a project",
+    "titleLine1": "Tell us about",
+    "titleLine2": "your idea",
+    "introBuild": "Tell us what you want made. We'll get back to you within 1–2 business days with a quote. No payment required yet.",
+    "introCustomize": "Send us your product and we'll customize it for you. Fill in the form and we'll reply with a quote and our shipping address.",
+    "bulletsBuild": ["Free quote, no commitment", "Upload your own artwork", "Any product, any dimensions", "Ships anywhere in NL and abroad", "Reply within 1–2 business days"],
+    "bulletsCustomize": ["Free quote, no commitment", "Send your product to us", "We customize and send it back", "Upload your design or describe it", "Reply within 1–2 business days"],
+    "serviceBuild": "Build my product",
+    "serviceCustomize": "Customize my product",
+    "sendInTitle": "How to send your product",
+    "sendInIntro": "After we confirm your quote, send your product to our address. Please make sure to:",
+    "sendInList": ["Pack it well in a sturdy box with bubble wrap", "Use PostNL or DHL with a tracking code", "For valuable items, use aangetekende post", "Keep your tracking code until it arrives"],
+    "labelName": "Full name",
+    "labelEmail": "Email address",
+    "labelProductType": "Product type",
+    "labelCardGame": "Card game (if applicable)",
+    "labelPocketSize": "Pocket size",
+    "labelBinderColor": "Binder color",
+    "labelQuantity": "Quantity",
+    "labelBrand": "Brand / model",
+    "labelCondition": "Condition",
+    "labelUpload": "Design file upload",
+    "labelDescription": "Design description",
+    "labelSpecial": "Special requirements",
+    "labelBudget": "Approximate budget (€)",
+    "labelSource": "How did you find us?",
+    "phName": "Jan de Vries",
+    "phEmail": "jan@example.nl",
+    "phProduct": "Select product...",
+    "phCardGame": "Select your TCG...",
+    "phCustomColor": "Custom / other color (e.g. mint green, orange...)",
+    "phBrand": "e.g. Ultra Pro, Dragon Shield...",
+    "phCondition": "Select condition...",
+    "phDescription": "Describe your design — colours, theme, style, any text you want included, references, etc.",
+    "phSpecialBuild": "Specific materials, finish, deadline...",
+    "phSpecialCustomize": "Anything specific about your product or the customization you want...",
+    "phBudget": "Select range...",
+    "phSource": "Select...",
+    "optProduct": ["TCG Binder", "Deck Box", "Other"],
+    "optCardGame": ["Pokémon", "One Piece TCG", "Lorcana", "Not applicable", "Other"],
+    "optCondition": ["New / unused", "Like new", "Good — minor wear", "Used — visible wear"],
+    "optBudgetBuild": ["€60 – €100", "€100 – €150", "€150 – €200", "€200 – €300", "€300+", "Flexible"],
+    "optBudgetCustomize": ["€30 – €60", "€60 – €100", "€100 – €150", "€150 – €200", "€200+", "Flexible"],
+    "optSource": ["Instagram", "TikTok", "Friend / Word of mouth", "Google", "Other"],
+    "selectedColor": "Selected: {color}",
+    "uploadClick": "Click to upload",
+    "uploadDrag": "or drag & drop",
+    "uploadHint": "JPG, PNG, PDF, AI, PSD, SVG · max 10MB",
+    "uploading": "Uploading...",
+    "uploaded": "✓ {file} uploaded",
+    "consent": "I confirm that I own the rights to any artwork uploaded and agree to the order terms.",
+    "footerNote": "No payment required yet. We'll reply within 1–2 business days.",
+    "submitSending": "Sending...",
+    "submitUploading": "Uploading file...",
+    "submitDefault": "Send order request →",
+    "errName": "Enter your full name",
+    "errEmail": "Enter a valid email address",
+    "errProduct": "Select a product type",
+    "errConsent": "You must confirm to continue",
+    "errColor": "Select or enter a binder color",
+    "errCondition": "Select the condition of your product",
+    "errFileSize": "File must be under 10MB",
+    "errFileType": "Unsupported file type. Use JPG, PNG, PDF, AI, PSD, or SVG",
+    "errUpload": "Upload failed. Please try again.",
+    "errSubmit": "Something went wrong. Please try again."
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "titleLine1": "Frequently asked",
+    "titleLine2": "questions",
+    "items": [
+      { "q": "What products can you make?", "a": "We make a wide range of custom products for collectors and creators — TCG binders, deck boxes, display cases and more. If you have something specific in mind just get in touch and we'll see what we can do." },
+      { "q": "How does the ordering process work?", "a": "Fill in the order form with your product details and design idea. We'll get back to you within 1–2 business days with a quote. Once you approve it and complete payment we start crafting your product." },
+      { "q": "How long does it take to make my product?", "a": "Production typically takes 7–14 business days after payment. Shipping time depends on your location — within the Netherlands usually 1–2 days via PostNL or DHL." },
+      { "q": "Can I upload my own artwork?", "a": "Yes! You can upload your design directly in the order form. We accept JPG, PNG, PDF, AI, PSD and SVG files up to 10MB. The higher the resolution the better the print quality." },
+      { "q": "What if I don't have a design?", "a": "No problem — just describe your idea in the order form. Tell us your colours, theme, style and any text you want included and we'll create something for you." },
+      { "q": "Can you make a Pokémon-inspired binder?", "a": "Absolutely — we just can't print official characters, logos or any trademarked imagery. What we can do is capture the exact aesthetic of any TCG: the colours, energy and style of Pokémon, One Piece, Lorcana, Magic, Yu-Gi-Oh and more, all in original artwork that you actually own. Describe the vibe — favourite colours, era, feel — and we'll make something that looks right at home in your collection." },
+      { "q": "What is the send-in service?", "a": "If you already have a product — like a binder — and want it customized, you can send it to us. We'll customize it and ship it back. Fill in the order form and select \"Customize my product\" to get started." },
+      { "q": "How do I send my product to you?", "a": "After we confirm your quote we'll send you our address. Pack your product well in a sturdy box with bubble wrap and ship it via PostNL or DHL with a tracking code. For valuable items we recommend aangetekende post." },
+      { "q": "Do you ship internationally?", "a": "Yes! We ship across the Netherlands, France, Germany and Belgium via PostNL and DHL. All orders include tracking so you always know where your product is." },
+      { "q": "When do I pay?", "a": "No payment is required when you submit the form. You only pay after we send you a quote and you approve it. We'll send a payment link directly to your email." },
+      { "q": "Can I order multiple products?", "a": "Absolutely — just select your quantity in the order form. For larger orders of 5 or more we may be able to offer a discount, mention it in the special requirements field." }
+    ]
+  },
+  "footer": {
+    "howItWorks": "How it works",
+    "whyUs": "Why us",
+    "faq": "FAQ",
+    "order": "Order",
+    "nav": "Footer navigation",
+    "instagram": "75Drawss on Instagram",
+    "tiktok": "75Drawss on TikTok",
+    "rights": "© 2025 75Drawss · Netherlands"
+  },
+  "thankYou": {
+    "title": "Thank you — order received",
+    "eyebrow": "Order received",
+    "heading": "Thank you!",
+    "body": "We've received your request and will get back to you within 1–2 business days with a quote. Keep an eye on your inbox — check your spam folder just in case.",
+    "back": "Back to home →"
+  },
+  "notFound": {
+    "eyebrow": "Page not found",
+    "heading": "Nothing here",
+    "body": "The page you're looking for doesn't exist. Head back home to browse our products.",
+    "back": "Back to home →"
+  },
+  "error": {
+    "eyebrow": "Something went wrong",
+    "heading": "Unexpected error",
+    "body": "Something went wrong on our end. Try refreshing the page or come back in a moment.",
+    "retry": "Try again"
+  }
+}

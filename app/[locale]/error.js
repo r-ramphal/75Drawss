@@ -1,7 +1,10 @@
 'use client'
 import { useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 
 export default function Error({ error, reset }) {
+  const t = useTranslations('error')
+
   useEffect(() => {
     console.error(error)
   }, [error])
@@ -20,13 +23,13 @@ export default function Error({ error, reset }) {
       textAlign: 'center',
     }}>
       <p style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)' }}>
-        Something went wrong
+        {t('eyebrow')}
       </p>
       <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 300, letterSpacing: '-0.025em', color: 'var(--color-text)' }}>
-        Unexpected error
+        {t('heading')}
       </h2>
       <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', maxWidth: '400px', lineHeight: 1.7 }}>
-        Something went wrong on our end. Try refreshing the page or come back in a moment.
+        {t('body')}
       </p>
       <button
         onClick={reset}
@@ -43,7 +46,7 @@ export default function Error({ error, reset }) {
           fontFamily: 'var(--font-ui)',
         }}
       >
-        Try again
+        {t('retry')}
       </button>
     </div>
   )

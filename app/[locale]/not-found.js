@@ -1,6 +1,8 @@
-import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 
 export default function NotFound() {
+  const t = useTranslations('notFound')
   return (
     <div style={{
       minHeight: '100vh',
@@ -28,20 +30,20 @@ export default function NotFound() {
         letterSpacing: '-0.05em',
       }}>404</div>
       <p style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)' }}>
-        Page not found
+        {t('eyebrow')}
       </p>
       <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 300, letterSpacing: '-0.025em', color: 'var(--color-text)' }}>
-        Nothing here
+        {t('heading')}
       </h2>
       <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', maxWidth: '400px', lineHeight: 1.7 }}>
-        The page you're looking for doesn't exist. Head back home to browse our products.
+        {t('body')}
       </p>
       <Link href="/" style={{
         background: 'var(--color-accent)',
         color: 'var(--color-text)',
-        fontSize: '0.875rem',
+        fontSize: '0.9rem',
         fontWeight: 600,
-        padding: '0.875rem 2rem',
+        padding: '0.9rem 2.25rem',
         borderRadius: '100px',
         border: '2px solid var(--color-border)',
         boxShadow: '4px 4px 0 var(--color-border)',
@@ -49,7 +51,7 @@ export default function NotFound() {
         display: 'inline-block',
         fontFamily: 'var(--font-ui)',
       }}>
-        Back to home →
+        {t('back')}
       </Link>
     </div>
   )
