@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -37,6 +38,7 @@ export default function OrderForm() {
   const [submitted, setSubmitted] = useState(false)
   const [submitError, setSubmitError] = useState('')
   const [binderColorError, setBinderColorError] = useState('')
+  const router = useRouter()
 
   const { register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm({
     resolver: zodResolver(schema),
@@ -123,6 +125,7 @@ export default function OrderForm() {
 
     if (res.ok) {
       setSubmitted(true)
+      router.push('/bedankt')
     } else {
       setSubmitError('Something went wrong. Please try again.')
     }
