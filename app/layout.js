@@ -50,6 +50,11 @@ export const metadata = {
   icons: {
     icon: '/icon.svg',
   },
+  verification: {
+    // If Search Console (URL-prefix → HTML tag) shows a different token,
+    // replace the value below with that one.
+    google: '4n7f3GSEAdSc6A9H4XlPCpjwmtHAGZAkjUIXEHTGLOY',
+  },
 }
 
 const jsonLd = {
