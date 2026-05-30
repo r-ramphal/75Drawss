@@ -135,7 +135,7 @@ export default function ProductRange() {
               One studio,<br/>your whole collection
             </h2>
             <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', lineHeight: 1.7, fontWeight: 400, maxWidth: '320px' }}>
-              Everything is handcrafted to order. Mix and match to build a set that's entirely your own.
+              Custom binder design, deck boxes, display cases and more — all handcrafted to order. Mix and match to build a set that's entirely your own.
             </p>
           </div>
 

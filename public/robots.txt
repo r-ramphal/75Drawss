@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://75drawss.nl/sitemap.xml
+Sitemap: https://www.75drawss.com/sitemap.xml

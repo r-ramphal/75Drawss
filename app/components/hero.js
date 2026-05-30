@@ -87,7 +87,7 @@ export default function Hero() {
             fontSize: '1.05rem', fontWeight: 400, color: 'var(--color-text-secondary)',
             lineHeight: 1.8, maxWidth: '480px', marginBottom: '2rem', fontFamily: 'var(--font-ui)',
           }}>
-            We craft fully custom TCG binders, deck boxes and accessories — built exactly to your design. No templates, no limits.
+            Design your own custom TCG binder, deck box or accessory — built exactly to your vision. No templates, no limits.
           </p>
 
           {/* Inspired-by chips */}
