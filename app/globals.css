@@ -1,11 +1,37 @@
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --font-ui: var(--font-rubik), system-ui, sans-serif;
+  --font-display: Georgia, serif;
+  --color-bg: #FAFAF8;
+  --color-surface: #ffffff;
+  --color-text: #0A0A0A;
+  --color-text-secondary: #555;
+  --color-text-muted: #888;
+  --color-border: #0A0A0A;
+  --color-accent: #D97706;
+  --color-accent-hover: #B45309;
+  --shadow-hard: 4px 4px 0 #0A0A0A;
+  --shadow-hard-lg: 6px 6px 0 #0A0A0A;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 html, body {
-  background: #fff;
-  color: #000;
-  font-family: Georgia, serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-ui);
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
 }
 
 a { color: inherit; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

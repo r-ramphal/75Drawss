@@ -2,67 +2,129 @@ export default function Hero() {
   return (
     <>
       <style>{`
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(28px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scrollBob {
+          0%, 100% { transform: translateY(0); opacity: 0.5; }
+          50%      { transform: translateY(6px); opacity: 1; }
+        }
+
         .hero-eyebrow { animation: fadeUp 0.6s ease both 0.1s; }
-        .hero-h1 { animation: fadeUp 0.6s ease both 0.2s; }
-        .hero-bottom { animation: fadeUp 0.6s ease both 0.35s; }
-        .btn-dark { background: #000; color: #fff; font-size: 0.85rem; font-weight: 500; padding: 0.875rem 2rem; border-radius: 100px; text-decoration: none; transition: background 0.15s; white-space: nowrap; }
-        .btn-dark:hover { background: #333; }
-        .btn-outline { background: transparent; color: #000; font-size: 0.85rem; font-weight: 500; padding: 0.875rem 2rem; border-radius: 100px; text-decoration: none; border: 1px solid #000; transition: all 0.15s; white-space: nowrap; }
-        .btn-outline:hover { background: #000; color: #fff; }
-        .hero-section { padding: 7rem 3rem 4rem; }
-        .hero-desc { font-size: 0.95rem; font-weight: 300; color: #555; max-width: 360px; line-height: 1.8; }
-        .hero-actions { display: flex; gap: 1rem; align-items: center; }
-        .hero-bottom-inner { display: flex; align-items: flex-end; justify-content: space-between; width: 100%; gap: 2rem; flex-wrap: wrap; }
+        .hero-h1      { animation: fadeUp 0.6s ease both 0.2s; }
+        .hero-desc    { animation: fadeUp 0.6s ease both 0.3s; }
+        .hero-chips   { animation: fadeUp 0.6s ease both 0.4s; }
+        .hero-actions { animation: fadeUp 0.6s ease both 0.5s; }
+        .hero-stats   { animation: fadeUp 0.6s ease both 0.6s; }
+        .hero-scroll  { animation: fadeUp 0.6s ease both 0.8s; }
+
+        .btn-primary {
+          background: var(--color-accent); color: var(--color-text);
+          font-size: 0.9rem; font-weight: 600; padding: 0.9rem 2.25rem;
+          border-radius: 100px; text-decoration: none;
+          border: 2px solid var(--color-border); box-shadow: 4px 4px 0 var(--color-border);
+          transition: box-shadow 0.15s, transform 0.15s;
+          white-space: nowrap; display: inline-block; font-family: var(--font-ui);
+        }
+        .btn-primary:hover { box-shadow: none; transform: translate(4px, 4px); }
+        .btn-outline {
+          background: transparent; color: var(--color-text);
+          font-size: 0.9rem; font-weight: 500; padding: 0.9rem 2.25rem;
+          border-radius: 100px; text-decoration: none;
+          border: 2px solid var(--color-border);
+          transition: background 0.15s, color 0.15s;
+          white-space: nowrap; display: inline-block; font-family: var(--font-ui);
+        }
+        .btn-outline:hover { background: var(--color-text); color: #fff; }
+
+        .hero-badge {
+          display: inline-flex; align-items: center; gap: 0.5rem;
+          font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+          background: var(--color-accent); color: var(--color-text);
+          border: 2px solid var(--color-border); padding: 0.28rem 0.85rem; border-radius: 100px;
+          font-family: var(--font-ui);
+        }
+        .hero-stat { font-size: 0.72rem; font-weight: 500; color: var(--color-text-muted); font-family: var(--font-ui); letter-spacing: 0.04em; }
+        .hero-stat strong { color: var(--color-text); font-weight: 700; margin-right: 0.3em; }
+
+        .hero-section {
+          min-height: 92vh; display: flex; flex-direction: column;
+          align-items: center; justify-content: center; text-align: center;
+          padding: 8rem 1.5rem 4rem; max-width: 820px; margin: 0 auto; position: relative;
+        }
+
         @media (max-width: 640px) {
-          .hero-section { padding: 6rem 1.5rem 3rem !important; }
-          .hero-h1 { font-size: 3rem !important; margin-bottom: 2rem !important; }
-          .hero-bottom-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-          .hero-desc { max-width: 100%; }
-          .hero-actions { width: 100%; flex-direction: column; align-items: stretch; }
-          .btn-dark, .btn-outline { text-align: center; }
+          .hero-section { min-height: 88vh; padding: 7rem 1.25rem 3rem; }
         }
       `}</style>
-      <section className="hero-section" style={{
-        minHeight: '100vh',
-        display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
-        maxWidth: '1200px', margin: '0 auto',
-        background: '#fff',
-      }}>
-        <div className="hero-eyebrow" style={{
-          fontSize: '0.7rem', fontWeight: 500, letterSpacing: '0.16em',
-          textTransform: 'uppercase', color: '#000',
-          marginBottom: '1.75rem',
-          display: 'flex', alignItems: 'center', gap: '0.75rem',
-        }}>
-          <span style={{ width: 28, height: 1, background: '#000', display: 'block', flexShrink: 0 }} />
-          Custom Design Studio · Made in the Netherlands
-        </div>
 
-        <h1 className="hero-h1" style={{
-          fontFamily: 'Georgia, serif',
-          fontSize: 'clamp(3rem, 7.5vw, 7.5rem)',
-          fontWeight: 300, lineHeight: 1.0,
-          letterSpacing: '-0.03em',
-          marginBottom: '3rem', maxWidth: '900px',
-          color: '#000',
-        }}>
-          Your vision.<br/>
-          <em style={{ fontStyle: 'italic', color: '#999' }}>Beautifully</em> made.
-        </h1>
-
-        <div className="hero-bottom">
-          <div className="hero-bottom-inner">
-            <p className="hero-desc">
-              We design and craft custom products for collectors and creators — from TCG binders to deck boxes and beyond. Your design, your way.
-            </p>
-            <div className="hero-actions">
-              <a href="#order" className="btn-dark">Start your order →</a>
-              <a href="#how-it-works" className="btn-outline">See how it works</a>
+      <div style={{ background: 'var(--color-bg)', position: 'relative', overflow: 'hidden' }}>
+        <section className="hero-section">
+          {/* Eyebrow */}
+          <div className="hero-eyebrow" style={{ marginBottom: '1.75rem', display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <div className="hero-badge">
+              <span style={{ width: 5, height: 5, background: 'var(--color-text)', borderRadius: '50%', display: 'block' }} />
+              Custom Design Studio
             </div>
+            <span style={{ fontSize: '0.68rem', fontWeight: 500, color: 'var(--color-text-muted)', letterSpacing: '0.08em', fontFamily: 'var(--font-ui)' }}>
+              Made in the Netherlands
+            </span>
           </div>
-        </div>
-      </section>
+
+          {/* Headline */}
+          <h1 className="hero-h1" style={{
+            fontFamily: 'var(--font-display)', fontSize: 'clamp(3rem, 8vw, 6rem)',
+            fontWeight: 300, lineHeight: 1.02, letterSpacing: '-0.035em',
+            color: 'var(--color-text)', marginBottom: '1.75rem',
+          }}>
+            Make your collection<br/>
+            <em style={{ fontStyle: 'italic', color: 'var(--color-accent)' }}>uniquely yours.</em>
+          </h1>
+
+          {/* Description */}
+          <p className="hero-desc" style={{
+            fontSize: '1.05rem', fontWeight: 400, color: 'var(--color-text-secondary)',
+            lineHeight: 1.8, maxWidth: '480px', marginBottom: '2rem', fontFamily: 'var(--font-ui)',
+          }}>
+            We craft fully custom TCG binders, deck boxes and accessories — built exactly to your design. No templates, no limits.
+          </p>
+
+          {/* Inspired-by chips */}
+          <div className="hero-chips" style={{ marginBottom: '2.5rem', display: 'flex', gap: '0.4rem', flexWrap: 'wrap', justifyContent: 'center', maxWidth: '520px' }}>
+            {['Pokémon', 'One Piece', 'Lorcana', 'Magic', 'Yu-Gi-Oh', 'Flesh & Blood'].map(game => (
+              <span key={game} style={{
+                fontSize: '0.72rem', fontWeight: 500, color: 'var(--color-text-secondary)',
+                border: '1.5px solid rgba(10,10,10,0.18)', padding: '0.22rem 0.65rem',
+                borderRadius: '100px', fontFamily: 'var(--font-ui)', background: 'var(--color-surface)', letterSpacing: '0.01em',
+              }}>{game}</span>
+            ))}
+          </div>
+
+          {/* CTAs */}
+          <div className="hero-actions" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '3rem' }}>
+            <a href="#order" className="btn-primary">Start your order →</a>
+            <a href="#products" className="btn-outline">See what we make</a>
+          </div>
+
+          {/* Stats */}
+          <div className="hero-stats" style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center', paddingTop: '1.75rem', borderTop: '1px solid rgba(10,10,10,0.1)' }}>
+            <span className="hero-stat"><strong>100%</strong>custom design</span>
+            <span className="hero-stat"><strong>7–14</strong>day production</span>
+            <span className="hero-stat"><strong>NL</strong>handcrafted</span>
+          </div>
+
+          {/* Scroll hint */}
+          <a href="#products" className="hero-scroll" aria-label="Scroll to products" style={{
+            position: 'absolute', bottom: '1.5rem', left: '50%', transform: 'translateX(-50%)',
+            color: 'var(--color-text-muted)', textDecoration: 'none',
+          }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation: 'scrollBob 1.8s ease-in-out infinite' }} aria-hidden="true">
+              <path d="M12 5v14"/><path d="m19 12-7 7-7-7"/>
+            </svg>
+          </a>
+        </section>
+      </div>
     </>
   )
 }

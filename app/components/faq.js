@@ -23,8 +23,8 @@ const faqs = [
     a: 'No problem — just describe your idea in the order form. Tell us your colours, theme, style and any text you want included and we\'ll create something for you.',
   },
   {
-    q: 'Can you use copyrighted characters like Pokémon?',
-    a: 'We work with original artwork only. If you want a design inspired by a TCG aesthetic we\'ll create something original that captures the feel without using copyrighted characters. You can also upload your own original artwork.',
+    q: 'Can you make a Pokémon-inspired binder?',
+    a: 'Absolutely — we just can\'t print official characters, logos or any trademarked imagery. What we can do is capture the exact aesthetic of any TCG: the colours, energy and style of Pokémon, One Piece, Lorcana, Magic, Yu-Gi-Oh and more, all in original artwork that you actually own. Describe the vibe — favourite colours, era, feel — and we\'ll make something that looks right at home in your collection.',
   },
   {
     q: 'What is the send-in service?',
@@ -54,29 +54,77 @@ export default function FAQ() {
   return (
     <>
       <style>{`
-        .faq-item { border-bottom: 1px solid #000; }
-        .faq-item:first-child { border-top: 1px solid #000; }
-        .faq-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; background: none; border: none; cursor: pointer; text-align: left; gap: 2rem; }
-        .faq-q { font-size: 0.95rem; font-weight: 500; color: #000; font-family: inherit; line-height: 1.4; }
-        .faq-icon { font-size: 1.2rem; color: #000; flex-shrink: 0; transition: transform 0.2s; font-family: inherit; }
-        .faq-icon.open { transform: rotate(45deg); }
-        .faq-answer { font-size: 0.875rem; color: #555; line-height: 1.8; font-weight: 300; padding-bottom: 1.5rem; max-width: 680px; }
+        .faq-item { border-bottom: 2px solid var(--color-border); }
+        .faq-item:first-child { border-top: 2px solid var(--color-border); }
+        .faq-btn {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1.4rem 0;
+          background: none;
+          border: none;
+          cursor: pointer;
+          text-align: left;
+          gap: 2rem;
+          font-family: var(--font-ui);
+          transition: color 0.15s;
+        }
+        .faq-btn:hover .faq-q { color: var(--color-accent); }
+        .faq-q {
+          font-size: 0.92rem;
+          font-weight: 500;
+          color: var(--color-text);
+          line-height: 1.4;
+          transition: color 0.15s;
+        }
+        .faq-icon {
+          width: 24px;
+          height: 24px;
+          border: 2px solid var(--color-border);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1rem;
+          color: var(--color-text);
+          flex-shrink: 0;
+          transition: background 0.15s, color 0.15s, transform 0.2s;
+          font-family: var(--font-ui);
+          line-height: 1;
+        }
+        .faq-icon.open {
+          background: var(--color-accent);
+          transform: rotate(45deg);
+        }
+        .faq-answer {
+          font-size: 0.875rem;
+          color: var(--color-text-secondary);
+          line-height: 1.85;
+          font-weight: 400;
+          padding-bottom: 1.4rem;
+          max-width: 680px;
+        }
         .faq-section { padding: 7rem 3rem; }
         @media (max-width: 640px) { .faq-section { padding: 4rem 1.5rem !important; } }
       `}</style>
 
-      <div id="faq" style={{ borderTop: '1px solid #000', background: '#fff' }}>
-        <section className="faq-section" style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <p style={{ fontSize: '0.7rem', fontWeight: 500, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#999', marginBottom: '1rem' }}>FAQ</p>
-          <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 300, letterSpacing: '-0.025em', lineHeight: 1.1, marginBottom: '4rem', color: '#000' }}>
+      <div id="faq" style={{ borderTop: '2px solid var(--color-border)', background: 'var(--color-bg)' }}>
+        <section className="faq-section" style={{ maxWidth: '1200px', margin: '0 auto', fontFamily: 'var(--font-ui)' }}>
+          <p style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '1rem' }}>FAQ</p>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 300, letterSpacing: '-0.025em', lineHeight: 1.1, marginBottom: '4rem', color: 'var(--color-text)' }}>
             Frequently asked<br/>questions
           </h2>
           <div>
             {faqs.map((faq, i) => (
               <div key={i} className="faq-item">
-                <button className="faq-btn" onClick={() => setOpen(open === i ? null : i)}>
+                <button
+                  className="faq-btn"
+                  onClick={() => setOpen(open === i ? null : i)}
+                  aria-expanded={open === i}
+                >
                   <span className="faq-q">{faq.q}</span>
-                  <span className={`faq-icon ${open === i ? 'open' : ''}`}>+</span>
+                  <span className={`faq-icon ${open === i ? 'open' : ''}`} aria-hidden="true">+</span>
                 </button>
                 {open === i && (
                   <p className="faq-answer">{faq.a}</p>
