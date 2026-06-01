@@ -105,7 +105,7 @@ export default function SendIn() {
           <p style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '1rem' }}>{t('eyebrow')}</p>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '4rem', flexWrap: 'wrap', gap: '2rem' }}>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 300, letterSpacing: '-0.025em', lineHeight: 1.1, color: 'var(--color-text)' }}>
-              {t('titleLine')}<br/>{t('titlePrefix')} <em style={{ fontStyle: 'italic', color: 'var(--color-accent)' }}>{t('titleEmphasis')}</em>
+              {t('titleLine')}<br/>{t('titlePrefix')} <em style={{ fontStyle: 'italic', color: 'var(--color-accent-text)' }}>{t('titleEmphasis')}</em>
             </h2>
             <a href="#order" className="sendin-cta">
               {t('cta')}

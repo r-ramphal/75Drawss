@@ -26,7 +26,7 @@ export default function FAQ() {
           font-family: var(--font-ui);
           transition: color 0.15s;
         }
-        .faq-btn:hover .faq-q { color: var(--color-accent); }
+        .faq-btn:hover .faq-q { color: var(--color-accent-text); }
         .faq-q {
           font-size: 0.92rem;
           font-weight: 500;

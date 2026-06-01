@@ -44,6 +44,8 @@ const ShuffleGrid = () => {
   const [tiles, setTiles] = useState(baseTiles)
 
   useEffect(() => {
+    // Respect users who prefer reduced motion: keep the grid static.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const run = () => {
       setTiles((prev) => shuffle(prev))
       timeoutRef.current = setTimeout(run, 3000)

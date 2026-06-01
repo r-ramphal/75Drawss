@@ -71,7 +71,7 @@ export default function Hero() {
             color: 'var(--color-text)', marginBottom: '1.75rem',
           }}>
             {t('titleLine')}<br/>
-            <em style={{ fontStyle: 'normal', color: 'var(--color-accent)' }}>{t('titleEmphasis')}</em>
+            <em style={{ fontStyle: 'normal', color: 'var(--color-accent-text)' }}>{t('titleEmphasis')}</em>
           </h1>
 
           <p className="hero-desc" style={{
