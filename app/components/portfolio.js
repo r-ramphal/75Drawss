@@ -16,7 +16,6 @@ const PHOTOS = [
   '/portfolio/lucario.jpeg',
   '/portfolio/psyduck.jpeg',
   '/portfolio/kid.jpeg',
-  '/portfolio/charmander.jpeg',
   '/portfolio/mew.jpeg',
   '/portfolio/articuno.jpeg',
   '/portfolio/starters.jpeg',
