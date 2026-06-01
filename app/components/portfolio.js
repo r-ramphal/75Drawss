@@ -16,6 +16,11 @@ const PHOTOS = [
   '/portfolio/lucario.jpeg',
   '/portfolio/psyduck.jpeg',
   '/portfolio/kid.jpeg',
+  '/portfolio/charmander.jpeg',
+  '/portfolio/mew.jpeg',
+  '/portfolio/articuno.jpeg',
+  '/portfolio/starters.jpeg',
+  '/portfolio/dialga.jpeg',
 ]
 
 // 16 tiles, each with a stable id and an assigned photo (photos repeat).
