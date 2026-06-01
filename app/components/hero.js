@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 
-const chips = ['Pokémon', 'One Piece', 'Lorcana', 'Magic', 'Yu-Gi-Oh', 'Flesh & Blood']
+const chips = ['Pokémon', 'One Piece', 'Lorcana']
 
 export default function Hero() {
   const t = useTranslations('hero')

@@ -12,7 +12,7 @@ const CLOUDINARY_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_PRESET
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'application/pdf', 'image/svg+xml']
 const MAX_FILE_SIZE = 10 * 1024 * 1024
 
-const POCKET_SIZES = ['4-pocket', '9-pocket', '12-pocket']
+const POCKET_SIZES = ['4-pocket', '9-pocket']
 const COLORS = [
   { name: 'Black', hex: '#1a1a1a' },
   { name: 'White', hex: '#ffffff' },
