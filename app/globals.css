@@ -1,6 +1,6 @@
 :root {
   --font-ui: var(--font-rubik), system-ui, sans-serif;
-  --font-display: Georgia, serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
   --color-bg: #FAFAF8;
   --color-surface: #ffffff;
   --color-text: #0A0A0A;

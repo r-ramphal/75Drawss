@@ -50,7 +50,7 @@ export default function Features() {
         .feature:hover {
           background: #FFFBEB;
           box-shadow: var(--shadow-hard-lg);
-          transform: translate(-2px, -2px);
+          transform: translateY(-4px);
           position: relative;
           z-index: 1;
         }
