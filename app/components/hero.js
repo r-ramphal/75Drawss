@@ -43,13 +43,6 @@ export default function Hero() {
         }
         .btn-outline:hover { background: var(--color-text); color: #fff; border-color: var(--color-text); }
 
-        .hero-badge {
-          display: inline-flex; align-items: center; gap: 0.5rem;
-          font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
-          background: var(--color-accent); color: var(--color-text);
-          border: 2px solid var(--color-border); padding: 0.28rem 0.85rem; border-radius: 100px;
-          font-family: var(--font-ui);
-        }
         .hero-stat { font-size: 0.72rem; font-weight: 500; color: var(--color-text-muted); font-family: var(--font-ui); letter-spacing: 0.04em; }
         .hero-stat strong { color: var(--color-text); font-weight: 700; margin-right: 0.3em; }
 
@@ -67,10 +60,6 @@ export default function Hero() {
       <div style={{ background: 'var(--color-bg)', position: 'relative', overflow: 'hidden' }}>
         <section className="hero-section">
           <div className="hero-eyebrow" style={{ marginBottom: '1.75rem', display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <div className="hero-badge">
-              <span style={{ width: 5, height: 5, background: 'var(--color-text)', borderRadius: '50%', display: 'block' }} />
-              {t('badge')}
-            </div>
             <span style={{ fontSize: '0.68rem', fontWeight: 500, color: 'var(--color-text-muted)', letterSpacing: '0.08em', fontFamily: 'var(--font-ui)' }}>
               {t('madeIn')}
             </span>
@@ -82,7 +71,7 @@ export default function Hero() {
             color: 'var(--color-text)', marginBottom: '1.75rem',
           }}>
             {t('titleLine')}<br/>
-            <em style={{ fontStyle: 'italic', color: 'var(--color-accent)' }}>{t('titleEmphasis')}</em>
+            <em style={{ fontStyle: 'normal', color: 'var(--color-accent)' }}>{t('titleEmphasis')}</em>
           </h1>
 
           <p className="hero-desc" style={{
