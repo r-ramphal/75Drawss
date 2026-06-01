@@ -1,4 +1,4 @@
-import { Rubik, Fraunces } from "next/font/google";
+import { Rubik, Cormorant_Garamond } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -12,10 +12,10 @@ const rubik = Rubik({
   display: 'swap',
 });
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const displaySerif = Cormorant_Garamond({
+  variable: "--font-display-serif",
   subsets: ["latin"],
-  weight: ['300', '400', '500'],
+  weight: ['300', '400', '500', '600'],
   style: ['normal', 'italic'],
   display: 'swap',
 });
@@ -106,7 +106,7 @@ export default async function LocaleLayout({ children, params }) {
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${rubik.variable} ${fraunces.variable}`}>
+    <html lang={locale} className={`${rubik.variable} ${displaySerif.variable}`}>
       <body>
         <NextIntlClientProvider messages={messages}>
           {children}
