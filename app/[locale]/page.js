@@ -5,6 +5,7 @@ import Hero from '@/app/components/hero'
 import Ticker from '@/app/components/ticker'
 
 const ProductRange = dynamic(() => import('@/app/components/productrange'))
+const Portfolio = dynamic(() => import('@/app/components/portfolio'))
 const HowItWorks = dynamic(() => import('@/app/components/howitworks'))
 const SendIn = dynamic(() => import('@/app/components/sendin'))
 const Features = dynamic(() => import('@/app/components/features'))
@@ -22,6 +23,7 @@ export default async function Home({ params }) {
       <Hero />
       <Ticker />
       <ProductRange />
+      <Portfolio />
       <HowItWorks />
       <SendIn />
       <Features />

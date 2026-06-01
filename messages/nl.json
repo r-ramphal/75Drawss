@@ -43,6 +43,20 @@
       { "title": "Sleeves & Extra's", "desc": "Bijpassende accessoires — playmats, sleeves en verpakking om de set compleet te maken." }
     ]
   },
+  "portfolio": {
+    "eyebrow": "Ons werk",
+    "titleLine1": "Echte binders,",
+    "titleLine2": "hier gemaakt",
+    "intro": "Een blik op recente custom stukken — elk ontworpen samen met een verzamelaar en met de hand gemaakt op bestelling in Nederland.",
+    "cta": "Maak die van jou →",
+    "items": [
+      { "alt": "Custom Mimikyu-binder met de skyline van Amsterdam" },
+      { "alt": "Custom koi-binder met een kleurrijk onderwaterontwerp" },
+      { "alt": "Custom donkere Lucario-binder met blauwe accenten" },
+      { "alt": "Custom Psyduck-binder met een zonnebloemontwerp" },
+      { "alt": "Custom One Piece-binder met een bliksemontwerp" }
+    ]
+  },
   "howItWorks": {
     "eyebrow": "Het proces",
     "titleLine1": "Van idee tot",

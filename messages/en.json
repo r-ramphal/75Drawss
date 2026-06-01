@@ -43,6 +43,20 @@
       { "title": "Sleeves & Extras", "desc": "Matching accessories — playmats, sleeves and packaging to complete the set." }
     ]
   },
+  "portfolio": {
+    "eyebrow": "Our work",
+    "titleLine1": "Real binders,",
+    "titleLine2": "really made here",
+    "intro": "A look at recent custom pieces — every one designed with a collector and handcrafted to order in the Netherlands.",
+    "cta": "Start your own →",
+    "items": [
+      { "alt": "Custom Mimikyu binder against an Amsterdam skyline" },
+      { "alt": "Custom koi fish binder with a colourful underwater design" },
+      { "alt": "Custom dark Lucario binder with blue accents" },
+      { "alt": "Custom Psyduck binder with a sunflower design" },
+      { "alt": "Custom One Piece binder with a lightning design" }
+    ]
+  },
   "howItWorks": {
     "eyebrow": "The process",
     "titleLine1": "From idea to",
