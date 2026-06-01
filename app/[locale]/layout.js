@@ -53,11 +53,13 @@ export async function generateMetadata({ params }) {
       siteName: '75Drawss',
       locale: locale === 'nl' ? 'nl_NL' : 'en_NL',
       alternateLocale: locale === 'nl' ? ['en_NL'] : ['nl_NL'],
+      images: [{ url: `${SITE_URL}/og.jpg`, width: 1200, height: 630, alt: '75Drawss — custom TCG binders & accessories' }],
     },
     twitter: {
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
+      images: [`${SITE_URL}/og.jpg`],
     },
     icons: { icon: '/icon.svg' },
     verification: {
