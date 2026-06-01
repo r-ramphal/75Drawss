@@ -55,6 +55,7 @@ export default function OrderForm() {
     binder_brand: z.string().optional(),
     binder_condition: z.string().optional(),
     consent: z.boolean().refine(val => val === true, t('errConsent')),
+    botcheck: z.string().optional(),
   }), [t])
 
   const { register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm({
@@ -63,7 +64,7 @@ export default function OrderForm() {
       name: '', email: '', product_type: '', card_game: '',
       design_description: '', special_requirements: '',
       budget: '', source: '', binder_brand: '', binder_condition: '',
-      consent: false,
+      consent: false, botcheck: '',
     },
     mode: 'onBlur',
     reValidateMode: 'onChange',
@@ -112,6 +113,7 @@ export default function OrderForm() {
     setSubmitError('')
 
     const payload = {
+      botcheck: data.botcheck || '',
       subject: `New 75Drawss Order — ${service === 'build' ? 'Build My Product' : 'Customize My Product'}`,
       service_type: service === 'build' ? 'Build my product' : 'Customize my product',
       name: data.name,
@@ -238,6 +240,16 @@ export default function OrderForm() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)} noValidate>
+
+                  {/* Honeypot — hidden from real users, bots tend to fill it */}
+                  <input
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, opacity: 0 }}
+                    {...register('botcheck')}
+                  />
 
                   {/* SERVICE TOGGLE */}
                   <div className="service-toggle">
