@@ -16,7 +16,7 @@
     "titleEmphasis": "uniquely yours.",
     "description": "Design your own custom TCG binder, deck box or accessory — built exactly to your vision. No templates, no limits.",
     "inspiredBy": "Inspired by",
-    "ctaPrimary": "Start your order →",
+    "ctaPrimary": "Start your order",
     "ctaSecondary": "See what we make",
     "stat1Value": "100%",
     "stat1Label": "custom design",
@@ -35,7 +35,7 @@
     "titleLine2": "your whole collection",
     "intro": "Custom binder design, deck boxes, display cases and more — all handcrafted to order. Mix and match to build a set that's entirely your own.",
     "tagPopular": "Most popular",
-    "cta": "Start your custom order →",
+    "cta": "Start your custom order",
     "items": [
       { "title": "Custom Binders", "desc": "4 or 9-pocket — any size, any artwork. Your design printed edge to edge." },
       { "title": "Deck Boxes", "desc": "Holds a full sleeved deck. Magnetic or slide-top, finished in your style." },
@@ -48,7 +48,7 @@
     "titleLine1": "Real binders,",
     "titleLine2": "really made here",
     "intro": "A look at recent custom pieces — every one designed with a collector and handcrafted to order in the Netherlands.",
-    "cta": "Start your own →",
+    "cta": "Start your own",
     "items": [
       { "alt": "Custom Mimikyu binder against an Amsterdam skyline" },
       { "alt": "Custom koi fish binder with a colourful underwater design" },
@@ -73,7 +73,7 @@
     "titleLine": "Already have a product?",
     "titlePrefix": "We'll make it",
     "titleEmphasis": "yours.",
-    "cta": "Customize my product →",
+    "cta": "Customize my product",
     "steps": [
       { "title": "Request a quote", "desc": "Fill in the order form and select \"Customize my product\". Tell us your design idea and we'll reply within 1–2 business days with a quote." },
       { "title": "Send your product", "desc": "Once you approve the quote we'll send you our address. Pack your product well in a sturdy box with bubble wrap and ship it via PostNL or DHL with a tracking code." },
@@ -151,7 +151,7 @@
     "footerNote": "No payment required yet. We'll reply within 1–2 business days.",
     "submitSending": "Sending...",
     "submitUploading": "Uploading file...",
-    "submitDefault": "Send order request →",
+    "submitDefault": "Send order request",
     "errName": "Enter your full name",
     "errEmail": "Enter a valid email address",
     "errProduct": "Select a product type",
@@ -196,13 +196,13 @@
     "eyebrow": "Order received",
     "heading": "Thank you!",
     "body": "We've received your request and will get back to you within 1–2 business days with a quote. Keep an eye on your inbox — check your spam folder just in case.",
-    "back": "Back to home →"
+    "back": "Back to home"
   },
   "notFound": {
     "eyebrow": "Page not found",
     "heading": "Nothing here",
     "body": "The page you're looking for doesn't exist. Head back home to browse our products.",
-    "back": "Back to home →"
+    "back": "Back to home"
   },
   "error": {
     "eyebrow": "Something went wrong",

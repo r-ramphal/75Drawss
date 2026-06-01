@@ -16,7 +16,7 @@
     "titleEmphasis": "helemaal van jou.",
     "description": "Ontwerp je eigen custom TCG binder, deckbox of accessoire — precies zoals jij het voor je ziet. Geen templates, geen limieten.",
     "inspiredBy": "Geïnspireerd door",
-    "ctaPrimary": "Start je bestelling →",
+    "ctaPrimary": "Start je bestelling",
     "ctaSecondary": "Bekijk wat we maken",
     "stat1Value": "100%",
     "stat1Label": "custom ontwerp",
@@ -35,7 +35,7 @@
     "titleLine2": "je hele collectie",
     "intro": "Custom binders, deckboxes, displaycases en meer — allemaal met de hand gemaakt op bestelling. Combineer naar wens en bouw een set die helemaal van jou is.",
     "tagPopular": "Meest populair",
-    "cta": "Start je custom bestelling →",
+    "cta": "Start je custom bestelling",
     "items": [
       { "title": "Custom Binders", "desc": "4 of 9-pocket — elk formaat, elk ontwerp. Jouw design van rand tot rand gedrukt." },
       { "title": "Deckboxes", "desc": "Voor een volledig gesleevde deck. Magnetisch of schuif-deksel, afgewerkt in jouw stijl." },
@@ -48,7 +48,7 @@
     "titleLine1": "Echte binders,",
     "titleLine2": "hier gemaakt",
     "intro": "Een blik op recente custom stukken — elk ontworpen samen met een verzamelaar en met de hand gemaakt op bestelling in Nederland.",
-    "cta": "Maak die van jou →",
+    "cta": "Maak die van jou",
     "items": [
       { "alt": "Custom Mimikyu-binder met de skyline van Amsterdam" },
       { "alt": "Custom koi-binder met een kleurrijk onderwaterontwerp" },
@@ -73,7 +73,7 @@
     "titleLine": "Heb je al een product?",
     "titlePrefix": "Wij maken het",
     "titleEmphasis": "van jou.",
-    "cta": "Customize mijn product →",
+    "cta": "Customize mijn product",
     "steps": [
       { "title": "Vraag een offerte aan", "desc": "Vul het bestelformulier in en kies \"Customize mijn product\". Vertel ons je ontwerpidee en we reageren binnen 1–2 werkdagen met een offerte." },
       { "title": "Stuur je product op", "desc": "Na akkoord op de offerte sturen we je ons adres. Verpak je product goed in een stevige doos met bubbeltjesplastic en verstuur het via PostNL of DHL met een track & trace-code." },
@@ -151,7 +151,7 @@
     "footerNote": "Nog geen betaling nodig. We reageren binnen 1–2 werkdagen.",
     "submitSending": "Versturen...",
     "submitUploading": "Bestand uploaden...",
-    "submitDefault": "Bestelaanvraag versturen →",
+    "submitDefault": "Bestelaanvraag versturen",
     "errName": "Vul je volledige naam in",
     "errEmail": "Vul een geldig e-mailadres in",
     "errProduct": "Kies een producttype",
@@ -196,13 +196,13 @@
     "eyebrow": "Bestelling ontvangen",
     "heading": "Bedankt!",
     "body": "We hebben je aanvraag ontvangen en komen binnen 1–2 werkdagen bij je terug met een offerte. Houd je inbox in de gaten — check voor de zekerheid ook je spamfolder.",
-    "back": "Terug naar home →"
+    "back": "Terug naar home"
   },
   "notFound": {
     "eyebrow": "Pagina niet gevonden",
     "heading": "Hier is niets",
     "body": "De pagina die je zoekt bestaat niet. Ga terug naar home om onze producten te bekijken.",
-    "back": "Terug naar home →"
+    "back": "Terug naar home"
   },
   "error": {
     "eyebrow": "Er ging iets mis",

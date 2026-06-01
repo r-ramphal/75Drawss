@@ -93,6 +93,15 @@ export default function ProductRange() {
           border: 2px solid var(--color-border); padding: 0.18rem 0.55rem; border-radius: 100px;
           font-family: var(--font-ui);
         }
+        .products-cta {
+          background: var(--color-accent); color: var(--color-text);
+          font-size: 0.9rem; font-weight: 600; padding: 0.95rem 2.1rem;
+          border-radius: var(--radius); text-decoration: none;
+          border: 1px solid var(--color-accent);
+          display: inline-block; font-family: var(--font-ui);
+          transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .products-cta:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(10,10,10,0.12); }
         @media (max-width: 900px) {
           .products-grid { grid-template-columns: 1fr 1fr; }
         }
@@ -133,13 +142,7 @@ export default function ProductRange() {
           </div>
 
           <div style={{ marginTop: '3rem', display: 'flex', justifyContent: 'center' }}>
-            <a href="#order" style={{
-              background: 'var(--color-accent)', color: 'var(--color-text)',
-              fontSize: '0.9rem', fontWeight: 600, padding: '0.9rem 2.25rem',
-              borderRadius: '100px', textDecoration: 'none',
-              border: '2px solid var(--color-border)', boxShadow: '4px 4px 0 var(--color-border)',
-              display: 'inline-block', fontFamily: 'var(--font-ui)',
-            }}>{t('cta')}</a>
+            <a href="#order" className="products-cta">{t('cta')}</a>
           </div>
         </section>
       </div>

@@ -69,21 +69,21 @@ export default function SendIn() {
           color: var(--color-text);
           font-size: 0.875rem;
           font-weight: 600;
-          padding: 0.875rem 2rem;
-          border-radius: 100px;
+          padding: 0.9rem 2rem;
+          border-radius: var(--radius);
           text-decoration: none;
           flex-shrink: 0;
-          border: 2px solid var(--color-border);
-          box-shadow: 4px 4px 0 var(--color-border);
-          transition: box-shadow 0.15s, transform 0.15s;
+          border: 1px solid var(--color-accent);
+          transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
           display: inline-block;
         }
-        .sendin-cta:hover { box-shadow: none; transform: translate(4px, 4px); }
+        .sendin-cta:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(10,10,10,0.12); }
         .sendin-icon {
           width: 40px;
           height: 40px;
           background: var(--color-accent);
-          border: 2px solid var(--color-border);
+          border-radius: var(--radius);
+          border: 1px solid var(--color-accent);
           display: flex;
           align-items: center;
           justify-content: center;

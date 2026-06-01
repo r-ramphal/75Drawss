@@ -26,22 +26,22 @@ export default function Hero() {
 
         .btn-primary {
           background: var(--color-accent); color: var(--color-text);
-          font-size: 0.9rem; font-weight: 600; padding: 0.9rem 2.25rem;
-          border-radius: 100px; text-decoration: none;
-          border: 2px solid var(--color-border); box-shadow: 4px 4px 0 var(--color-border);
-          transition: box-shadow 0.15s, transform 0.15s;
+          font-size: 0.9rem; font-weight: 600; padding: 0.95rem 2.1rem;
+          border-radius: var(--radius); text-decoration: none;
+          border: 1px solid var(--color-accent);
+          transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
           white-space: nowrap; display: inline-block; font-family: var(--font-ui);
         }
-        .btn-primary:hover { box-shadow: none; transform: translate(4px, 4px); }
+        .btn-primary:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(10,10,10,0.12); }
         .btn-outline {
           background: transparent; color: var(--color-text);
-          font-size: 0.9rem; font-weight: 500; padding: 0.9rem 2.25rem;
-          border-radius: 100px; text-decoration: none;
-          border: 2px solid var(--color-border);
-          transition: background 0.15s, color 0.15s;
+          font-size: 0.9rem; font-weight: 500; padding: 0.95rem 2.1rem;
+          border-radius: var(--radius); text-decoration: none;
+          border: 1px solid var(--color-border-strong);
+          transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
           white-space: nowrap; display: inline-block; font-family: var(--font-ui);
         }
-        .btn-outline:hover { background: var(--color-text); color: #fff; }
+        .btn-outline:hover { background: var(--color-text); color: #fff; border-color: var(--color-text); }
 
         .hero-badge {
           display: inline-flex; align-items: center; gap: 0.5rem;

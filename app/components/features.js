@@ -67,7 +67,8 @@ export default function Features() {
           width: 40px;
           height: 40px;
           background: var(--color-accent);
-          border: 2px solid var(--color-border);
+          border-radius: var(--radius);
+          border: 1px solid var(--color-accent);
           display: flex;
           align-items: center;
           justify-content: center;

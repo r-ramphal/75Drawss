@@ -38,10 +38,9 @@ export default function Error({ error, reset }) {
           color: 'var(--color-text)',
           fontSize: '0.875rem',
           fontWeight: 600,
-          padding: '0.875rem 2rem',
-          borderRadius: '100px',
-          border: '2px solid var(--color-border)',
-          boxShadow: '4px 4px 0 var(--color-border)',
+          padding: '0.95rem 2rem',
+          borderRadius: 'var(--radius)',
+          border: '1px solid var(--color-accent)',
           cursor: 'pointer',
           fontFamily: 'var(--font-ui)',
         }}

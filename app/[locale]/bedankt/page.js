@@ -31,8 +31,7 @@ export default async function Bedankt({ params }) {
       <div style={{
         width: 56, height: 56, borderRadius: '50%',
         background: 'var(--color-accent)',
-        border: '2px solid var(--color-border)',
-        boxShadow: '4px 4px 0 var(--color-border)',
+        border: '1px solid var(--color-accent)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         marginBottom: '0.5rem',
       }}>
@@ -57,10 +56,9 @@ export default async function Bedankt({ params }) {
         color: 'var(--color-text)',
         fontSize: '0.9rem',
         fontWeight: 600,
-        padding: '0.9rem 2.25rem',
-        borderRadius: '100px',
-        border: '2px solid var(--color-border)',
-        boxShadow: '4px 4px 0 var(--color-border)',
+        padding: '0.95rem 2.1rem',
+        borderRadius: 'var(--radius)',
+        border: '1px solid var(--color-accent)',
         textDecoration: 'none',
         display: 'inline-block',
         fontFamily: 'var(--font-ui)',

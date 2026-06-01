@@ -91,12 +91,12 @@ export default function Portfolio() {
         .portfolio-cta {
           display: inline-block; margin-top: 2rem;
           background: var(--color-accent); color: var(--color-text);
-          font-size: 0.9rem; font-weight: 600; padding: 0.9rem 2.25rem;
-          border-radius: 100px; text-decoration: none;
-          border: 2px solid var(--color-border); box-shadow: 4px 4px 0 var(--color-border);
-          transition: box-shadow 0.15s, transform 0.15s; font-family: var(--font-ui);
+          font-size: 0.9rem; font-weight: 600; padding: 0.95rem 2.1rem;
+          border-radius: var(--radius); text-decoration: none;
+          border: 1px solid var(--color-accent);
+          transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; font-family: var(--font-ui);
         }
-        .portfolio-cta:hover { box-shadow: none; transform: translate(4px, 4px); }
+        .portfolio-cta:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(10,10,10,0.12); }
         @media (max-width: 900px) {
           .portfolio-section { grid-template-columns: 1fr; gap: 2.5rem; }
         }

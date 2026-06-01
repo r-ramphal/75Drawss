@@ -154,7 +154,7 @@ export default function OrderForm() {
   const req = <span style={{ color: 'var(--color-text)' }}>*</span>
 
   function inputBorder(fieldError) {
-    return { border: fieldError ? '2px solid #c00' : '2px solid var(--color-border)' }
+    return { border: fieldError ? '2px solid #c00' : '1px solid var(--color-border-strong)' }
   }
 
   const bullets = service === 'build' ? t.raw('bulletsBuild') : t.raw('bulletsCustomize')
@@ -168,23 +168,22 @@ export default function OrderForm() {
           color: var(--color-text);
           font-size: 0.875rem;
           font-weight: 600;
-          padding: 0.875rem 2rem;
-          border: 2px solid var(--color-border);
-          border-radius: 100px;
+          padding: 0.95rem 2rem;
+          border: 1px solid var(--color-accent);
+          border-radius: var(--radius);
           cursor: pointer;
-          box-shadow: 4px 4px 0 var(--color-border);
-          transition: box-shadow 0.15s, transform 0.15s;
+          transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
           flex-shrink: 0;
           font-family: var(--font-ui);
         }
-        .submit-btn:hover { box-shadow: none; transform: translate(4px, 4px); }
-        .submit-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: 4px 4px 0 var(--color-border); }
+        .submit-btn:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(10,10,10,0.12); }
+        .submit-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
         .qty-btn { font-size: 0.82rem; font-weight: 500; padding: 0.5rem 1rem; cursor: pointer; transition: all 0.15s; font-family: var(--font-ui); }
         .order-section { padding: 7rem 3rem; }
         .order-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 6rem; align-items: start; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
         .form-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 2rem; padding-top: 1.75rem; border-top: 2px solid var(--color-border); gap: 1rem; flex-wrap: wrap; }
-        .service-toggle { display: flex; border: 2px solid var(--color-border); margin-bottom: 2rem; box-shadow: 3px 3px 0 var(--color-border); }
+        .service-toggle { display: flex; border: 1px solid var(--color-border-strong); border-radius: var(--radius); overflow: hidden; margin-bottom: 2rem; }
         .service-btn { flex: 1; padding: 0.875rem 1rem; font-family: var(--font-ui); font-size: 0.875rem; font-weight: 600; cursor: pointer; border: none; transition: all 0.15s; text-align: center; letter-spacing: 0.01em; }
         .service-btn.active { background: var(--color-text); color: #fff; }
         .service-btn.inactive { background: var(--color-surface); color: var(--color-text); }
@@ -194,7 +193,7 @@ export default function OrderForm() {
         .send-in-box p { font-size: 0.82rem; color: var(--color-text-secondary); line-height: 1.7; font-weight: 400; }
         .send-in-box ul { margin-top: 0.5rem; padding-left: 1.25rem; }
         .send-in-box ul li { font-size: 0.82rem; color: var(--color-text-secondary); line-height: 1.8; font-weight: 400; }
-        .pocket-btn { font-size: 0.82rem; font-weight: 500; padding: 0.5rem 1.25rem; cursor: pointer; font-family: var(--font-ui); transition: all 0.15s; border: 2px solid var(--color-border); }
+        .pocket-btn { font-size: 0.82rem; font-weight: 500; padding: 0.5rem 1.25rem; cursor: pointer; font-family: var(--font-ui); transition: all 0.15s; border: 1px solid var(--color-border-strong); border-radius: var(--radius); }
         @media (max-width: 768px) {
           .order-section { padding: 4rem 1.5rem !important; }
           .order-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
@@ -204,7 +203,7 @@ export default function OrderForm() {
         }
       `}</style>
 
-      <div style={{ background: 'var(--color-bg)', borderTop: '2px solid var(--color-border)', borderBottom: '2px solid var(--color-border)' }} id="order">
+      <div style={{ background: 'var(--color-bg)', borderTop: '1px solid var(--color-border-strong)', borderBottom: '1px solid var(--color-border-strong)' }} id="order">
         <div className="order-section" style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div className="order-grid">
 
@@ -228,7 +227,7 @@ export default function OrderForm() {
             </div>
 
             {/* FORM */}
-            <div style={{ background: 'var(--color-surface)', border: '2px solid var(--color-border)', padding: '2.5rem', boxShadow: 'var(--shadow-hard-lg)' }}>
+            <div style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border-strong)', padding: '2.5rem', boxShadow: 'var(--shadow-hard-lg)' }}>
               {submitted ? (
                 <div style={{ textAlign: 'center', padding: '3.5rem 2rem' }}>
                   <div style={{ width: 48, height: 48, background: 'var(--color-text)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', color: '#fff', fontSize: '1.1rem' }}>✓</div>
@@ -341,7 +340,7 @@ export default function OrderForm() {
                           </div>
                           <input
                             className="order-input"
-                            style={{ ...inputStyle, border: binderColorError ? '2px solid #c00' : '2px solid var(--color-border)' }}
+                            style={{ ...inputStyle, border: binderColorError ? '2px solid #c00' : '1px solid var(--color-border-strong)' }}
                             type="text"
                             placeholder={t('phCustomColor')}
                             value={customColor}
@@ -358,7 +357,7 @@ export default function OrderForm() {
                             {QUANTITIES.map(n => (
                               <button key={n} type="button" className="qty-btn" onClick={() => setQty(n)} aria-pressed={qty === n} style={{
                                 background: qty === n ? 'var(--color-text)' : 'var(--color-surface)',
-                                border: '2px solid var(--color-border)',
+                                border: '1px solid var(--color-border-strong)',
                                 color: qty === n ? '#fff' : 'var(--color-text)',
                               }}>{n}{n === 10 ? '+' : ''}</button>
                             ))}
@@ -372,7 +371,7 @@ export default function OrderForm() {
                       <>
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
                           <label htmlFor="binder_brand" style={labelStyle}>{t('labelBrand')}</label>
-                          <input id="binder_brand" className="order-input" style={{ ...inputStyle, border: '2px solid var(--color-border)' }} type="text" placeholder={t('phBrand')} {...register('binder_brand')} />
+                          <input id="binder_brand" className="order-input" style={{ ...inputStyle, border: '1px solid var(--color-border-strong)' }} type="text" placeholder={t('phBrand')} {...register('binder_brand')} />
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
                           <label htmlFor="binder_condition" style={labelStyle}>{t('labelCondition')} {req}</label>
@@ -404,17 +403,17 @@ export default function OrderForm() {
 
                     <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
                       <label htmlFor="design_description" style={labelStyle}>{t('labelDescription')}</label>
-                      <textarea id="design_description" className="order-input" style={{ ...inputStyle, border: '2px solid var(--color-border)', minHeight: 110, resize: 'vertical' }} placeholder={t('phDescription')} {...register('design_description')} />
+                      <textarea id="design_description" className="order-input" style={{ ...inputStyle, border: '1px solid var(--color-border-strong)', minHeight: 110, resize: 'vertical' }} placeholder={t('phDescription')} {...register('design_description')} />
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column', gridColumn: '1 / -1' }}>
                       <label htmlFor="special_requirements" style={labelStyle}>{t('labelSpecial')}</label>
-                      <textarea id="special_requirements" className="order-input" style={{ ...inputStyle, border: '2px solid var(--color-border)', minHeight: 80, resize: 'vertical' }} placeholder={service === 'build' ? t('phSpecialBuild') : t('phSpecialCustomize')} {...register('special_requirements')} />
+                      <textarea id="special_requirements" className="order-input" style={{ ...inputStyle, border: '1px solid var(--color-border-strong)', minHeight: 80, resize: 'vertical' }} placeholder={service === 'build' ? t('phSpecialBuild') : t('phSpecialCustomize')} {...register('special_requirements')} />
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <label htmlFor="budget" style={labelStyle}>{t('labelBudget')}</label>
-                      <select id="budget" className="order-input" style={{ ...inputStyle, border: '2px solid var(--color-border)' }} {...register('budget')}>
+                      <select id="budget" className="order-input" style={{ ...inputStyle, border: '1px solid var(--color-border-strong)' }} {...register('budget')}>
                         <option value="">{t('phBudget')}</option>
                         {(service === 'build' ? t.raw('optBudgetBuild') : t.raw('optBudgetCustomize')).map(o => <option key={o}>{o}</option>)}
                       </select>
@@ -422,7 +421,7 @@ export default function OrderForm() {
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <label htmlFor="source" style={labelStyle}>{t('labelSource')}</label>
-                      <select id="source" className="order-input" style={{ ...inputStyle, border: '2px solid var(--color-border)' }} {...register('source')}>
+                      <select id="source" className="order-input" style={{ ...inputStyle, border: '1px solid var(--color-border-strong)' }} {...register('source')}>
                         <option value="">{t('phSource')}</option>
                         {t.raw('optSource').map(o => <option key={o}>{o}</option>)}
                       </select>

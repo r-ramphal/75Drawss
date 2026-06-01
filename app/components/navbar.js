@@ -20,17 +20,18 @@ export default function Navbar() {
           font-weight: 600;
           color: var(--color-text) !important;
           background: var(--color-accent);
-          padding: 0.55rem 1.35rem;
-          border-radius: 100px;
+          padding: 0.6rem 1.35rem;
+          border-radius: var(--radius);
           text-decoration: none;
-          border: 2px solid var(--color-border);
-          box-shadow: 3px 3px 0 var(--color-border);
-          transition: box-shadow 0.15s, transform 0.15s;
+          border: 1px solid var(--color-accent);
+          transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
           white-space: nowrap;
         }
         .nav-cta:hover {
-          box-shadow: none;
-          transform: translate(3px, 3px);
+          background: var(--color-accent-hover);
+          border-color: var(--color-accent-hover);
+          transform: translateY(-1px);
+          box-shadow: 0 6px 16px rgba(10,10,10,0.12);
         }
         .nav-right { display: flex; align-items: center; gap: 1.5rem; }
         .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
