@@ -8,6 +8,9 @@ import { z } from 'zod'
 
 const CLOUDINARY_CLOUD = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD
 const CLOUDINARY_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_PRESET
+// Web3Forms access keys are designed to be public/client-side. The free plan
+// only accepts browser-side submissions, so we post directly from here.
+const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
 
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'application/pdf', 'image/svg+xml']
 const MAX_FILE_SIZE = 10 * 1024 * 1024
@@ -113,6 +116,7 @@ export default function OrderForm() {
     setSubmitError('')
 
     const payload = {
+      access_key: WEB3FORMS_KEY,
       botcheck: data.botcheck || '',
       subject: `New 75Drawss Order — ${service === 'build' ? 'Build My Product' : 'Customize My Product'}`,
       service_type: service === 'build' ? 'Build my product' : 'Customize my product',
@@ -136,16 +140,21 @@ export default function OrderForm() {
       }),
     }
 
-    const res = await fetch('/api/submit-order', {
-      method: 'POST',
-      body: JSON.stringify(payload),
-      headers: { 'Content-Type': 'application/json' },
-    })
-
-    if (res.ok) {
-      setSubmitted(true)
-      router.push('/bedankt')
-    } else {
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      // Web3Forms returns HTTP 200 with { success: true|false }, so check the body.
+      const json = await res.json()
+      if (json.success) {
+        setSubmitted(true)
+        router.push('/bedankt')
+      } else {
+        setSubmitError(t('errSubmit'))
+      }
+    } catch {
       setSubmitError(t('errSubmit'))
     }
   }
