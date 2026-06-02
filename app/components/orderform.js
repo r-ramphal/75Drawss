@@ -1,7 +1,7 @@
 'use client'
 import { useState, useMemo, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
-import { useRouter } from '@/i18n/navigation'
+import { useRouter, Link } from '@/i18n/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -474,8 +474,11 @@ export default function OrderForm() {
                     <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
                         <input id="consent" type="checkbox" style={{ marginTop: '0.2rem', cursor: 'pointer', accentColor: 'var(--color-text)' }} {...register('consent')} />
-                        <label htmlFor="consent" style={{ ...labelStyle, textTransform: 'none', letterSpacing: 0, fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: 400 }}>
-                          {t('consent')}
+                        <label htmlFor="consent" style={{ ...labelStyle, textTransform: 'none', letterSpacing: 0, fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: 400, lineHeight: 1.6 }}>
+                          {t.rich('consent', {
+                            terms: (chunks) => <Link href="/voorwaarden" target="_blank" style={{ color: 'var(--color-accent-text)', textDecoration: 'underline', fontWeight: 500 }}>{chunks}</Link>,
+                            privacy: (chunks) => <Link href="/privacy" target="_blank" style={{ color: 'var(--color-accent-text)', textDecoration: 'underline', fontWeight: 500 }}>{chunks}</Link>,
+                          })} {req}
                         </label>
                       </div>
                       {errors.consent && <span style={errorStyle} role="alert">{errors.consent.message}</span>}

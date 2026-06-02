@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 
 export default function Footer() {
   const t = useTranslations('footer')
@@ -85,6 +86,8 @@ export default function Footer() {
             <a href="#features" className="footer-link">{t('whyUs')}</a>
             <a href="#faq" className="footer-link">{t('faq')}</a>
             <a href="#order" className="footer-link">{t('order')}</a>
+            <Link href="/privacy" className="footer-link">{t('privacy')}</Link>
+            <Link href="/voorwaarden" className="footer-link">{t('terms')}</Link>
           </nav>
 
           <div className="footer-copy">

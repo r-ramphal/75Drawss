@@ -151,7 +151,7 @@
     "uploadHint": "JPG, PNG, PDF, AI, PSD, SVG · max 10MB",
     "uploading": "Uploading...",
     "uploaded": "✓ {file} uploaded",
-    "consent": "I confirm that I own the rights to any artwork uploaded and agree to the order terms.",
+    "consent": "I declare that I have the right to use all artwork I provide and hold 75Drawss harmless from third-party copyright claims. I agree to the <terms>terms & conditions</terms> and <privacy>privacy policy</privacy>.",
     "footerNote": "No payment required yet. We'll reply within 1–2 business days.",
     "submitSending": "Sending...",
     "submitUploading": "Uploading file...",
@@ -194,7 +194,45 @@
     "nav": "Footer navigation",
     "instagram": "75Drawss on Instagram",
     "tiktok": "75Drawss on TikTok",
-    "rights": "© 2025 75Drawss · Netherlands"
+    "rights": "© 2025 75Drawss · Netherlands",
+    "privacy": "Privacy policy",
+    "terms": "Terms & conditions"
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "updated": "Last updated: 2 June 2026",
+    "intro": "75Drawss respects your privacy and processes personal data in accordance with the General Data Protection Regulation (GDPR). This policy explains what data we collect, why, and what rights you have.",
+    "back": "Back to home",
+    "sections": [
+      { "h": "Who we are", "p": ["75Drawss makes handcrafted custom accessories for trading card games (binders, deck boxes, display cases and more) in the Netherlands. For any questions about your privacy or this policy, contact us at 75drawss@gmail.com."] },
+      { "h": "What data we collect", "p": ["When you fill in the order form, we process: your name, your email address, the details of your request (product type, card game, colour, quantity, description and any special requirements) and the design files/artwork you upload.", "We also process limited technical data (such as your IP address) needed to protect the form against spam and abuse."] },
+      { "h": "Why we use your data", "p": ["We use your data only to assess your request, provide a quote and — if you agree — produce and deliver your order. The legal basis for this is the performance of (or steps towards) a contract and your consent."] },
+      { "h": "Who we share data with", "p": ["We never sell your data. To provide our service we use a number of processors:", "• Resend — to send the order email to us.\n• Cloudinary — to securely store the design files you upload.\n• Vercel — to host the website.\n• Cloudflare (Turnstile) — to protect against spam and bots.", "Some of these providers may process data outside the EU; where that happens, appropriate safeguards apply."] },
+      { "h": "How long we keep data", "p": ["We keep your data no longer than necessary for the purpose for which it was collected and for our administrative and legal obligations. Uploaded design files are deleted after the order is completed, unless we agree otherwise with you."] },
+      { "h": "Your rights", "p": ["You have the right to access, correct or delete your data, and to object to or request restriction of processing. You may also request a copy of your data. Email 75drawss@gmail.com and we will respond as soon as possible."] },
+      { "h": "Cookies", "p": ["The website uses functional and security-related techniques needed to make the form and the spam filter work. Any analytics we use are solely to improve the site."] },
+      { "h": "Security", "p": ["We take appropriate technical measures to protect your data, including an encrypted (HTTPS) connection, server-side validation and protection against automated abuse."] },
+      { "h": "Filing a complaint", "p": ["If you disagree with how we handle your data, please contact us first. You also have the right to file a complaint with the Dutch Data Protection Authority (autoriteitpersoonsgegevens.nl)."] },
+      { "h": "Changes", "p": ["We may update this privacy policy from time to time. The most recent version is always available on this page."] }
+    ]
+  },
+  "terms": {
+    "title": "Terms & conditions",
+    "updated": "Last updated: 2 June 2026",
+    "intro": "These terms apply to every request and order placed with 75Drawss. Please read them carefully; by submitting the order form you agree to them.",
+    "back": "Back to home",
+    "sections": [
+      { "h": "1. Applicability", "p": ["These terms and conditions apply to all requests, quotes and agreements between 75Drawss and the customer relating to custom (made-to-order) products and services."] },
+      { "h": "2. Request and formation", "p": ["Submitting the order form is a non-binding request, not a final order. An agreement is only formed once we have confirmed your request, you have agreed to the quote and payment has been made."] },
+      { "h": "3. Prices and payment", "p": ["Because this is custom work, we set a price per request. After you agree, you receive a payment link by email. Payment is made in advance; we only start production after the payment is received."] },
+      { "h": "4. Custom work and supplied artwork", "p": ["Our products are made to order specifically for you, based on your instructions and/or supplied material.", "You warrant that you are entitled to use the supplied artwork and that it does not infringe the rights of third parties, including copyright and trademark rights. You fully indemnify 75Drawss against any third-party claims arising from the material you supply.", "We do not print official logos, protected characters or trademarks. We reserve the right to refuse an order if we suspect it infringes the rights of third parties."] },
+      { "h": "5. Delivery and lead times", "p": ["Production usually takes 7–14 business days after payment is received. Shipping is via PostNL or DHL, with track & trace. Any stated time frames are indicative and not strict deadlines; we do our best to meet them."] },
+      { "h": "6. Right of withdrawal", "p": ["Our products are made to order and personalised to your specifications. Under the law (Article 6:230p of the Dutch Civil Code), the statutory 14-day right of withdrawal therefore does not apply to these custom products; once you have agreed and production has started, an order cannot be cancelled or returned free of charge.", "For any non-personalised, standard products, the statutory 14-day right of withdrawal does apply."] },
+      { "h": "7. Cancellation", "p": ["Want to cancel your request? You can do so free of charge as long as we have not yet started production. If production has already started, we may charge for costs already incurred."] },
+      { "h": "8. Complaints", "p": ["We stand by the quality of our work. If something is wrong with your product, contact us within a reasonable period after receipt at 75drawss@gmail.com with a description and photos, and we will work towards a solution together."] },
+      { "h": "9. Liability", "p": ["Our liability is limited to at most the invoice amount of the relevant order. We are not liable for indirect damage or for damage arising from material supplied by the customer."] },
+      { "h": "10. Governing law", "p": ["All agreements with 75Drawss are governed by Dutch law."] }
+    ]
   },
   "thankYou": {
     "title": "Thank you — order received",

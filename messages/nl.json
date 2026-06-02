@@ -151,7 +151,7 @@
     "uploadHint": "JPG, PNG, PDF, AI, PSD, SVG · max 10MB",
     "uploading": "Uploaden...",
     "uploaded": "✓ {file} geüpload",
-    "consent": "Ik bevestig dat ik de rechten heb op alle geüploade artwork en ga akkoord met de bestelvoorwaarden.",
+    "consent": "Ik verklaar dat ik het recht heb om alle aangeleverde artwork te (laten) gebruiken en vrijwaar 75Drawss tegen auteursrechtelijke claims van derden. Ik ga akkoord met de <terms>algemene voorwaarden</terms> en het <privacy>privacybeleid</privacy>.",
     "footerNote": "Nog geen betaling nodig. We reageren binnen 1–2 werkdagen.",
     "submitSending": "Versturen...",
     "submitUploading": "Bestand uploaden...",
@@ -194,7 +194,45 @@
     "nav": "Footer-navigatie",
     "instagram": "75Drawss op Instagram",
     "tiktok": "75Drawss op TikTok",
-    "rights": "© 2025 75Drawss · Nederland"
+    "rights": "© 2025 75Drawss · Nederland",
+    "privacy": "Privacybeleid",
+    "terms": "Algemene voorwaarden"
+  },
+  "privacy": {
+    "title": "Privacybeleid",
+    "updated": "Laatst bijgewerkt: 2 juni 2026",
+    "intro": "75Drawss respecteert je privacy en verwerkt persoonsgegevens in overeenstemming met de Algemene Verordening Gegevensbescherming (AVG). In dit beleid lees je welke gegevens we verzamelen, waarom, en welke rechten je hebt.",
+    "back": "Terug naar home",
+    "sections": [
+      { "h": "Wie zijn wij", "p": ["75Drawss maakt handgemaakte custom accessoires voor trading card games (binders, deckboxes, displaycases en meer) in Nederland. Voor vragen over je privacy of dit beleid kun je contact opnemen via 75drawss@gmail.com."] },
+      { "h": "Welke gegevens we verzamelen", "p": ["Wanneer je het bestelformulier invult, verwerken we: je naam, je e-mailadres, de gegevens van je aanvraag (producttype, kaartspel, kleur, aantal, omschrijving en eventuele bijzondere wensen) en de ontwerpbestanden/artwork die je uploadt.", "Daarnaast verwerken we beperkte technische gegevens (zoals je IP-adres) die nodig zijn voor de beveiliging tegen spam en misbruik."] },
+      { "h": "Waarom we je gegevens gebruiken", "p": ["We gebruiken je gegevens uitsluitend om je aanvraag te beoordelen, een offerte uit te brengen en — als je akkoord gaat — je bestelling te maken en te bezorgen. De grondslag hiervoor is de uitvoering van (of de aanloop naar) een overeenkomst en jouw toestemming."] },
+      { "h": "Met wie we gegevens delen", "p": ["We verkopen je gegevens nooit. Voor het leveren van onze dienst maken we gebruik van een aantal verwerkers:", "• Resend — voor het versturen van de bestel-e-mail naar ons.\n• Cloudinary — voor de veilige opslag van de ontwerpbestanden die je uploadt.\n• Vercel — voor de hosting van de website.\n• Cloudflare (Turnstile) — voor bescherming tegen spam en bots.", "Sommige van deze partijen kunnen gegevens buiten de EU verwerken; in dat geval zijn passende waarborgen van toepassing."] },
+      { "h": "Hoe lang we gegevens bewaren", "p": ["We bewaren je gegevens niet langer dan nodig is voor het doel waarvoor ze zijn verzameld en voor onze administratieve en wettelijke verplichtingen. Aangeleverde ontwerpbestanden verwijderen we nadat de bestelling is afgerond, tenzij je iets anders met ons afspreekt."] },
+      { "h": "Jouw rechten", "p": ["Je hebt het recht om je gegevens in te zien, te corrigeren of te laten verwijderen, en om bezwaar te maken tegen of te verzoeken om beperking van de verwerking. Ook kun je vragen om overdracht van je gegevens. Stuur hiervoor een e-mail naar 75drawss@gmail.com; we reageren zo snel mogelijk."] },
+      { "h": "Cookies", "p": ["De website gebruikt functionele en beveiligingsgerelateerde technieken die nodig zijn om het formulier en de spamfilter te laten werken. Eventuele analytische statistieken gebruiken we alleen om de site te verbeteren."] },
+      { "h": "Beveiliging", "p": ["We nemen passende technische maatregelen om je gegevens te beschermen, waaronder een versleutelde (HTTPS) verbinding, server-side validatie en bescherming tegen geautomatiseerd misbruik."] },
+      { "h": "Klacht indienen", "p": ["Ben je het niet eens met hoe we met je gegevens omgaan? Neem dan eerst contact met ons op. Je hebt ook het recht om een klacht in te dienen bij de Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl)."] },
+      { "h": "Wijzigingen", "p": ["We kunnen dit privacybeleid van tijd tot tijd aanpassen. De meest actuele versie staat altijd op deze pagina."] }
+    ]
+  },
+  "terms": {
+    "title": "Algemene voorwaarden",
+    "updated": "Laatst bijgewerkt: 2 juni 2026",
+    "intro": "Deze voorwaarden zijn van toepassing op elke aanvraag en bestelling bij 75Drawss. Lees ze goed door; door het bestelformulier te versturen ga je ermee akkoord.",
+    "back": "Terug naar home",
+    "sections": [
+      { "h": "1. Toepasselijkheid", "p": ["Deze algemene voorwaarden zijn van toepassing op alle aanvragen, offertes en overeenkomsten tussen 75Drawss en de klant met betrekking tot custom (op maat gemaakte) producten en diensten."] },
+      { "h": "2. Aanvraag en totstandkoming", "p": ["Het versturen van het bestelformulier is een vrijblijvende aanvraag, geen definitieve bestelling. Een overeenkomst komt pas tot stand nadat wij je aanvraag hebben bevestigd, je akkoord bent gegaan met de offerte en de betaling is voldaan."] },
+      { "h": "3. Prijzen en betaling", "p": ["Omdat het om maatwerk gaat, stellen we per aanvraag een prijs op. Na akkoord ontvang je een betaallink per e-mail. Betaling vindt vooraf plaats; we starten de productie pas na ontvangst van de betaling."] },
+      { "h": "4. Maatwerk en aangeleverd artwork", "p": ["Onze producten worden speciaal voor jou op maat gemaakt op basis van jouw aanwijzingen en/of aangeleverd materiaal.", "Je garandeert dat je gerechtigd bent om het aangeleverde artwork te (laten) gebruiken en dat dit geen inbreuk maakt op rechten van derden, waaronder auteursrechten en merkrechten. Je vrijwaart 75Drawss volledig tegen aanspraken van derden die voortvloeien uit het door jou aangeleverde materiaal.", "We printen geen officiële logo's, beschermde personages of beeldmerken. We behouden ons het recht voor een opdracht te weigeren als we vermoeden dat deze inbreuk maakt op rechten van derden."] },
+      { "h": "5. Levering en levertijden", "p": ["De productie duurt doorgaans 7–14 werkdagen na ontvangst van de betaling. Verzending verloopt via PostNL of DHL, met track & trace. Genoemde termijnen zijn indicatief en geen fatale termijnen; we doen ons best om ze te halen."] },
+      { "h": "6. Herroepingsrecht", "p": ["Onze producten worden op maat gemaakt en gepersonaliseerd volgens jouw specificaties. Op grond van de wet (artikel 6:230p BW) is het wettelijke herroepingsrecht van 14 dagen daarom niet van toepassing op deze custom producten; een bestelling kan na akkoord en aanvang van de productie niet kosteloos worden geannuleerd of geretourneerd.", "Voor eventuele niet-gepersonaliseerde, standaardproducten geldt het wettelijke herroepingsrecht van 14 dagen wel."] },
+      { "h": "7. Annulering", "p": ["Wil je je aanvraag annuleren? Dat kan kosteloos zolang we nog niet met de productie zijn begonnen. Is de productie al gestart, dan kunnen we reeds gemaakte kosten in rekening brengen."] },
+      { "h": "8. Klachten", "p": ["We staan voor de kwaliteit van ons werk. Is er iets mis met je product, neem dan binnen een redelijke termijn na ontvangst contact op via 75drawss@gmail.com met een omschrijving en foto's, dan zoeken we samen naar een oplossing."] },
+      { "h": "9. Aansprakelijkheid", "p": ["Onze aansprakelijkheid is beperkt tot ten hoogste het factuurbedrag van de betreffende bestelling. We zijn niet aansprakelijk voor indirecte schade of voor schade die voortvloeit uit door de klant aangeleverd materiaal."] },
+      { "h": "10. Toepasselijk recht", "p": ["Op alle overeenkomsten met 75Drawss is Nederlands recht van toepassing."] }
+    ]
   },
   "thankYou": {
     "title": "Bedankt — bestelling ontvangen",
