@@ -152,11 +152,10 @@ export default function OrderForm() {
         setSubmitted(true)
         router.push('/bedankt')
       } else {
-        // TEMP DEBUG: surface the real Web3Forms reason so we can diagnose.
-        setSubmitError(`${t('errSubmit')} [debug: ${res.status} — ${json.message || 'geen bericht'}]`)
+        setSubmitError(t('errSubmit'))
       }
-    } catch (err) {
-      setSubmitError(`${t('errSubmit')} [debug: netwerk/CSP — ${err?.message || 'onbekend'}]`)
+    } catch {
+      setSubmitError(t('errSubmit'))
     }
   }
 
