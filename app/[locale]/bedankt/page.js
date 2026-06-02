@@ -50,6 +50,26 @@ export default async function Bedankt({ params }) {
         {t('body')}
       </p>
 
+      <div style={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: '0.7rem',
+        maxWidth: '440px',
+        textAlign: 'left',
+        background: 'var(--color-accent-soft, rgba(245, 179, 1, 0.12))',
+        border: '1px solid var(--color-accent)',
+        borderRadius: 'var(--radius)',
+        padding: '0.95rem 1.1rem',
+      }}>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-text)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flexShrink: 0, marginTop: '0.1rem' }}>
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        <p style={{ fontSize: '0.85rem', color: 'var(--color-text)', lineHeight: 1.6, margin: 0 }}>
+          {t('mailNote')}
+        </p>
+      </div>
+
       <Link href="/" style={{
         marginTop: '0.5rem',
         background: 'var(--color-accent)',

@@ -238,7 +238,8 @@
     "title": "Bedankt — bestelling ontvangen",
     "eyebrow": "Bestelling ontvangen",
     "heading": "Bedankt!",
-    "body": "We hebben je aanvraag ontvangen en komen binnen 1–2 werkdagen bij je terug met een offerte. Houd je inbox in de gaten — check voor de zekerheid ook je spamfolder.",
+    "body": "We hebben je aanvraag ontvangen en komen binnen 1–2 werkdagen bij je terug met een offerte op maat.",
+    "mailNote": "Je ontvangt zo een bevestigingsmail, en binnen 1–2 werkdagen een opvolgmail met je offerte. Check ook je spamfolder — onze mail belandt daar soms in.",
     "back": "Terug naar home"
   },
   "notFound": {
