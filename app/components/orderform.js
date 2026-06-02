@@ -1,6 +1,6 @@
 'use client'
 import { useState, useMemo, useEffect } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { useRouter, Link } from '@/i18n/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -32,6 +32,7 @@ export default function OrderForm() {
   const t = useTranslations('order')
   const tThanks = useTranslations('thankYou')
   const router = useRouter()
+  const locale = useLocale()
 
   const [service, setService] = useState('build')
   const [qty, setQty] = useState(1)
@@ -138,6 +139,7 @@ export default function OrderForm() {
 
     const payload = {
       'cf-turnstile-response': captchaToken,
+      locale,
       botcheck: data.botcheck || '',
       subject: `New 75Drawss Order — ${service === 'build' ? 'Build My Product' : 'Customize My Product'}`,
       service_type: service === 'build' ? 'Build my product' : 'Customize my product',

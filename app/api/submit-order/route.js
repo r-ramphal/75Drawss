@@ -57,6 +57,60 @@ async function verifyTurnstile(token, ip) {
   }
 }
 
+// Customer-facing order confirmation, in the visitor's language.
+function buildConfirmation(locale, clean) {
+  const name = escapeHtml(clean.name || '')
+  const product = escapeHtml(clean.product_type || '')
+  const isNl = locale === 'nl'
+
+  const subject = isNl
+    ? 'We hebben je aanvraag ontvangen — 75Drawss'
+    : 'We received your request — 75Drawss'
+
+  const greeting = isNl ? `Hoi ${name},` : `Hi ${name},`
+  const intro = isNl
+    ? 'Bedankt voor je aanvraag bij 75Drawss! We hebben ’m goed ontvangen.'
+    : 'Thanks for your request at 75Drawss! We’ve received it.'
+  const productLine = product
+    ? (isNl ? `<strong>Product:</strong> ${product}` : `<strong>Product:</strong> ${product}`)
+    : ''
+  const next = isNl
+    ? 'We bekijken je aanvraag en sturen je binnen 1–2 werkdagen een offerte op maat. Je hoeft nu nog niets te betalen.'
+    : 'We’ll review your request and send you a tailored quote within 1–2 business days. No payment is required yet.'
+  const replyNote = isNl
+    ? 'Vragen? Antwoord gewoon op deze e-mail.'
+    : 'Questions? Just reply to this email.'
+  const signoff = isNl ? 'Groet,<br/>75Drawss' : 'Best,<br/>75Drawss'
+  const auto = isNl
+    ? 'Dit is een automatische bevestiging van je aanvraag.'
+    : 'This is an automatic confirmation of your request.'
+
+  const html = `
+    <div style="font-family:Arial,Helvetica,sans-serif;color:#0a0a0a;max-width:560px;line-height:1.7">
+      <p style="font-size:15px">${greeting}</p>
+      <p style="font-size:15px">${intro}</p>
+      ${productLine ? `<p style="font-size:14px;background:#f5f5f3;border:1px solid #e5e5e5;padding:10px 14px">${productLine}</p>` : ''}
+      <p style="font-size:15px">${next}</p>
+      <p style="font-size:14px;color:#555">${replyNote}</p>
+      <p style="font-size:15px;margin-top:24px">${signoff}</p>
+      <hr style="border:none;border-top:1px solid #e5e5e5;margin:24px 0"/>
+      <p style="font-size:12px;color:#888">${auto}</p>
+    </div>`
+
+  return { subject, html }
+}
+
+async function sendEmail(payload) {
+  return fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+}
+
 export async function POST(request) {
   try {
     const body = await request.json()
@@ -104,23 +158,32 @@ export async function POST(request) {
         <table style="border-collapse:collapse;font-size:14px">${rows}</table>
       </div>`
 
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: process.env.ORDER_FROM_EMAIL,
-        to: process.env.ORDER_TO_EMAIL,
-        reply_to: email,
-        subject: clean.subject || 'New 75Drawss Order',
-        html,
-      }),
+    // 1. Order notification to us (must succeed).
+    const res = await sendEmail({
+      from: process.env.ORDER_FROM_EMAIL,
+      to: process.env.ORDER_TO_EMAIL,
+      reply_to: email,
+      subject: clean.subject || 'New 75Drawss Order',
+      html,
     })
 
     if (!res.ok) {
       return NextResponse.json({ error: 'Submission failed' }, { status: 502 })
+    }
+
+    // 2. Confirmation to the customer (best-effort — never fails the request).
+    try {
+      const locale = body.locale === 'nl' ? 'nl' : 'en'
+      const { subject, html: confirmHtml } = buildConfirmation(locale, clean)
+      await sendEmail({
+        from: process.env.ORDER_FROM_EMAIL,
+        to: email,
+        reply_to: process.env.ORDER_TO_EMAIL,
+        subject,
+        html: confirmHtml,
+      })
+    } catch {
+      // Confirmation is non-critical; the order already reached us.
     }
 
     return NextResponse.json({ success: true })
