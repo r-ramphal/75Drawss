@@ -90,10 +90,10 @@ const jsonLd = {
   ],
   address: { '@type': 'PostalAddress', addressCountry: 'NL' },
   makesOffer: [
-    { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Custom TCG Binder' } },
-    { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Custom Deck Box' } },
-    { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Custom Display Case' } },
-    { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Custom Card Sleeves & Accessories' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Custom TCG Binder Design' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Custom Deck Box Design' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Custom Display Case Design' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Custom Card Sleeves & Accessories' } },
   ],
 };
 
