@@ -8,10 +8,11 @@ const ContentSecurityPolicy = [
   "object-src 'none'",
   "frame-ancestors 'self'",
   "img-src 'self' data: blob: https://res.cloudinary.com",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.googleadservices.com https://www.google.com https://www.gstatic.com",
+  "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.googleadservices.com https://www.google.com https://www.gstatic.com",
   "style-src 'self' 'unsafe-inline'",
   "font-src 'self' data:",
-  "connect-src 'self' https://api.cloudinary.com https://api.web3forms.com https://www.google-analytics.com https://region1.google-analytics.com",
+  "frame-src 'self' https://challenges.cloudflare.com",
+  "connect-src 'self' https://api.cloudinary.com https://challenges.cloudflare.com https://www.google-analytics.com https://region1.google-analytics.com",
   "form-action 'self'",
   "upgrade-insecure-requests",
 ].join('; ');

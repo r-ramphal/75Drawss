@@ -165,7 +165,8 @@
     "errFileSize": "File must be under 10MB",
     "errFileType": "Unsupported file type. Use JPG, PNG, PDF, AI, PSD, or SVG",
     "errUpload": "Upload failed. Please try again.",
-    "errSubmit": "Something went wrong. Please try again."
+    "errSubmit": "Something went wrong. Please try again.",
+    "errCaptcha": "Please complete the verification before submitting."
   },
   "faq": {
     "eyebrow": "FAQ",

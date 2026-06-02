@@ -1,5 +1,5 @@
 'use client'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { useRouter } from '@/i18n/navigation'
 import { useForm } from 'react-hook-form'
@@ -8,9 +8,9 @@ import { z } from 'zod'
 
 const CLOUDINARY_CLOUD = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD
 const CLOUDINARY_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_PRESET
-// Web3Forms access keys are designed to be public/client-side. The free plan
-// only accepts browser-side submissions, so we post directly from here.
-const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
+// Cloudflare Turnstile site key (public). The token is verified server-side
+// in /api/submit-order before the order email is sent via Resend.
+const TURNSTILE_SITEKEY = process.env.NEXT_PUBLIC_TURNSTILE_SITEKEY
 
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'application/pdf', 'image/svg+xml']
 const MAX_FILE_SIZE = 10 * 1024 * 1024
@@ -45,6 +45,17 @@ export default function OrderForm() {
   const [submitted, setSubmitted] = useState(false)
   const [submitError, setSubmitError] = useState('')
   const [binderColorError, setBinderColorError] = useState('')
+  const [captchaError, setCaptchaError] = useState('')
+
+  // Load the Cloudflare Turnstile widget script once.
+  useEffect(() => {
+    if (document.querySelector('script[src*="challenges.cloudflare.com"]')) return
+    const s = document.createElement('script')
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
+    s.async = true
+    s.defer = true
+    document.head.appendChild(s)
+  }, [])
 
   const schema = useMemo(() => z.object({
     name: z.string().min(2, { message: t('errName') }),
@@ -114,9 +125,19 @@ export default function OrderForm() {
     }
     setBinderColorError('')
     setSubmitError('')
+    setCaptchaError('')
+
+    // Cloudflare Turnstile token — verified server-side before we send the email.
+    const captchaToken = typeof window !== 'undefined' && window.turnstile
+      ? window.turnstile.getResponse()
+      : ''
+    if (!captchaToken) {
+      setCaptchaError(t('errCaptcha'))
+      return
+    }
 
     const payload = {
-      access_key: WEB3FORMS_KEY,
+      'cf-turnstile-response': captchaToken,
       botcheck: data.botcheck || '',
       subject: `New 75Drawss Order — ${service === 'build' ? 'Build My Product' : 'Customize My Product'}`,
       service_type: service === 'build' ? 'Build my product' : 'Customize my product',
@@ -141,21 +162,22 @@ export default function OrderForm() {
     }
 
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch('/api/submit-order', {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
-      // Web3Forms returns HTTP 200 with { success: true|false }, so check the body.
-      const json = await res.json()
-      if (json.success) {
+      const json = await res.json().catch(() => ({}))
+      if (res.ok && json.success) {
         setSubmitted(true)
         router.push('/bedankt')
       } else {
         setSubmitError(t('errSubmit'))
+        window.turnstile?.reset()
       }
     } catch {
       setSubmitError(t('errSubmit'))
+      window.turnstile?.reset()
     }
   }
 
@@ -457,6 +479,12 @@ export default function OrderForm() {
                         </label>
                       </div>
                       {errors.consent && <span style={errorStyle} role="alert">{errors.consent.message}</span>}
+                    </div>
+
+                    {/* CLOUDFLARE TURNSTILE */}
+                    <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                      <div className="cf-turnstile" data-sitekey={TURNSTILE_SITEKEY} data-theme="light" />
+                      {captchaError && <span style={errorStyle} role="alert">{captchaError}</span>}
                     </div>
 
                   </div>

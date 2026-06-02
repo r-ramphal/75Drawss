@@ -165,7 +165,8 @@
     "errFileSize": "Bestand moet kleiner zijn dan 10MB",
     "errFileType": "Niet-ondersteund bestandstype. Gebruik JPG, PNG, PDF, AI, PSD of SVG",
     "errUpload": "Uploaden mislukt. Probeer het opnieuw.",
-    "errSubmit": "Er ging iets mis. Probeer het opnieuw."
+    "errSubmit": "Er ging iets mis. Probeer het opnieuw.",
+    "errCaptcha": "Voltooi eerst de verificatie voordat je verstuurt."
   },
   "faq": {
     "eyebrow": "FAQ",
