@@ -100,6 +100,52 @@ function buildConfirmation(locale, clean) {
   return { subject, html }
 }
 
+// One-click "send quote" mailto for the owner: opens a ready-made quote email
+// to the customer (in their language) with only price + payment link to fill in.
+function buildQuoteMailto(locale, clean, customerEmail) {
+  const name = clean.name || ''
+  const product = clean.product_type || ''
+  const isNl = locale === 'nl'
+
+  const subject = isNl
+    ? 'Je offerte van 75Drawss'
+    : 'Your quote from 75Drawss'
+
+  const body = isNl
+    ? `Hoi ${name},
+
+Bedankt voor je aanvraag bij 75Drawss! Hier is je offerte op maat:
+
+Product: ${product}
+Prijs: € [VUL IN]
+Levertijd: [VUL IN] werkdagen na betaling
+
+Ga je akkoord? Dan kun je betalen via deze link:
+[BETAALLINK]
+
+Zodra de betaling binnen is, gaan we voor je aan de slag. Vragen of aanpassingen? Antwoord gewoon op deze mail.
+
+Groet,
+75Drawss`
+    : `Hi ${name},
+
+Thanks for your request at 75Drawss! Here is your tailored quote:
+
+Product: ${product}
+Price: € [FILL IN]
+Lead time: [FILL IN] business days after payment
+
+Happy to proceed? You can pay via this link:
+[PAYMENT LINK]
+
+Once the payment arrives we'll get started. Questions or changes? Just reply to this email.
+
+Best,
+75Drawss`
+
+  return `mailto:${customerEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+}
+
 async function sendEmail(payload) {
   return fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -152,10 +198,14 @@ export async function POST(request) {
       .map((k) => `<tr><td style="padding:6px 12px;font-weight:600;background:#f5f5f3;border:1px solid #e5e5e5;vertical-align:top">${LABELS[k] || k}</td><td style="padding:6px 12px;border:1px solid #e5e5e5">${escapeHtml(clean[k])}</td></tr>`)
       .join('')
 
+    const quoteHref = buildQuoteMailto(body.locale === 'nl' ? 'nl' : 'en', clean, email)
+
     const html = `
       <div style="font-family:Arial,Helvetica,sans-serif;color:#0a0a0a">
         <h2 style="font-weight:600">${escapeHtml(clean.subject || 'New 75Drawss Order')}</h2>
         <table style="border-collapse:collapse;font-size:14px">${rows}</table>
+        <a href="${quoteHref}" style="display:inline-block;margin-top:20px;background:#F5B301;color:#0a0a0a;padding:11px 20px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px">✉️ Offerte sturen naar klant</a>
+        <p style="font-size:12px;color:#888;margin-top:8px">Opent een kant-en-klare offerte-mail aan de klant — vul alleen de prijs en betaallink in.</p>
       </div>`
 
     // 1. Order notification to us (must succeed).
