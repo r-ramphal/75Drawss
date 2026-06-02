@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { setRequestLocale } from 'next-intl/server'
+import { setRequestLocale, getTranslations } from 'next-intl/server'
 import Navbar from '@/app/components/navbar'
 import Hero from '@/app/components/hero'
 import Ticker from '@/app/components/ticker'
@@ -17,8 +17,24 @@ export default async function Home({ params }) {
   const { locale } = await params
   setRequestLocale(locale)
 
+  // FAQPage structured data — eligible for rich results in Google.
+  const t = await getTranslations({ locale, namespace: 'faq' })
+  const faqLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: t.raw('items').map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  }
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
       <Navbar />
       <Hero />
       <Ticker />
