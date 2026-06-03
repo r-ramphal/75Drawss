@@ -97,7 +97,7 @@
       { "title": "Volledig custom ontwerp", "desc": "Upload je eigen artwork of beschrijf je visie. Wij brengen het precies tot leven zoals jij het bedacht — geen templates, geen compromissen, geen limieten." },
       { "title": "Elk product, elk formaat", "desc": "Binders, deckboxes, displaycases en meer. Als je het kunt ontwerpen, kunnen wij het maken. Elke afmeting, elk formaat." },
       { "title": "Originele designs", "desc": "Geen auteursrechtelijk beschermde personages — alleen prachtige originele artwork. Wij maken designs die echt van jou zijn, rond jouw stijl en visie." },
-      { "title": "Snelle, getrackte verzending", "desc": "We verzenden door heel Nederland en internationaal via PostNL en DHL — met volledige track & trace zodat je altijd weet waar je bestelling is." }
+      { "title": "Snelle, getrackte verzending", "desc": "We verzenden naar Nederland, België en Frankrijk via PostNL en DHL — met volledige track & trace zodat je altijd weet waar je bestelling is." }
     ]
   },
   "order": {
@@ -106,7 +106,7 @@
     "titleLine2": "je idee",
     "introBuild": "Vertel ons wat je wilt laten maken. We komen binnen 1–2 werkdagen bij je terug met een offerte. Nog geen betaling nodig.",
     "introCustomize": "Stuur ons je product en wij customizen het voor je. Vul het formulier in en we reageren met een offerte en ons verzendadres.",
-    "bulletsBuild": ["Gratis offerte, geen verplichting", "Upload je eigen artwork", "Elk product, elke afmeting", "Verzending door heel NL en daarbuiten", "Reactie binnen 1–2 werkdagen"],
+    "bulletsBuild": ["Gratis offerte, geen verplichting", "Upload je eigen artwork", "Elk product, elke afmeting", "Verzending naar NL, België en Frankrijk", "Reactie binnen 1–2 werkdagen"],
     "bulletsCustomize": ["Gratis offerte, geen verplichting", "Stuur je product naar ons op", "Wij customizen en sturen het terug", "Upload je ontwerp of beschrijf het", "Reactie binnen 1–2 werkdagen"],
     "serviceBuild": "Maak mijn product",
     "serviceCustomize": "Customize mijn product",
@@ -146,6 +146,7 @@
     "optBudgetCustomize": ["€30 – €60", "€60 – €100", "€100 – €150", "€150 – €200", "€200+", "Flexibel"],
     "optSource": ["Instagram", "TikTok", "Vrienden / mond-tot-mond", "Google", "Anders"],
     "selectedColor": "Gekozen: {color}",
+    "colorWarning": "Let op: sommige kleuren kunnen tijdelijk uitverkocht zijn. Is dat zo, dan nemen we contact met je op en stellen we een passend alternatief voor.",
     "uploadClick": "Klik om te uploaden",
     "uploadDrag": "of sleep & zet neer",
     "uploadHint": "JPG, PNG, PDF, AI, PSD, SVG · max 10MB",
@@ -181,7 +182,7 @@
       { "q": "Kunnen jullie een Pokémon-geïnspireerde binder maken?", "a": "Zeker — we kunnen alleen geen officiële personages, logo's of beschermde beelden printen. Wat we wél kunnen: de exacte sfeer van elke TCG vangen — de kleuren, energie en stijl van Pokémon, One Piece, Lorcana, Magic, Yu-Gi-Oh en meer, in originele artwork die echt van jou is. Beschrijf de vibe — favoriete kleuren, tijdperk, gevoel — en wij maken iets dat helemaal in je collectie thuishoort." },
       { "q": "Wat is de opstuur-service?", "a": "Als je al een product hebt — zoals een binder — en het wilt laten customizen, kun je het naar ons opsturen. Wij customizen het en sturen het terug. Vul het bestelformulier in en kies \"Customize mijn product\" om te beginnen." },
       { "q": "Hoe stuur ik mijn product naar jullie op?", "a": "Nadat we je offerte hebben bevestigd, sturen we je ons adres. Verpak je product goed in een stevige doos met bubbeltjesplastic en verstuur het via PostNL of DHL met een track & trace-code. Voor waardevolle items raden we aangetekende post aan." },
-      { "q": "Verzenden jullie internationaal?", "a": "Ja! We verzenden door Nederland, Frankrijk, Duitsland en België via PostNL en DHL. Alle bestellingen hebben track & trace, zodat je altijd weet waar je product is." },
+      { "q": "Verzenden jullie internationaal?", "a": "Ja! We verzenden naar Nederland, België en Frankrijk via PostNL en DHL. Alle bestellingen hebben track & trace, zodat je altijd weet waar je product is." },
       { "q": "Wanneer betaal ik?", "a": "Er is geen betaling nodig wanneer je het formulier verstuurt. Je betaalt pas nadat we je een offerte hebben gestuurd en je akkoord gaat. We sturen een betaallink direct naar je e-mail." },
       { "q": "Kan ik meerdere producten bestellen?", "a": "Zeker — kies gewoon je aantal in het bestelformulier. Voor grotere bestellingen van 5 of meer kunnen we soms korting bieden; vermeld dit in het veld speciale wensen." }
     ]

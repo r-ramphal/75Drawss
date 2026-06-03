@@ -85,7 +85,6 @@ const jsonLd = {
   areaServed: [
     { '@type': 'Country', name: 'Netherlands' },
     { '@type': 'Country', name: 'Belgium' },
-    { '@type': 'Country', name: 'Germany' },
     { '@type': 'Country', name: 'France' },
   ],
   address: { '@type': 'PostalAddress', addressCountry: 'NL' },

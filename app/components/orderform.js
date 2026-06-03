@@ -392,6 +392,14 @@ export default function OrderForm() {
                             onChange={e => { setCustomColor(e.target.value); setBinderColor(''); setBinderColorError('') }}
                           />
                           {binderColor && <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '0.4rem', fontFamily: 'var(--font-ui)' }}>{t('selectedColor', { color: binderColor })}</p>}
+                          <p style={{ display: 'flex', alignItems: 'flex-start', gap: '0.45rem', fontSize: '0.72rem', color: 'var(--color-text-secondary)', marginTop: '0.6rem', lineHeight: 1.55, fontFamily: 'var(--font-ui)' }}>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-text)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flexShrink: 0, marginTop: '0.12rem' }}>
+                              <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                              <line x1="12" y1="9" x2="12" y2="13"/>
+                              <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                            {t('colorWarning')}
+                          </p>
                           {binderColorError && <span style={errorStyle} role="alert">{binderColorError}</span>}
                         </div>
 
