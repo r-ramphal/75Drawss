@@ -230,18 +230,32 @@ export default function OrderForm() {
         .send-in-box ul li { font-size: 0.82rem; color: var(--color-text-secondary); line-height: 1.8; font-weight: 400; }
         .pocket-btn { font-size: 0.82rem; font-weight: 500; padding: 0.5rem 1.25rem; cursor: pointer; font-family: var(--font-ui); transition: all 0.15s; border: 1px solid var(--color-border-strong); border-radius: var(--radius); }
         .color-swatch { width: 32px; height: 32px; }
+        /* The Cloudflare Turnstile iframe is a fixed 300px wide. On narrow
+           phones we scale the widget down AND clip its wrapper to the scaled
+           width, so it shrinks the actual layout box (a bare transform would
+           only shrink it visually and still overflow the page). */
+        .turnstile-wrap { max-width: 100%; }
+        .turnstile-wrap .cf-turnstile { transform-origin: left top; }
         @media (max-width: 768px) {
           .order-section { padding: 4rem 1.5rem !important; }
           .order-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
           .form-grid { grid-template-columns: 1fr !important; }
           .form-footer { flex-direction: column; align-items: stretch; }
           .submit-btn { text-align: center; }
+          /* Smaller padding so the captcha has more room to fit. */
+          .order-form-box { padding: 1.5rem !important; }
           /* Inputs must be >=16px on mobile or iOS Safari zooms in on focus. */
           .order-input { font-size: 16px !important; }
           /* Larger, easier-to-tap colour swatches on touch screens. */
           .color-swatch { width: 40px !important; height: 40px !important; }
           .pocket-btn, .qty-btn { padding: 0.65rem 1.25rem; }
         }
+        /* Wrapper width = 300px × scale, height = 65px × scale, clipped. */
+        @media (max-width: 400px) { .turnstile-wrap { width: 276px; height: 60px; overflow: hidden; } .turnstile-wrap .cf-turnstile { transform: scale(0.92); } }
+        @media (max-width: 380px) { .turnstile-wrap { width: 258px; height: 56px; } .turnstile-wrap .cf-turnstile { transform: scale(0.86); } }
+        @media (max-width: 360px) { .turnstile-wrap { width: 240px; height: 52px; } .turnstile-wrap .cf-turnstile { transform: scale(0.80); } }
+        @media (max-width: 340px) { .turnstile-wrap { width: 216px; height: 47px; } .turnstile-wrap .cf-turnstile { transform: scale(0.72); } }
+        @media (max-width: 320px) { .turnstile-wrap { width: 198px; height: 43px; } .turnstile-wrap .cf-turnstile { transform: scale(0.66); } }
       `}</style>
 
       <div style={{ background: 'var(--color-bg)', borderTop: '1px solid var(--color-border-strong)', borderBottom: '1px solid var(--color-border-strong)' }} id="order">
@@ -278,7 +292,7 @@ export default function OrderForm() {
             </div>
 
             {/* FORM */}
-            <div style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border-strong)', padding: '2.5rem', boxShadow: 'var(--shadow-hard-lg)' }}>
+            <div className="order-form-box" style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border-strong)', padding: '2.5rem', boxShadow: 'var(--shadow-hard-lg)' }}>
               {submitted ? (
                 <div style={{ textAlign: 'center', padding: '3.5rem 2rem' }}>
                   <div style={{ width: 48, height: 48, background: 'var(--color-text)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', color: '#fff', fontSize: '1.1rem' }}>✓</div>
@@ -512,7 +526,9 @@ export default function OrderForm() {
 
                     {/* CLOUDFLARE TURNSTILE */}
                     <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                      <div className="cf-turnstile" data-sitekey={TURNSTILE_SITEKEY} data-theme="light" />
+                      <div className="turnstile-wrap">
+                        <div className="cf-turnstile" data-sitekey={TURNSTILE_SITEKEY} data-theme="light" />
+                      </div>
                       {captchaError && <span style={errorStyle} role="alert">{captchaError}</span>}
                     </div>
 
