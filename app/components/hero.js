@@ -58,7 +58,7 @@ export default function Hero() {
         }
       `}</style>
 
-      <div style={{ background: 'var(--color-bg)', position: 'relative', overflow: 'hidden' }}>
+      <div id="hero" style={{ background: 'var(--color-bg)', position: 'relative', overflow: 'hidden' }}>
         <section className="hero-section">
           <div className="hero-eyebrow" style={{ marginBottom: '1.75rem', display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
             <span style={{ fontSize: '0.68rem', fontWeight: 500, color: 'var(--color-text-muted)', letterSpacing: '0.08em', fontFamily: 'var(--font-ui)' }}>

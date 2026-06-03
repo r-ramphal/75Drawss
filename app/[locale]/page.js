@@ -12,6 +12,7 @@ const Features = dynamic(() => import('@/app/components/features'))
 const OrderForm = dynamic(() => import('@/app/components/orderform'))
 const FAQ = dynamic(() => import('@/app/components/faq'))
 const Footer = dynamic(() => import('@/app/components/footer'))
+const StickyOrder = dynamic(() => import('@/app/components/stickyorder'))
 
 export default async function Home({ params }) {
   const { locale } = await params
@@ -46,6 +47,7 @@ export default async function Home({ params }) {
       <OrderForm />
       <FAQ />
       <Footer />
+      <StickyOrder />
     </main>
   )
 }
