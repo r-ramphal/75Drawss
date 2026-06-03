@@ -71,9 +71,7 @@ function buildConfirmation(locale, clean) {
   const intro = isNl
     ? 'Bedankt voor je aanvraag bij 75Drawss! We hebben ’m goed ontvangen.'
     : 'Thanks for your request at 75Drawss! We’ve received it.'
-  const productLine = product
-    ? (isNl ? `<strong>Product:</strong> ${product}` : `<strong>Product:</strong> ${product}`)
-    : ''
+  const productLine = product ? `<strong>Product:</strong> ${product}` : ''
   const next = isNl
     ? 'We bekijken je aanvraag en sturen je binnen 1–2 werkdagen een offerte op maat. Je hoeft nu nog niets te betalen.'
     : 'We’ll review your request and send you a tailored quote within 1–2 business days. No payment is required yet.'

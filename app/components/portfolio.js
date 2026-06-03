@@ -9,6 +9,7 @@
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
 
 const PHOTOS = [
   '/portfolio/mimikyu.jpeg',
@@ -64,8 +65,15 @@ const ShuffleGrid = () => {
           layout
           transition={{ duration: 1.4, type: 'spring' }}
           className="shuffle-tile"
-          style={{ backgroundImage: `url(${tile.src})` }}
-        />
+        >
+          <Image
+            src={tile.src}
+            alt=""
+            fill
+            sizes="(max-width: 900px) 22vw, 150px"
+            style={{ objectFit: 'cover' }}
+          />
+        </motion.div>
       ))}
     </div>
   )
@@ -90,9 +98,9 @@ export default function Portfolio() {
           box-shadow: var(--shadow-hard);
         }
         .shuffle-tile {
+          position: relative;
           width: 100%; height: 100%; border-radius: 3px; overflow: hidden;
           background-color: var(--color-surface);
-          background-size: cover; background-position: center;
         }
         .portfolio-cta {
           display: inline-block; margin-top: 2rem;
