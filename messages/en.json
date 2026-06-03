@@ -23,8 +23,8 @@
     "ctaSecondary": "See what we make",
     "stat1Value": "100%",
     "stat1Label": "custom design",
-    "stat2Value": "7–14",
-    "stat2Label": "day production",
+    "stat2Value": "14–21",
+    "stat2Label": "day delivery",
     "stat3Value": "NL",
     "stat3Label": "handcrafted",
     "scrollAria": "Scroll to products"
@@ -181,7 +181,7 @@
     "items": [
       { "q": "What products can you make?", "a": "We make a wide range of custom products for collectors and creators — TCG binders, deck boxes, display cases and more. If you have something specific in mind just get in touch and we'll see what we can do." },
       { "q": "How does the ordering process work?", "a": "Fill in the order form with your product details and design idea. We'll get back to you within 1–2 business days with a quote. Once you approve it and complete payment we start crafting your product." },
-      { "q": "How long does it take to make my product?", "a": "Production typically takes 7–14 business days after payment. Shipping time depends on your location — within the Netherlands usually 1–2 days via PostNL or DHL." },
+      { "q": "How long does it take to make my product?", "a": "Expect roughly 14–21 days from payment to delivery — this covers both production and shipping. You'll receive a track & trace once your product is on its way." },
       { "q": "Can I upload my own artwork?", "a": "Yes! You can upload your design directly in the order form. We accept JPG, PNG, PDF, AI, PSD and SVG files up to 10MB. The higher the resolution the better the print quality." },
       { "q": "What if I don't have a design?", "a": "No problem — just describe your idea in the order form. Tell us your colours, theme, style and any text you want included and we'll create something for you." },
       { "q": "Can you make a Pokémon-inspired binder?", "a": "Absolutely — we just can't print official characters, logos or any trademarked imagery. What we can do is capture the exact aesthetic of any TCG: the colours, energy and style of Pokémon, One Piece, Lorcana, Magic, Yu-Gi-Oh and more, all in original artwork that you actually own. Describe the vibe — favourite colours, era, feel — and we'll make something that looks right at home in your collection." },
@@ -233,7 +233,7 @@
       { "h": "2. Request and formation", "p": ["Submitting the order form is a non-binding request, not a final order. An agreement is only formed once we have confirmed your request, you have agreed to the quote and payment has been made."] },
       { "h": "3. Prices and payment", "p": ["Because this is custom work, we set a price per request. After you agree, you receive a payment link by email. Payment is made in advance; we only start production after the payment is received."] },
       { "h": "4. Custom work and supplied artwork", "p": ["Our products are made to order specifically for you, based on your instructions and/or supplied material.", "You warrant that you are entitled to use the supplied artwork and that it does not infringe the rights of third parties, including copyright and trademark rights. You fully indemnify 75Drawss against any third-party claims arising from the material you supply.", "We do not print official logos, protected characters or trademarks. We reserve the right to refuse an order if we suspect it infringes the rights of third parties."] },
-      { "h": "5. Delivery and lead times", "p": ["Production usually takes 7–14 business days after payment is received. Shipping is via PostNL or DHL, with track & trace. Any stated time frames are indicative and not strict deadlines; we do our best to meet them."] },
+      { "h": "5. Delivery and lead times", "p": ["Delivery usually takes 14–21 days after payment is received, including both production and shipping. Shipping is sent with track & trace. Any stated time frames are indicative and not strict deadlines; we do our best to meet them."] },
       { "h": "6. Right of withdrawal", "p": ["Our products are made to order and personalised to your specifications. Under the law (Article 6:230p of the Dutch Civil Code), the statutory 14-day right of withdrawal therefore does not apply to these custom products; once you have agreed and production has started, an order cannot be cancelled or returned free of charge.", "For any non-personalised, standard products, the statutory 14-day right of withdrawal does apply."] },
       { "h": "7. Cancellation", "p": ["Want to cancel your request? You can do so free of charge as long as we have not yet started production. If production has already started, we may charge for costs already incurred."] },
       { "h": "8. Complaints", "p": ["We stand by the quality of our work. If something is wrong with your product, contact us within a reasonable period after receipt at 75drawss@gmail.com with a description and photos, and we will work towards a solution together."] },

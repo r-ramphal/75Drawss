@@ -23,8 +23,8 @@
     "ctaSecondary": "Bekijk wat we maken",
     "stat1Value": "100%",
     "stat1Label": "custom ontwerp",
-    "stat2Value": "7–14",
-    "stat2Label": "dagen productie",
+    "stat2Value": "14–21",
+    "stat2Label": "dagen levering",
     "stat3Value": "NL",
     "stat3Label": "handgemaakt",
     "scrollAria": "Scroll naar producten"
@@ -181,7 +181,7 @@
     "items": [
       { "q": "Welke producten kunnen jullie maken?", "a": "We maken een breed scala aan custom producten voor verzamelaars en creators — TCG binders, deckboxes, displaycases en meer. Heb je iets specifieks in gedachten? Neem contact op en we kijken wat we kunnen doen." },
       { "q": "Hoe werkt het bestelproces?", "a": "Vul het bestelformulier in met je productgegevens en ontwerpidee. We komen binnen 1–2 werkdagen bij je terug met een offerte. Zodra je akkoord gaat en de betaling rond is, beginnen we met je product." },
-      { "q": "Hoe lang duurt het om mijn product te maken?", "a": "De productie duurt meestal 7–14 werkdagen na betaling. De verzendtijd hangt af van je locatie — binnen Nederland meestal 1–2 dagen via PostNL of DHL." },
+      { "q": "Hoe lang duurt het om mijn product te maken?", "a": "Reken na betaling op ongeveer 14–21 dagen tot je bestelling bezorgd is — dit is inclusief productie én verzending. Je ontvangt een track & trace zodra je product onderweg is." },
       { "q": "Kan ik mijn eigen artwork uploaden?", "a": "Ja! Je kunt je ontwerp direct in het bestelformulier uploaden. We accepteren JPG, PNG, PDF, AI, PSD en SVG tot 10MB. Hoe hoger de resolutie, hoe beter de printkwaliteit." },
       { "q": "En als ik geen ontwerp heb?", "a": "Geen probleem — beschrijf gewoon je idee in het bestelformulier. Vertel ons je kleuren, thema, stijl en eventuele tekst, en wij maken er iets moois van." },
       { "q": "Kunnen jullie een Pokémon-geïnspireerde binder maken?", "a": "Zeker — we kunnen alleen geen officiële personages, logo's of beschermde beelden printen. Wat we wél kunnen: de exacte sfeer van elke TCG vangen — de kleuren, energie en stijl van Pokémon, One Piece, Lorcana, Magic, Yu-Gi-Oh en meer, in originele artwork die echt van jou is. Beschrijf de vibe — favoriete kleuren, tijdperk, gevoel — en wij maken iets dat helemaal in je collectie thuishoort." },
@@ -233,7 +233,7 @@
       { "h": "2. Aanvraag en totstandkoming", "p": ["Het versturen van het bestelformulier is een vrijblijvende aanvraag, geen definitieve bestelling. Een overeenkomst komt pas tot stand nadat wij je aanvraag hebben bevestigd, je akkoord bent gegaan met de offerte en de betaling is voldaan."] },
       { "h": "3. Prijzen en betaling", "p": ["Omdat het om maatwerk gaat, stellen we per aanvraag een prijs op. Na akkoord ontvang je een betaallink per e-mail. Betaling vindt vooraf plaats; we starten de productie pas na ontvangst van de betaling."] },
       { "h": "4. Maatwerk en aangeleverd artwork", "p": ["Onze producten worden speciaal voor jou op maat gemaakt op basis van jouw aanwijzingen en/of aangeleverd materiaal.", "Je garandeert dat je gerechtigd bent om het aangeleverde artwork te (laten) gebruiken en dat dit geen inbreuk maakt op rechten van derden, waaronder auteursrechten en merkrechten. Je vrijwaart 75Drawss volledig tegen aanspraken van derden die voortvloeien uit het door jou aangeleverde materiaal.", "We printen geen officiële logo's, beschermde personages of beeldmerken. We behouden ons het recht voor een opdracht te weigeren als we vermoeden dat deze inbreuk maakt op rechten van derden."] },
-      { "h": "5. Levering en levertijden", "p": ["De productie duurt doorgaans 7–14 werkdagen na ontvangst van de betaling. Verzending verloopt via PostNL of DHL, met track & trace. Genoemde termijnen zijn indicatief en geen fatale termijnen; we doen ons best om ze te halen."] },
+      { "h": "5. Levering en levertijden", "p": ["De levering duurt doorgaans 14–21 dagen na ontvangst van de betaling, inclusief productie en verzending. Verzending verloopt met track & trace. Genoemde termijnen zijn indicatief en geen fatale termijnen; we doen ons best om ze te halen."] },
       { "h": "6. Herroepingsrecht", "p": ["Onze producten worden op maat gemaakt en gepersonaliseerd volgens jouw specificaties. Op grond van de wet (artikel 6:230p BW) is het wettelijke herroepingsrecht van 14 dagen daarom niet van toepassing op deze custom producten; een bestelling kan na akkoord en aanvang van de productie niet kosteloos worden geannuleerd of geretourneerd.", "Voor eventuele niet-gepersonaliseerde, standaardproducten geldt het wettelijke herroepingsrecht van 14 dagen wel."] },
       { "h": "7. Annulering", "p": ["Wil je je aanvraag annuleren? Dat kan kosteloos zolang we nog niet met de productie zijn begonnen. Is de productie al gestart, dan kunnen we reeds gemaakte kosten in rekening brengen."] },
       { "h": "8. Klachten", "p": ["We staan voor de kwaliteit van ons werk. Is er iets mis met je product, neem dan binnen een redelijke termijn na ontvangst contact op via 75drawss@gmail.com met een omschrijving en foto's, dan zoeken we samen naar een oplossing."] },
