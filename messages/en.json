@@ -105,6 +105,8 @@
     "titleLine1": "Tell us about",
     "titleLine2": "your idea",
     "introBuild": "Tell us what you want made. We'll get back to you within 1–2 business days with a quote. No payment required yet.",
+    "socialContactTitle": "Just a quick question?",
+    "socialContact": "For small questions or a quick chat, the easiest way to reach us is a DM on <ig>Instagram</ig> or <tt>TikTok</tt> — that's where we reply fastest. For an order or quote, please use the form on the right.",
     "introCustomize": "Send us your product and we'll customize it for you. Fill in the form and we'll reply with a quote and our shipping address.",
     "bulletsBuild": ["Free quote, no commitment", "Upload your own artwork", "Any product, any dimensions", "Ships to NL, Belgium and France", "Reply within 1–2 business days"],
     "bulletsCustomize": ["Free quote, no commitment", "Send your product to us", "We customize and send it back", "Upload your design or describe it", "Reply within 1–2 business days"],
@@ -184,7 +186,8 @@
       { "q": "How do I send my product to you?", "a": "After we confirm your quote we'll send you our address. Pack your product well in a sturdy box with bubble wrap and ship it via PostNL or DHL with a tracking code. For valuable items we recommend aangetekende post." },
       { "q": "Do you ship internationally?", "a": "Yes! We ship to the Netherlands, Belgium and France via PostNL and DHL. All orders include tracking so you always know where your product is." },
       { "q": "When do I pay?", "a": "No payment is required when you submit the form. You only pay after we send you a quote and you approve it. We'll send a payment link directly to your email." },
-      { "q": "Can I order multiple products?", "a": "Absolutely — just select your quantity in the order form. For larger orders of 5 or more we may be able to offer a discount, mention it in the special requirements field." }
+      { "q": "Can I order multiple products?", "a": "Absolutely — just select your quantity in the order form. For larger orders of 5 or more we may be able to offer a discount, mention it in the special requirements field." },
+      { "q": "What's the fastest way to contact you?", "a": "For small questions or a quick chat, the easiest way to reach us is a DM on Instagram (@75.drawss) or TikTok (@75drawss) — that's where we reply fastest. For an actual order or quote, please use the order form so we have all the details right away." }
     ]
   },
   "footer": {

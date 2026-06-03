@@ -259,6 +259,16 @@ export default function OrderForm() {
                   </div>
                 ))}
               </div>
+
+              <div style={{ marginTop: '2rem', background: 'var(--color-bg)', border: '1px solid var(--color-border-strong)', borderLeft: '3px solid var(--color-accent)', padding: '1.1rem 1.25rem', fontFamily: 'var(--font-ui)' }}>
+                <p style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-text)', marginBottom: '0.3rem' }}>{t('socialContactTitle')}</p>
+                <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', lineHeight: 1.65 }}>
+                  {t.rich('socialContact', {
+                    ig: (chunks) => <a href="https://www.instagram.com/75.drawss" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-accent-text)', textDecoration: 'underline', fontWeight: 600 }}>{chunks}</a>,
+                    tt: (chunks) => <a href="https://www.tiktok.com/@75drawss" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-accent-text)', textDecoration: 'underline', fontWeight: 600 }}>{chunks}</a>,
+                  })}
+                </p>
+              </div>
             </div>
 
             {/* FORM */}

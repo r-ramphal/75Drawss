@@ -105,6 +105,8 @@
     "titleLine1": "Vertel ons over",
     "titleLine2": "je idee",
     "introBuild": "Vertel ons wat je wilt laten maken. We komen binnen 1–2 werkdagen bij je terug met een offerte. Nog geen betaling nodig.",
+    "socialContactTitle": "Snel een kleine vraag?",
+    "socialContact": "Voor kleine vragen of snel overleg kun je ons het makkelijkst even DM'en op <ig>Instagram</ig> of <tt>TikTok</tt> — daar reageren we het snelst. Voor een bestelling of offerte gebruik je het formulier hiernaast.",
     "introCustomize": "Stuur ons je product en wij customizen het voor je. Vul het formulier in en we reageren met een offerte en ons verzendadres.",
     "bulletsBuild": ["Gratis offerte, geen verplichting", "Upload je eigen artwork", "Elk product, elke afmeting", "Verzending naar NL, België en Frankrijk", "Reactie binnen 1–2 werkdagen"],
     "bulletsCustomize": ["Gratis offerte, geen verplichting", "Stuur je product naar ons op", "Wij customizen en sturen het terug", "Upload je ontwerp of beschrijf het", "Reactie binnen 1–2 werkdagen"],
@@ -184,7 +186,8 @@
       { "q": "Hoe stuur ik mijn product naar jullie op?", "a": "Nadat we je offerte hebben bevestigd, sturen we je ons adres. Verpak je product goed in een stevige doos met bubbeltjesplastic en verstuur het via PostNL of DHL met een track & trace-code. Voor waardevolle items raden we aangetekende post aan." },
       { "q": "Verzenden jullie internationaal?", "a": "Ja! We verzenden naar Nederland, België en Frankrijk via PostNL en DHL. Alle bestellingen hebben track & trace, zodat je altijd weet waar je product is." },
       { "q": "Wanneer betaal ik?", "a": "Er is geen betaling nodig wanneer je het formulier verstuurt. Je betaalt pas nadat we je een offerte hebben gestuurd en je akkoord gaat. We sturen een betaallink direct naar je e-mail." },
-      { "q": "Kan ik meerdere producten bestellen?", "a": "Zeker — kies gewoon je aantal in het bestelformulier. Voor grotere bestellingen van 5 of meer kunnen we soms korting bieden; vermeld dit in het veld speciale wensen." }
+      { "q": "Kan ik meerdere producten bestellen?", "a": "Zeker — kies gewoon je aantal in het bestelformulier. Voor grotere bestellingen van 5 of meer kunnen we soms korting bieden; vermeld dit in het veld speciale wensen." },
+      { "q": "Hoe neem ik het snelst contact op?", "a": "Voor kleine vragen of even snel overleg kun je ons het makkelijkst een DM sturen op Instagram (@75.drawss) of TikTok (@75drawss) — daar reageren we het snelst. Voor een echte bestelling of offerte gebruik je het bestelformulier, dan hebben we meteen alle details." }
     ]
   },
   "footer": {
