@@ -28,6 +28,9 @@ html, body {
   font-family: var(--font-ui);
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
+  /* Offset for the fixed navbar so anchor targets (#order, #faq, …) don't
+     land hidden behind it when a CTA scrolls to them. */
+  scroll-padding-top: 84px;
 }
 
 a { color: inherit; }

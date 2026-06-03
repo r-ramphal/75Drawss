@@ -30,10 +30,16 @@ export default function HowItWorks() {
         @media (max-width: 640px) {
           .howitworks-section { padding: 4rem 1.5rem !important; }
           .steps-grid { grid-template-columns: 1fr 1fr !important; }
-          .step { border-right: 2px solid var(--color-border); border-bottom: 2px solid var(--color-border); }
+          .step { padding: 1.75rem 1.25rem; border-right: 2px solid var(--color-border); border-bottom: 2px solid var(--color-border); }
           .step:nth-child(2) { border-right: none; }
           .step:nth-child(3) { border-right: 2px solid var(--color-border); border-bottom: none; }
           .step:nth-child(4) { border-right: none; border-bottom: none; }
+        }
+        /* On the narrowest phones a 2-col grid is too cramped — stack to one. */
+        @media (max-width: 400px) {
+          .steps-grid { grid-template-columns: 1fr !important; }
+          .step, .step:nth-child(2), .step:nth-child(3) { border-right: none !important; border-bottom: 2px solid var(--color-border) !important; }
+          .step:last-child { border-bottom: none !important; }
         }
       `}</style>
       <div id="how-it-works" style={{ background: 'var(--color-bg)' }}>

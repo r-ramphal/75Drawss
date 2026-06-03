@@ -47,13 +47,14 @@ export default function Hero() {
         .hero-stat strong { color: var(--color-text); font-weight: 700; margin-right: 0.3em; }
 
         .hero-section {
-          min-height: 92vh; display: flex; flex-direction: column;
+          min-height: 92vh; /* fallback for browsers without dvh */
+          min-height: 92dvh; display: flex; flex-direction: column;
           align-items: center; justify-content: center; text-align: center;
           padding: 8rem 1.5rem 4rem; max-width: 820px; margin: 0 auto; position: relative;
         }
 
         @media (max-width: 640px) {
-          .hero-section { min-height: 88vh; padding: 7rem 1.25rem 3rem; }
+          .hero-section { min-height: 88vh; min-height: 88dvh; padding: 7rem 1.25rem 3rem; }
         }
       `}</style>
 

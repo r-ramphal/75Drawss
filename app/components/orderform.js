@@ -229,12 +229,18 @@ export default function OrderForm() {
         .send-in-box ul { margin-top: 0.5rem; padding-left: 1.25rem; }
         .send-in-box ul li { font-size: 0.82rem; color: var(--color-text-secondary); line-height: 1.8; font-weight: 400; }
         .pocket-btn { font-size: 0.82rem; font-weight: 500; padding: 0.5rem 1.25rem; cursor: pointer; font-family: var(--font-ui); transition: all 0.15s; border: 1px solid var(--color-border-strong); border-radius: var(--radius); }
+        .color-swatch { width: 32px; height: 32px; }
         @media (max-width: 768px) {
           .order-section { padding: 4rem 1.5rem !important; }
           .order-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
           .form-grid { grid-template-columns: 1fr !important; }
           .form-footer { flex-direction: column; align-items: stretch; }
           .submit-btn { text-align: center; }
+          /* Inputs must be >=16px on mobile or iOS Safari zooms in on focus. */
+          .order-input { font-size: 16px !important; }
+          /* Larger, easier-to-tap colour swatches on touch screens. */
+          .color-swatch { width: 40px !important; height: 40px !important; }
+          .pocket-btn, .qty-btn { padding: 0.65rem 1.25rem; }
         }
       `}</style>
 
@@ -377,12 +383,12 @@ export default function OrderForm() {
                               <button
                                 key={color.name}
                                 type="button"
+                                className="color-swatch"
                                 onClick={() => { setBinderColor(color.name); setCustomColor(''); setBinderColorError('') }}
                                 title={color.name}
                                 aria-label={color.name}
                                 aria-pressed={binderColor === color.name}
                                 style={{
-                                  width: 32, height: 32,
                                   borderRadius: '50%',
                                   background: color.hex,
                                   border: binderColor === color.name ? '3px solid var(--color-text)' : '1.5px solid #ccc',
