@@ -40,6 +40,20 @@ function escapeHtml(str) {
   ))
 }
 
+// Short, human-friendly order reference. No ambiguous characters (0/O/1/I).
+function makeRef() {
+  const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
+  const bytes = crypto.getRandomValues(new Uint8Array(6))
+  let s = ''
+  for (let i = 0; i < 6; i++) s += alphabet[bytes[i] % alphabet.length]
+  return s
+}
+
+// Collapse arbitrary input to a single, length-capped line for an email subject.
+function oneline(str, max = 40) {
+  return String(str).replace(/\s+/g, ' ').trim().slice(0, max)
+}
+
 async function verifyTurnstile(token, ip) {
   const body = new URLSearchParams()
   body.append('secret', process.env.TURNSTILE_SECRET_KEY || '')
@@ -58,20 +72,25 @@ async function verifyTurnstile(token, ip) {
 }
 
 // Customer-facing order confirmation, in the visitor's language.
-function buildConfirmation(locale, clean) {
+function buildConfirmation(locale, clean, ref) {
   const name = escapeHtml(clean.name || '')
   const product = escapeHtml(clean.product_type || '')
   const isNl = locale === 'nl'
 
   const subject = isNl
-    ? 'We hebben je aanvraag ontvangen — 75Drawss'
-    : 'We received your request — 75Drawss'
+    ? `We hebben je aanvraag ontvangen (#${ref}) — 75Drawss`
+    : `We received your request (#${ref}) — 75Drawss`
 
   const greeting = isNl ? `Hoi ${name},` : `Hi ${name},`
   const intro = isNl
     ? 'Bedankt voor je aanvraag bij 75Drawss! We hebben ’m goed ontvangen.'
     : 'Thanks for your request at 75Drawss! We’ve received it.'
-  const productLine = product ? `<strong>Product:</strong> ${product}` : ''
+  const refLabel = isNl ? 'Referentie' : 'Reference'
+  const productLabel = isNl ? 'Product' : 'Product'
+  const detailLines = [
+    `<strong>${refLabel}:</strong> #${ref}`,
+    product ? `<strong>${productLabel}:</strong> ${product}` : '',
+  ].filter(Boolean).join('<br/>')
   const next = isNl
     ? 'We bekijken je aanvraag en sturen je binnen 1–2 werkdagen een offerte op maat. Je hoeft nu nog niets te betalen.'
     : 'We’ll review your request and send you a tailored quote within 1–2 business days. No payment is required yet.'
@@ -87,7 +106,7 @@ function buildConfirmation(locale, clean) {
     <div style="font-family:Arial,Helvetica,sans-serif;color:#0a0a0a;max-width:560px;line-height:1.7">
       <p style="font-size:15px">${greeting}</p>
       <p style="font-size:15px">${intro}</p>
-      ${productLine ? `<p style="font-size:14px;background:#f5f5f3;border:1px solid #e5e5e5;padding:10px 14px">${productLine}</p>` : ''}
+      <p style="font-size:14px;background:#f5f5f3;border:1px solid #e5e5e5;padding:10px 14px">${detailLines}</p>
       <p style="font-size:15px">${next}</p>
       <p style="font-size:14px;color:#555">${replyNote}</p>
       <p style="font-size:15px;margin-top:24px">${signoff}</p>
@@ -191,6 +210,13 @@ export async function POST(request) {
       clean[key] = typeof val === 'string' ? val.slice(0, MAX_LEN) : val
     }
 
+    // Unique, scannable order reference + a concise, informative subject line
+    // so each order stands out and can be triaged in the inbox without opening it.
+    const ref = makeRef()
+    const serviceShort = clean.service_type === 'Customize my product' ? 'Customize' : 'Build'
+    const subjectLine = `🆕 ${oneline(clean.product_type, 30)} — ${oneline(clean.name, 30)} · ${serviceShort} #${ref}`
+
+    const refRow = `<tr><td style="padding:6px 12px;font-weight:600;background:#f5f5f3;border:1px solid #e5e5e5;vertical-align:top">Reference</td><td style="padding:6px 12px;border:1px solid #e5e5e5"><strong>#${ref}</strong></td></tr>`
     const rows = ALLOWED_FIELDS
       .filter((k) => k !== 'subject' && clean[k] !== undefined)
       .map((k) => `<tr><td style="padding:6px 12px;font-weight:600;background:#f5f5f3;border:1px solid #e5e5e5;vertical-align:top">${LABELS[k] || k}</td><td style="padding:6px 12px;border:1px solid #e5e5e5">${escapeHtml(clean[k])}</td></tr>`)
@@ -200,8 +226,9 @@ export async function POST(request) {
 
     const html = `
       <div style="font-family:Arial,Helvetica,sans-serif;color:#0a0a0a">
-        <h2 style="font-weight:600">${escapeHtml(clean.subject || 'New 75Drawss Order')}</h2>
-        <table style="border-collapse:collapse;font-size:14px">${rows}</table>
+        <h2 style="font-weight:600;margin:0 0 2px">${escapeHtml(`${clean.product_type} — ${clean.name}`)}</h2>
+        <p style="margin:0 0 16px;color:#555;font-size:13px">${escapeHtml(serviceShort)} · Ref <strong>#${ref}</strong></p>
+        <table style="border-collapse:collapse;font-size:14px">${refRow}${rows}</table>
         <a href="${quoteHref}" style="display:inline-block;margin-top:20px;background:#F5B301;color:#0a0a0a;padding:11px 20px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px">✉️ Offerte sturen naar klant</a>
         <p style="font-size:12px;color:#888;margin-top:8px">Opent een kant-en-klare offerte-mail aan de klant — vul alleen de prijs en betaallink in.</p>
       </div>`
@@ -211,7 +238,7 @@ export async function POST(request) {
       from: process.env.ORDER_FROM_EMAIL,
       to: process.env.ORDER_TO_EMAIL,
       reply_to: email,
-      subject: clean.subject || 'New 75Drawss Order',
+      subject: subjectLine,
       html,
     })
 
@@ -222,7 +249,7 @@ export async function POST(request) {
     // 2. Confirmation to the customer (best-effort — never fails the request).
     try {
       const locale = body.locale === 'nl' ? 'nl' : 'en'
-      const { subject, html: confirmHtml } = buildConfirmation(locale, clean)
+      const { subject, html: confirmHtml } = buildConfirmation(locale, clean, ref)
       await sendEmail({
         from: process.env.ORDER_FROM_EMAIL,
         to: email,
