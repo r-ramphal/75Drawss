@@ -3,6 +3,20 @@
 > Lees dit eerst bij elke sessie. Werk het na elke sessie bij (stand, beslissingen, TODO's).
 > Laatst bijgewerkt: **2026-06-16**
 
+## ▶️ VOLGENDE SESSIE — START HIER
+**Stap 1 (eerste): de inspiratie-pagina `/inspiratie` uitbouwen.** Staat live maar is nog basaal.
+Bestanden: `app/components/inspiration/InspirationView.js` (UI/secties), `app/data/inspiration.js` (stijlen/paletten/thema's/socials — single source, makkelijk aanvullen), teksten in i18n-namespace `inspiratie` (nl + en). Navbar/footer linken er al naar; staat in `sitemap.js`.
+
+Concrete richtingen (overleg met eigenaar wat eerst):
+1. **Community-feed activeren** — échte Instagram/TikTok-posts i.p.v. de huidige follow-CTA's + teaser. Nodig: óf **post-permalinks** (officiële embeds) óf een **widget** (Behold/LightWidget, gratis tier) + CSP verruimen in `next.config.mjs` (`www.instagram.com` / `www.tiktok.com` in `script-src` + `frame-src`). Eigenaar moet posts/handles/token aanleveren.
+2. **Meer content** in `app/data/inspiration.js` — extra stijlen, kleurpaletten, populaire thema's (en evt. meer binders in `binders.js`).
+3. **Intentionele actie per idee** — klein, expliciet knopje ("gebruik dit idee / start hiermee") dat evt. het bestelformulier voorinvult. ⚠️ **Principe vasthouden:** de blader-/stijl-/palet-/thema-elementen blijven zélf niet-klikbaar (bewuste keuze eigenaar) zodat bezoekers vrij scrollen zonder per ongeluk naar bestellen te gaan — alleen expliciete knoppen navigeren.
+4. **Detail/lightbox** bij blader-kaarten (klik = foto vergroten i.p.v. niets).
+5. **Testimonials/quotes** van klanten als social proof.
+6. **Mobiele fijn-tuning** — eigenaar bekijkt `/inspiratie` op telefoon; gericht bijschaven op feedback.
+
+Daarna pas de overige TODO's onderaan.
+
 ## Wat is het
 Marketing-/bestel-one-pager voor een design studio die handgemaakte **custom TCG-accessoires** maakt op bestelling: binders (4/9-pocket), deckboxes, displaycases, sleeves & extra's. Doelgroep: verzamelaars (Pokémon, One Piece, Lorcana, Magic). Handgemaakt in Nederland, levert aan **NL/BE/FR**.
 
@@ -119,6 +133,7 @@ GSAP-conventies: `useGSAP()` + `gsap.matchMedia()` (auto-cleanup, reduced-motion
 Community-sectie toont nu follow-CTA's; voor een **live IG/TikTok-feed** nog post-permalinks of widget + CSP nodig (zie TODO).
 
 ## TODO / in uitvoering
+- [ ] **EERSTE STAP volgende sessie: inspiratie-pagina uitbouwen** — zie het ▶️-blok bovenaan voor de concrete richtingen.
 - [ ] **Community = live social feed:** nu follow-CTA's + teaser. Voor een echte embedded Instagram/TikTok-feed: post-permalinks aanleveren (officiële embeds) óf een widget kiezen (Behold/LightWidget) — daarna CSP in `next.config.mjs` verruimen (`www.instagram.com` / `www.tiktok.com` in script-src + frame-src).
 - [ ] Optioneel: portfolio-animatie in de browser fijn-tunen (foto-hoogte `76vh`/`58vh`, focus-scale, pin-tempo) op basis van feedback eigenaar.
 - [ ] Bij deploy: controleren of Analytics/Speed Insights data binnenkomen + CSP klopt in productie + `npm run build` draaien.
