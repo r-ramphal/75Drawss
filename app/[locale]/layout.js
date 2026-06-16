@@ -63,7 +63,6 @@ export async function generateMetadata({ params }) {
       description: t('description'),
       images: [`${SITE_URL}/og.jpg`],
     },
-    icons: { icon: '/icon.svg' },
     verification: {
       google: '4n7f3GSEAdSc6A9H4XlPCpjwmtHAGZAkjUIXEHTGLOY',
     },
