@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import Footer from '@/app/components/footer'
-import PortfolioHeader from '@/app/components/portfolio/PortfolioHeader'
+import Navbar from '@/app/components/navbar'
 import DesignShowcase from '@/app/components/portfolio/DesignShowcase'
 
 export function generateStaticParams() {
@@ -27,7 +27,7 @@ export default async function PortfolioPage({ params }) {
 
   return (
     <main>
-      <PortfolioHeader />
+      <Navbar />
       <DesignShowcase />
       <Footer />
     </main>

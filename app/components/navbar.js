@@ -1,11 +1,15 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { Link } from '@/i18n/navigation'
 import LanguageSwitcher from './languageswitcher'
 
 export default function Navbar() {
   const t = useTranslations('nav')
+  const locale = useLocale()
+  // Locale-prefixed home anchors so the navbar works on every page (homepage
+  // sections + the standalone /portfolio and /inspiratie routes).
+  const home = `/${locale}`
   const [open, setOpen] = useState(false)
 
   // While the menu is open: lock background scroll and close on Escape.
@@ -122,25 +126,25 @@ export default function Navbar() {
           </button>
         </div>
 
-        <a href="#" className="nav-logo" aria-label={t('home')} onClick={close}>
+        <a href={home} className="nav-logo" aria-label={t('home')} onClick={close}>
           <span className="mark">75</span><span>Drawss</span>
         </a>
 
         <div className="nav-right">
           <LanguageSwitcher />
-          <a href="#order" className="nav-cta nav-cta-desktop">{t('orderNow')}</a>
+          <a href={`${home}#order`} className="nav-cta nav-cta-desktop">{t('orderNow')}</a>
         </div>
       </nav>
 
       <div className={`menu-backdrop ${open ? 'open' : ''}`} onClick={close} aria-hidden="true" />
       <div id="nav-menu" className={`nav-menu ${open ? 'open' : ''}`}>
         <div className="nav-menu-inner">
-          <a href="#how-it-works" className="nav-menu-link" onClick={close}>{t('howItWorks')}</a>
-          <a href="#features" className="nav-menu-link" onClick={close}>{t('whyUs')}</a>
+          <a href={`${home}#how-it-works`} className="nav-menu-link" onClick={close}>{t('howItWorks')}</a>
+          <a href={`${home}#features`} className="nav-menu-link" onClick={close}>{t('whyUs')}</a>
           <Link href="/portfolio" className="nav-menu-link" onClick={close}>{t('portfolio')}</Link>
           <Link href="/inspiratie" className="nav-menu-link" onClick={close}>{t('inspiration')}</Link>
-          <a href="#faq" className="nav-menu-link" onClick={close}>{t('faq')}</a>
-          <a href="#order" className="nav-menu-cta" onClick={close}>{t('orderNow')}</a>
+          <a href={`${home}#faq`} className="nav-menu-link" onClick={close}>{t('faq')}</a>
+          <a href={`${home}#order`} className="nav-menu-cta" onClick={close}>{t('orderNow')}</a>
         </div>
       </div>
     </>

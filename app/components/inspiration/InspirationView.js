@@ -47,23 +47,21 @@ export default function InspirationView() {
         .insp-chip.active { background: var(--color-text); color: #fff; border-color: var(--color-text); }
 
         .insp-grid { columns: 4; column-gap: 1rem; }
-        .insp-card { break-inside: avoid; margin-bottom: 1rem; position: relative; display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--color-border-strong); box-shadow: var(--shadow-hard); background: var(--color-surface); }
+        .insp-card { break-inside: avoid; margin: 0 0 1rem; position: relative; display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--color-border-strong); box-shadow: var(--shadow-hard); background: var(--color-surface); }
         .insp-card img { width: 100%; height: auto; display: block; }
         .insp-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.6rem 0.9rem 0.7rem; color: #fff; font-size: 0.74rem; font-weight: 600; background: linear-gradient(to top, rgba(10,10,10,0.8), rgba(10,10,10,0)); opacity: 0; transition: opacity 0.25s ease; }
         .insp-card:hover .insp-cap { opacity: 1; }
         .insp-cap .cat { display: block; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 0.15rem; }
 
         .insp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-        .insp-tile { display: flex; flex-direction: column; gap: 0.4rem; padding: 1.4rem; border-radius: 10px; border: 1px solid var(--color-border-strong); background: var(--color-surface); text-decoration: none; color: inherit; transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease; }
-        .insp-tile:hover { transform: translateY(-2px); box-shadow: var(--shadow-hard-lg); border-color: var(--color-text); }
+        .insp-tile { display: flex; flex-direction: column; gap: 0.4rem; padding: 1.4rem; border-radius: 10px; border: 1px solid var(--color-border-strong); background: var(--color-surface); color: inherit; }
         .insp-tile h3 { font-size: 0.98rem; font-weight: 600; }
         .insp-tile p { font-size: 0.82rem; color: var(--color-text-secondary); }
         .insp-swatches { display: flex; height: 30px; border-radius: 6px; overflow: hidden; margin-bottom: 0.6rem; }
         .insp-swatches span { flex: 1; }
 
         .insp-themes { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-        .insp-theme { font-size: 0.85rem; font-weight: 500; padding: 0.6rem 1.2rem; border-radius: 100px; border: 1px solid var(--color-border-strong); background: var(--color-surface); text-decoration: none; color: var(--color-text); transition: all 0.18s ease; }
-        .insp-theme:hover { background: var(--color-accent); border-color: var(--color-accent); }
+        .insp-theme { font-size: 0.85rem; font-weight: 500; padding: 0.6rem 1.2rem; border-radius: 100px; border: 1px solid var(--color-border-strong); background: var(--color-surface); color: var(--color-text); }
 
         .insp-social { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.75rem; }
         .insp-social a { display: flex; align-items: center; gap: 1rem; padding: 1.4rem 1.5rem; border-radius: 12px; text-decoration: none; color: #fff; transition: transform 0.18s ease, box-shadow 0.18s ease; }
@@ -85,6 +83,11 @@ export default function InspirationView() {
 
         @media (max-width: 1000px) { .insp-grid { columns: 3; } }
         @media (max-width: 760px) { .insp-grid { columns: 2; } .insp-cards { grid-template-columns: 1fr 1fr; } .insp-social { grid-template-columns: 1fr; } .insp-teaser { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 640px) {
+          .insp-hero { padding: 7rem 0 2.25rem; }
+          .insp-section { padding: 2.5rem 0; }
+          .insp-cta { padding: 3.5rem 0 4.5rem; }
+        }
         @media (max-width: 460px) { .insp-cards { grid-template-columns: 1fr; } }
       `}</style>
 
@@ -106,10 +109,10 @@ export default function InspirationView() {
         </div>
         <div className="insp-grid">
           {shown.map((b) => (
-            <Link href="/#order" className="insp-card" key={b.id} aria-label={L(b.alt)}>
+            <figure className="insp-card" key={b.id}>
               <Image src={b.img} alt={L(b.alt)} placeholder="blur" sizes="(max-width: 460px) 50vw, (max-width: 760px) 33vw, 240px" style={{ width: '100%', height: 'auto', display: 'block' }} />
-              <span className="insp-cap"><span className="cat">{tCat(b.category)}</span>{L(b.title)}</span>
-            </Link>
+              <figcaption className="insp-cap"><span className="cat">{tCat(b.category)}</span>{L(b.title)}</figcaption>
+            </figure>
           ))}
         </div>
       </section>
@@ -120,10 +123,10 @@ export default function InspirationView() {
         <p className="insp-sub">{t('stylesIntro')}</p>
         <div className="insp-cards">
           {STYLES.map((s) => (
-            <Link href="/#order" className="insp-tile" key={s.id}>
+            <div className="insp-tile" key={s.id}>
               <h3>{L(s.label)}</h3>
               <p>{L(s.desc)}</p>
-            </Link>
+            </div>
           ))}
         </div>
       </section>
@@ -134,12 +137,12 @@ export default function InspirationView() {
         <p className="insp-sub">{t('palettesIntro')}</p>
         <div className="insp-cards">
           {PALETTES.map((p) => (
-            <Link href="/#order" className="insp-tile" key={p.id}>
+            <div className="insp-tile" key={p.id}>
               <div className="insp-swatches" aria-hidden="true">
                 {p.colors.map((c) => <span key={c} style={{ background: c }} />)}
               </div>
               <h3>{L(p.label)}</h3>
-            </Link>
+            </div>
           ))}
         </div>
       </section>
@@ -150,7 +153,7 @@ export default function InspirationView() {
         <p className="insp-sub" />
         <div className="insp-themes">
           {THEMES.map((th) => (
-            <Link href="/#order" className="insp-theme" key={th.id}>{L(th.label)}</Link>
+            <span className="insp-theme" key={th.id}>{L(th.label)}</span>
           ))}
         </div>
       </section>
