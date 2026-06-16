@@ -1,5 +1,10 @@
 import { NextResponse } from 'next/server'
 
+// Run this function in Frankfurt — closest Vercel region to our NL/BE/FR
+// audience, so Turnstile + Resend round-trips stay low-latency.
+export const preferredRegion = 'fra1'
+export const runtime = 'nodejs'
+
 // Only these fields end up in the order email. Anything else the client sends
 // is dropped, so a caller can never inject extra content.
 const ALLOWED_FIELDS = [

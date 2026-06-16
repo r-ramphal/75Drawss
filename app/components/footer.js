@@ -84,6 +84,8 @@ export default function Footer() {
           <nav className="footer-links" aria-label={t('nav')}>
             <a href="#how-it-works" className="footer-link">{t('howItWorks')}</a>
             <a href="#features" className="footer-link">{t('whyUs')}</a>
+            <Link href="/portfolio" className="footer-link">{t('portfolio')}</Link>
+            <Link href="/inspiratie" className="footer-link">{t('inspiration')}</Link>
             <a href="#faq" className="footer-link">{t('faq')}</a>
             <a href="#order" className="footer-link">{t('order')}</a>
             <Link href="/privacy" className="footer-link">{t('privacy')}</Link>

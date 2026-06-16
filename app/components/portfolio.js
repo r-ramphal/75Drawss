@@ -1,145 +1,173 @@
 'use client'
 /*
-  Portfolio shuffle grid — adapted from a 21st.dev "shuffle-grid" component to
-  this project's stack (plain JS + framer-motion + design tokens). Uses real
-  product photos from /public/portfolio. The 16-cell grid is filled by cycling
-  through the available photos; framer-motion `layout` animates each tile to a
-  new position on every shuffle.
+  Homepage portfolio PREVIEW — a free, swipeable strip with a gentle auto-scroll.
+  No scroll-hijack: vertical page scrolling is never blocked. The strip drifts
+  slowly (ping-pong), pauses on hover / touch / drag, pauses when off-screen,
+  and respects reduced-motion. The full experience lives at /portfolio.
+  Data comes from app/data/binders.js (single source of truth).
 */
-import { motion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
-import { useTranslations } from 'next-intl'
+import { useEffect, useRef } from 'react'
+import { useTranslations, useLocale } from 'next-intl'
 import Image from 'next/image'
+import { Link } from '@/i18n/navigation'
+import { BINDERS } from '@/app/data/binders'
 
-const PHOTOS = [
-  '/portfolio/mimikyu.jpeg',
-  '/portfolio/koi.jpeg',
-  '/portfolio/lucario.jpeg',
-  '/portfolio/psyduck.jpeg',
-  '/portfolio/kid.jpeg',
-  '/portfolio/mew.jpeg',
-  '/portfolio/articuno.jpeg',
-  '/portfolio/starters.jpeg',
-  '/portfolio/dialga.jpeg',
-]
-
-// 16 tiles, each with a stable id and an assigned photo (photos repeat).
-const baseTiles = Array.from({ length: 16 }, (_, i) => ({
-  id: i + 1,
-  src: PHOTOS[i % PHOTOS.length],
-}))
-
-const shuffle = (array) => {
-  const a = [...array]
-  let current = a.length
-  while (current !== 0) {
-    const rand = Math.floor(Math.random() * current)
-    current--
-    ;[a[current], a[rand]] = [a[rand], a[current]]
-  }
-  return a
-}
-
-const ShuffleGrid = () => {
-  const timeoutRef = useRef(null)
-  const [tiles, setTiles] = useState(baseTiles)
+export default function Portfolio() {
+  const t = useTranslations('portfolio')
+  const locale = useLocale()
+  const stripRef = useRef(null)
 
   useEffect(() => {
-    // Respect users who prefer reduced motion: keep the grid static.
+    const strip = stripRef.current
+    if (!strip) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const run = () => {
-      setTiles((prev) => shuffle(prev))
-      timeoutRef.current = setTimeout(run, 3000)
+
+    const SPEED = 0.85 // px per frame — gentle ambient drift
+    let paused = false
+    let visible = true
+    let dir = 1
+    let down = false
+    let startX = 0
+    let startScroll = 0
+
+    const pause = () => { paused = true }
+    const resume = () => { paused = false }
+    const onDown = (e) => {
+      if (e.pointerType === 'touch') return // touch scrolls natively
+      down = true
+      startX = e.clientX
+      startScroll = strip.scrollLeft
+      strip.classList.add('dragging')
+      try { strip.setPointerCapture(e.pointerId) } catch {}
     }
-    timeoutRef.current = setTimeout(run, 3000)
+    const onMove = (e) => { if (down) strip.scrollLeft = startScroll - (e.clientX - startX) }
+    const onUp = () => { down = false; strip.classList.remove('dragging') }
+
+    strip.addEventListener('pointerenter', pause)
+    strip.addEventListener('pointerleave', resume)
+    strip.addEventListener('pointerdown', onDown)
+    strip.addEventListener('pointermove', onMove)
+    strip.addEventListener('pointerup', onUp)
+    window.addEventListener('pointerup', onUp)
+
+    const io = new IntersectionObserver(
+      ([entry]) => { visible = entry.isIntersecting },
+      { threshold: 0 },
+    )
+    io.observe(strip)
+
+    let raf
+    const tick = () => {
+      raf = requestAnimationFrame(tick)
+      if (paused || down || !visible) return
+      const max = strip.scrollWidth - strip.clientWidth
+      if (max <= 1) return
+      strip.scrollLeft += SPEED * dir
+      if (strip.scrollLeft >= max - 0.5) dir = -1
+      else if (strip.scrollLeft <= 0.5) dir = 1
+    }
+    raf = requestAnimationFrame(tick)
+
     return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+      cancelAnimationFrame(raf)
+      io.disconnect()
+      strip.removeEventListener('pointerenter', pause)
+      strip.removeEventListener('pointerleave', resume)
+      strip.removeEventListener('pointerdown', onDown)
+      strip.removeEventListener('pointermove', onMove)
+      strip.removeEventListener('pointerup', onUp)
+      window.removeEventListener('pointerup', onUp)
     }
   }, [])
 
   return (
-    <div className="shuffle-grid">
-      {tiles.map((tile) => (
-        <motion.div
-          key={tile.id}
-          layout
-          transition={{ duration: 1.4, type: 'spring' }}
-          className="shuffle-tile"
-        >
-          <Image
-            src={tile.src}
-            alt=""
-            fill
-            sizes="(max-width: 900px) 22vw, 150px"
-            style={{ objectFit: 'cover' }}
-          />
-        </motion.div>
-      ))}
-    </div>
-  )
-}
-
-export default function Portfolio() {
-  const t = useTranslations('portfolio')
-
-  return (
     <>
       <style>{`
-        .portfolio-section {
-          padding: 7rem 3rem; max-width: 1200px; margin: 0 auto;
-          display: grid; grid-template-columns: 1fr 1fr;
-          align-items: center; gap: 4rem;
+        .pf { background: var(--color-bg); border-top: 2px solid var(--color-border); padding: 5.5rem 0 6rem; overflow: hidden; }
+        .pf-head {
+          max-width: 1200px; margin: 0 auto 2.5rem; padding: 0 clamp(1.5rem, 5vw, 4rem);
+          display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: end;
         }
-        .shuffle-grid {
-          display: grid; grid-template-columns: repeat(4, 1fr);
-          grid-auto-rows: 1fr; gap: 4px; aspect-ratio: 1 / 1;
-          background: var(--color-border); padding: 4px;
-          border: 2px solid var(--color-border);
-          box-shadow: var(--shadow-hard);
+        .pf-eyebrow {
+          font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+          color: var(--color-text-muted); margin-bottom: 1rem; font-family: var(--font-ui);
         }
-        .shuffle-tile {
-          position: relative;
-          width: 100%; height: 100%; border-radius: 3px; overflow: hidden;
-          background-color: var(--color-surface);
+        .pf-title {
+          font-family: var(--font-display); font-weight: 300; font-size: clamp(2rem, 4.5vw, 3.5rem);
+          letter-spacing: -0.025em; line-height: 1.05; color: var(--color-text);
         }
-        .portfolio-cta {
-          display: inline-block; margin-top: 2rem;
-          background: var(--color-accent); color: var(--color-text);
-          font-size: 0.9rem; font-weight: 600; padding: 0.95rem 2.1rem;
-          border-radius: var(--radius); text-decoration: none;
-          border: 1px solid var(--color-accent);
-          transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; font-family: var(--font-ui);
+        .pf-head-right { display: flex; flex-direction: column; align-items: flex-start; gap: 1.3rem; }
+        .pf-intro {
+          font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.75;
+          font-weight: 400; max-width: 420px; font-family: var(--font-ui);
         }
-        .portfolio-cta:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(10,10,10,0.12); }
-        @media (max-width: 900px) {
-          .portfolio-section { grid-template-columns: 1fr; gap: 2.5rem; }
+        .pf-cta {
+          display: inline-block; background: var(--color-accent); color: var(--color-text);
+          font-size: 0.9rem; font-weight: 600; padding: 0.95rem 2.1rem; border-radius: var(--radius);
+          text-decoration: none; border: 1px solid var(--color-accent); font-family: var(--font-ui);
+          transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
         }
-        @media (max-width: 520px) {
-          .portfolio-section { padding: 4rem 1.5rem; }
+        .pf-cta:hover {
+          background: var(--color-accent-hover); border-color: var(--color-accent-hover);
+          transform: translateY(-1px); box-shadow: 0 8px 20px rgba(10,10,10,0.12);
         }
-        @media (prefers-reduced-motion: reduce) {
-          .shuffle-tile { transition: none !important; }
+        .pf-strip {
+          display: flex; gap: 1.25rem; overflow-x: auto; overflow-y: hidden;
+          padding: 0 clamp(1.5rem, 5vw, 4rem) 1rem;
+          scrollbar-width: none; -webkit-overflow-scrolling: touch; cursor: grab;
         }
+        .pf-strip::-webkit-scrollbar { display: none; }
+        .pf-strip.dragging { cursor: grabbing; }
+        .pf-card {
+          position: relative; flex: 0 0 auto;
+          height: clamp(300px, 50vh, 500px); aspect-ratio: var(--ar, 0.78);
+          border-radius: 12px; overflow: hidden; border: 1px solid var(--color-border-strong);
+          background: var(--color-surface); box-shadow: var(--shadow-hard-lg);
+        }
+        .pf-card img { object-fit: cover; user-select: none; }
+        .pf-cap {
+          position: absolute; left: 0; right: 0; bottom: 0; padding: 2rem 1.1rem 0.95rem;
+          color: #fff; font-family: var(--font-ui); font-size: 0.8rem; font-weight: 500;
+          background: linear-gradient(to top, rgba(10,10,10,0.8), rgba(10,10,10,0));
+          opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
+        }
+        .pf-card:hover .pf-cap { opacity: 1; }
+        @media (max-width: 768px) {
+          .pf-head { grid-template-columns: 1fr; gap: 1.1rem; }
+          .pf-card { height: clamp(260px, 60vw, 420px); }
+        }
+        @media (prefers-reduced-motion: reduce) { .pf-cap { transition: none; } }
       `}</style>
 
-      <div id="portfolio" style={{ background: 'var(--color-bg)', borderTop: '2px solid var(--color-border)' }}>
-        <section className="portfolio-section" style={{ fontFamily: 'var(--font-ui)' }}>
+      <section id="portfolio" className="pf">
+        <div className="pf-head">
           <div>
-            <p style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '1rem' }}>{t('eyebrow')}</p>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 300, letterSpacing: '-0.025em', lineHeight: 1.1, color: 'var(--color-text)' }}>
-              {t('titleLine1')}<br/>{t('titleLine2')}
-            </h2>
-            <p style={{ fontSize: '0.95rem', color: 'var(--color-text-secondary)', lineHeight: 1.75, fontWeight: 400, maxWidth: '380px', marginTop: '1.5rem' }}>
-              {t('intro')}
-            </p>
-            <a href="#order" className="portfolio-cta">{t('cta')}</a>
+            <p className="pf-eyebrow">{t('eyebrow')}</p>
+            <h2 className="pf-title">{t('titleLine1')}<br />{t('titleLine2')}</h2>
           </div>
+          <div className="pf-head-right">
+            <p className="pf-intro">{t('intro')}</p>
+            <Link href="/portfolio" className="pf-cta">{t('viewAll')} →</Link>
+          </div>
+        </div>
 
-          <div role="img" aria-label={t('intro')}>
-            <ShuffleGrid />
-          </div>
-        </section>
-      </div>
+        <div className="pf-strip" ref={stripRef} role="list" aria-label={t('eyebrow')} tabIndex={0}>
+          {BINDERS.map((b) => (
+            <figure className="pf-card" key={b.id} role="listitem" style={{ '--ar': b.img.width / b.img.height }}>
+              <Image
+                src={b.img}
+                alt={b.alt[locale] || b.alt.en}
+                fill
+                placeholder="blur"
+                sizes="(max-width: 768px) 70vw, 360px"
+                style={{ objectFit: 'cover' }}
+                draggable={false}
+              />
+              <figcaption className="pf-cap" aria-hidden="true">{b.title[locale] || b.title.en}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
     </>
   )
 }

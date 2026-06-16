@@ -69,7 +69,6 @@ export default function OrderForm() {
     source: z.string().optional(),
     binder_brand: z.string().optional(),
     binder_condition: z.string().optional(),
-    consent: z.boolean().refine(val => val === true, t('errConsent')),
     botcheck: z.string().optional(),
   }), [t])
 
@@ -79,7 +78,7 @@ export default function OrderForm() {
       name: '', email: '', product_type: '', card_game: '',
       design_description: '', special_requirements: '',
       budget: '', source: '', binder_brand: '', binder_condition: '',
-      consent: false, botcheck: '',
+      botcheck: '',
     },
     mode: 'onBlur',
     reValidateMode: 'onChange',
@@ -510,20 +509,6 @@ export default function OrderForm() {
                       </select>
                     </div>
 
-                    {/* CONSENT */}
-                    <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-                        <input id="consent" type="checkbox" style={{ marginTop: '0.2rem', cursor: 'pointer', accentColor: 'var(--color-text)' }} {...register('consent')} />
-                        <label htmlFor="consent" style={{ ...labelStyle, textTransform: 'none', letterSpacing: 0, fontSize: '0.8rem', color: 'var(--color-text-secondary)', fontWeight: 400, lineHeight: 1.6 }}>
-                          {t.rich('consent', {
-                            terms: (chunks) => <Link href="/voorwaarden" target="_blank" style={{ color: 'var(--color-accent-text)', textDecoration: 'underline', fontWeight: 500 }}>{chunks}</Link>,
-                            privacy: (chunks) => <Link href="/privacy" target="_blank" style={{ color: 'var(--color-accent-text)', textDecoration: 'underline', fontWeight: 500 }}>{chunks}</Link>,
-                          })} {req}
-                        </label>
-                      </div>
-                      {errors.consent && <span style={errorStyle} role="alert">{errors.consent.message}</span>}
-                    </div>
-
                     {/* CLOUDFLARE TURNSTILE */}
                     <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                       <div className="turnstile-wrap">
@@ -546,6 +531,13 @@ export default function OrderForm() {
                       {isSubmitting ? t('submitSending') : uploading ? t('submitUploading') : t('submitDefault')}
                     </button>
                   </div>
+
+                  <p style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)', lineHeight: 1.65, marginTop: '1rem', fontFamily: 'var(--font-ui)' }}>
+                    {t.rich('consent', {
+                      terms: (chunks) => <Link href="/voorwaarden" target="_blank" style={{ color: 'var(--color-accent-text)', textDecoration: 'underline' }}>{chunks}</Link>,
+                      privacy: (chunks) => <Link href="/privacy" target="_blank" style={{ color: 'var(--color-accent-text)', textDecoration: 'underline' }}>{chunks}</Link>,
+                    })}
+                  </p>
                 </form>
               )}
             </div>

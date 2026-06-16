@@ -8,11 +8,11 @@ const ContentSecurityPolicy = [
   "object-src 'none'",
   "frame-ancestors 'self'",
   "img-src 'self' data: blob: https://res.cloudinary.com",
-  "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.googleadservices.com https://www.google.com https://www.gstatic.com",
+  "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.googleadservices.com https://www.google.com https://www.gstatic.com https://va.vercel-scripts.com",
   "style-src 'self' 'unsafe-inline'",
   "font-src 'self' data:",
   "frame-src 'self' https://challenges.cloudflare.com",
-  "connect-src 'self' https://api.cloudinary.com https://challenges.cloudflare.com https://www.google-analytics.com https://region1.google-analytics.com",
+  "connect-src 'self' https://api.cloudinary.com https://challenges.cloudflare.com https://www.google-analytics.com https://region1.google-analytics.com https://va.vercel-scripts.com https://vitals.vercel-insights.com",
   "form-action 'self'",
   "upgrade-insecure-requests",
 ].join('; ');
@@ -28,6 +28,10 @@ const securityHeaders = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Per-server build dir (via NEXT_DIST_DIR) lets several `next dev` instances
+  // run from this one folder at once — used to preview portfolio designs
+  // side-by-side on different ports without clobbering each other's .next.
+  distDir: process.env.NEXT_DIST_DIR || '.next',
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
