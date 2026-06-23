@@ -110,6 +110,11 @@ export default async function LocaleLayout({ children, params }) {
   return (
     <html lang={locale} className={`${rubik.variable} ${displaySerif.variable}`}>
       <body>
+        {/* No-JS fallback: scroll-reveal elements stay hidden until GSAP runs,
+            so reveal everything when scripts are unavailable. */}
+        <noscript>
+          <style>{`.reveal-item { opacity: 1 !important; }`}</style>
+        </noscript>
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

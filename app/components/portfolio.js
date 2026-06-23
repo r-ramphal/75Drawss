@@ -11,11 +11,17 @@ import { useTranslations, useLocale } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { BINDERS } from '@/app/data/binders'
+import { useRevealOnScroll } from '@/app/lib/useReveal'
 
 export default function Portfolio() {
   const t = useTranslations('portfolio')
   const locale = useLocale()
   const stripRef = useRef(null)
+  const sectionRef = useRef(null)
+
+  // Reveal the section header (.reveal-item) on scroll. The strip below keeps
+  // its own independent rAF auto-scroll — untouched.
+  useRevealOnScroll(sectionRef)
 
   useEffect(() => {
     const strip = stripRef.current
@@ -139,8 +145,8 @@ export default function Portfolio() {
         @media (prefers-reduced-motion: reduce) { .pf-cap { transition: none; } }
       `}</style>
 
-      <section id="portfolio" className="pf">
-        <div className="pf-head">
+      <section id="portfolio" className="pf" ref={sectionRef}>
+        <div className="pf-head reveal-item">
           <div>
             <p className="pf-eyebrow">{t('eyebrow')}</p>
             <h2 className="pf-title">{t('titleLine1')}<br />{t('titleLine2')}</h2>

@@ -1,9 +1,16 @@
+'use client'
+import { useRef } from 'react'
 import { useTranslations } from 'next-intl'
+import { useRevealOnScroll } from '@/app/lib/useReveal'
 
 export default function HowItWorks() {
   const t = useTranslations('howItWorks')
   const steps = t.raw('steps')
   const nums = ['01', '02', '03', '04']
+  const root = useRef(null)
+
+  // Reveal the process steps (.reveal-item) as they scroll into view.
+  useRevealOnScroll(root)
 
   return (
     <>
@@ -42,7 +49,7 @@ export default function HowItWorks() {
           .step:last-child { border-bottom: none !important; }
         }
       `}</style>
-      <div id="how-it-works" style={{ background: 'var(--color-bg)' }}>
+      <div id="how-it-works" ref={root} style={{ background: 'var(--color-bg)' }}>
         <section className="howitworks-section" style={{ maxWidth: '1200px', margin: '0 auto', fontFamily: 'var(--font-ui)' }}>
           <p style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '1rem' }}>{t('eyebrow')}</p>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 300, letterSpacing: '-0.025em', lineHeight: 1.1, marginBottom: '4rem', color: 'var(--color-text)' }}>
@@ -50,7 +57,7 @@ export default function HowItWorks() {
           </h2>
           <div className="steps-grid">
             {steps.map((step, i) => (
-              <div key={i} className="step">
+              <div key={i} className="step reveal-item">
                 <div style={{ fontFamily: 'var(--font-display)', fontSize: '2.75rem', fontWeight: 300, color: '#D0D0CC', lineHeight: 1, marginBottom: '1.5rem', letterSpacing: '-0.04em' }}>{nums[i]}</div>
                 <h3 style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.6rem', color: 'var(--color-text)', letterSpacing: '-0.01em' }}>{step.title}</h3>
                 <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', lineHeight: 1.7, fontWeight: 400 }}>{step.desc}</p>

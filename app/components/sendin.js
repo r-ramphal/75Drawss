@@ -1,4 +1,7 @@
+'use client'
+import { useRef } from 'react'
 import { useTranslations } from 'next-intl'
+import { useRevealOnScroll } from '@/app/lib/useReveal'
 
 const IconPackage = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -30,6 +33,11 @@ export default function SendIn() {
   const t = useTranslations('sendIn')
   const steps = t.raw('steps')
   const info = t.raw('info')
+  const root = useRef(null)
+
+  // Reveal the send-in steps + info items (.reveal-item) on scroll, matching
+  // the HowItWorks section. The header + CTA stay immediately visible.
+  useRevealOnScroll(root)
 
   return (
     <>
@@ -100,7 +108,7 @@ export default function SendIn() {
         }
       `}</style>
 
-      <div id="send-in" style={{ borderTop: '2px solid var(--color-border)', background: 'var(--color-bg)' }}>
+      <div id="send-in" ref={root} style={{ borderTop: '2px solid var(--color-border)', background: 'var(--color-bg)' }}>
         <section className="sendin-section" style={{ maxWidth: '1200px', margin: '0 auto', fontFamily: 'var(--font-ui)' }}>
           <p style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '1rem' }}>{t('eyebrow')}</p>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '4rem', flexWrap: 'wrap', gap: '2rem' }}>
@@ -114,7 +122,7 @@ export default function SendIn() {
 
           <div className="sendin-steps">
             {steps.map((step, i) => (
-              <div key={i} className="sendin-step">
+              <div key={i} className="sendin-step reveal-item">
                 <div style={{ fontFamily: 'var(--font-display)', fontSize: '2.75rem', fontWeight: 300, color: '#D0D0CC', lineHeight: 1, marginBottom: '1.5rem', letterSpacing: '-0.04em' }}>{stepNums[i]}</div>
                 <h3 style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.5rem', color: 'var(--color-text)', letterSpacing: '-0.01em' }}>{step.title}</h3>
                 <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', lineHeight: 1.7, fontWeight: 400 }}>{step.desc}</p>
@@ -126,7 +134,7 @@ export default function SendIn() {
             {info.map((item, i) => {
               const Icon = infoIcons[i]
               return (
-                <div key={i} className="sendin-info-item">
+                <div key={i} className="sendin-info-item reveal-item">
                   <div className="sendin-icon"><Icon /></div>
                   <h3 style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.4rem', color: 'var(--color-text)', letterSpacing: '-0.01em' }}>{item.title}</h3>
                   <p style={{ fontSize: '0.82rem', color: 'var(--color-text-secondary)', lineHeight: 1.7, fontWeight: 400 }}>{item.desc}</p>

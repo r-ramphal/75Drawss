@@ -1,9 +1,12 @@
+'use client'
 /*
   Product range showcase. Each product uses a clean SVG illustration as a
   placeholder. When you have real photos, drop the file in /public and add an
   `images` array mapping (see below).
 */
+import { useRef } from 'react'
 import { useTranslations } from 'next-intl'
+import { useRevealOnScroll } from '@/app/lib/useReveal'
 
 const BinderArt = () => (
   <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" width="76" height="76">
@@ -47,6 +50,10 @@ const arts = [BinderArt, DeckBoxArt, DisplayCaseArt, SleeveArt]
 export default function ProductRange() {
   const t = useTranslations('products')
   const items = t.raw('items')
+  const root = useRef(null)
+
+  // Reveal the product cards (.reveal-item) as they scroll into view.
+  useRevealOnScroll(root)
 
   return (
     <>
@@ -111,7 +118,7 @@ export default function ProductRange() {
         }
       `}</style>
 
-      <div id="products" style={{ background: 'var(--color-bg)', borderTop: '2px solid var(--color-border)' }}>
+      <div id="products" ref={root} style={{ background: 'var(--color-bg)', borderTop: '2px solid var(--color-border)' }}>
         <section className="products-section" style={{ fontFamily: 'var(--font-ui)' }}>
           <p style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '1rem' }}>{t('eyebrow')}</p>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '3.5rem' }}>
@@ -127,7 +134,7 @@ export default function ProductRange() {
             {items.map((item, i) => {
               const Art = arts[i]
               return (
-                <article key={i} className="product-card">
+                <article key={i} className="product-card reveal-item">
                   {i === 0 && <span className="product-tag">{t('tagPopular')}</span>}
                   <div className="product-visual">
                     <Art />

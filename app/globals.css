@@ -35,6 +35,13 @@ html, body {
 
 a { color: inherit; }
 
+/* Scroll-reveal baseline: elements with .reveal-item start hidden and are
+   revealed by useRevealOnScroll (GSAP) as they enter the viewport. Visitors who
+   prefer reduced motion see them immediately; the <noscript> fallback in the
+   layout covers visitors without JS. */
+.reveal-item { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .reveal-item { opacity: 1 !important; } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

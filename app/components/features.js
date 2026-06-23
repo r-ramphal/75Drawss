@@ -1,4 +1,7 @@
+'use client'
+import { useRef } from 'react'
 import { useTranslations } from 'next-intl'
+import { useRevealOnScroll } from '@/app/lib/useReveal'
 
 const IconPalette = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -37,6 +40,10 @@ const icons = [IconPalette, IconRuler, IconStar, IconTruck]
 export default function Features() {
   const t = useTranslations('features')
   const items = t.raw('items')
+  const root = useRef(null)
+
+  // Reveal the USP cards (.reveal-item) as they scroll into view, staggered.
+  useRevealOnScroll(root)
 
   return (
     <>
@@ -81,7 +88,8 @@ export default function Features() {
           .features-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
-      <div id="features" style={{ borderTop: '2px solid var(--color-border)', background: 'var(--color-bg)' }}>
+
+      <div id="features" ref={root} style={{ borderTop: '2px solid var(--color-border)', background: 'var(--color-bg)' }}>
         <section className="features-section" style={{ maxWidth: '1200px', margin: '0 auto', fontFamily: 'var(--font-ui)' }}>
           <p style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '1rem' }}>{t('eyebrow')}</p>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 300, letterSpacing: '-0.025em', lineHeight: 1.1, marginBottom: '4rem', color: 'var(--color-text)' }}>
@@ -91,7 +99,7 @@ export default function Features() {
             {items.map((f, i) => {
               const Icon = icons[i]
               return (
-                <div key={i} className="feature">
+                <div key={i} className="feature reveal-item">
                   <div className="feature-icon">
                     <Icon />
                   </div>

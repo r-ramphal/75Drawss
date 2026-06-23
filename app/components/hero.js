@@ -1,28 +1,45 @@
+'use client'
+import { useRef } from 'react'
 import { useTranslations } from 'next-intl'
+import { gsap, useGSAP } from '@/app/lib/gsap'
+import Magnetic from './magnetic'
 
 const chips = ['Pokémon', 'One Piece', 'Lorcana']
 
 export default function Hero() {
   const t = useTranslations('hero')
+  const root = useRef(null)
+
+  // Choreographed entrance. Elements start hidden via the `.hero-anim` CSS
+  // baseline (so there's no flash of un-animated content); GSAP reveals them
+  // in sequence. Reduced-motion + no-JS visitors get the content immediately
+  // (see the media query and <noscript> fallback in the <style> block).
+  useGSAP(() => {
+    const mm = gsap.matchMedia()
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.85 } })
+      tl.fromTo('.hero-eyebrow', { y: 18 }, { autoAlpha: 1, y: 0, duration: 0.6 })
+        .fromTo('.hero-h1', { y: 28 }, { autoAlpha: 1, y: 0 }, '-=0.25')
+        .fromTo('.hero-desc', { y: 22 }, { autoAlpha: 1, y: 0 }, '-=0.55')
+        .fromTo('.hero-chips', { y: 18 }, { autoAlpha: 1, y: 0 }, '-=0.6')
+        .fromTo('.hero-actions', { y: 18 }, { autoAlpha: 1, y: 0 }, '-=0.6')
+        .fromTo('.hero-stats', { y: 14 }, { autoAlpha: 1, y: 0 }, '-=0.55')
+        .fromTo('.hero-scroll', {}, { autoAlpha: 1, duration: 0.5 }, '-=0.3')
+    })
+  }, { scope: root })
+
   return (
     <>
       <style>{`
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(28px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
         @keyframes scrollBob {
           0%, 100% { transform: translateY(0); opacity: 0.5; }
           50%      { transform: translateY(6px); opacity: 1; }
         }
 
-        .hero-eyebrow { animation: fadeUp 0.6s ease both 0.1s; }
-        .hero-h1      { animation: fadeUp 0.6s ease both 0.2s; }
-        .hero-desc    { animation: fadeUp 0.6s ease both 0.3s; }
-        .hero-chips   { animation: fadeUp 0.6s ease both 0.4s; }
-        .hero-actions { animation: fadeUp 0.6s ease both 0.5s; }
-        .hero-stats   { animation: fadeUp 0.6s ease both 0.6s; }
-        .hero-scroll  { animation: fadeUp 0.6s ease both 0.8s; }
+        /* Animated-in elements start hidden; GSAP reveals them. */
+        .hero-anim { opacity: 0; }
+        /* Visitors who opt out of motion (or have JS disabled) see everything. */
+        @media (prefers-reduced-motion: reduce) { .hero-anim { opacity: 1 !important; } }
 
         .btn-primary {
           background: var(--color-accent); color: var(--color-text);
@@ -58,15 +75,20 @@ export default function Hero() {
         }
       `}</style>
 
-      <div id="hero" style={{ background: 'var(--color-bg)', position: 'relative', overflow: 'hidden' }}>
+      {/* No-JS fallback: if scripts never run, GSAP can't reveal — show it all. */}
+      <noscript>
+        <style>{`.hero-anim { opacity: 1 !important; }`}</style>
+      </noscript>
+
+      <div id="hero" ref={root} style={{ background: 'var(--color-bg)', position: 'relative', overflow: 'hidden' }}>
         <section className="hero-section">
-          <div className="hero-eyebrow" style={{ marginBottom: '1.75rem', display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div className="hero-eyebrow hero-anim" style={{ marginBottom: '1.75rem', display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
             <span style={{ fontSize: '0.68rem', fontWeight: 500, color: 'var(--color-text-muted)', letterSpacing: '0.08em', fontFamily: 'var(--font-ui)' }}>
               {t('madeIn')}
             </span>
           </div>
 
-          <h1 className="hero-h1" style={{
+          <h1 className="hero-h1 hero-anim" style={{
             fontFamily: 'var(--font-display)', fontSize: 'clamp(3rem, 8vw, 6rem)',
             fontWeight: 300, lineHeight: 1.02, letterSpacing: '-0.035em',
             color: 'var(--color-text)', marginBottom: '1.75rem',
@@ -75,14 +97,14 @@ export default function Hero() {
             <em style={{ fontStyle: 'normal', color: 'var(--color-accent-text)' }}>{t('titleEmphasis')}</em>
           </h1>
 
-          <p className="hero-desc" style={{
+          <p className="hero-desc hero-anim" style={{
             fontSize: '1.05rem', fontWeight: 400, color: 'var(--color-text-secondary)',
             lineHeight: 1.8, maxWidth: '480px', marginBottom: '2rem', fontFamily: 'var(--font-ui)',
           }}>
             {t('description')}
           </p>
 
-          <div className="hero-chips" style={{ marginBottom: '2.5rem', display: 'flex', gap: '0.4rem', flexWrap: 'wrap', justifyContent: 'center', maxWidth: '520px' }}>
+          <div className="hero-chips hero-anim" style={{ marginBottom: '2.5rem', display: 'flex', gap: '0.4rem', flexWrap: 'wrap', justifyContent: 'center', maxWidth: '520px' }}>
             {chips.map(game => (
               <span key={game} style={{
                 fontSize: '0.72rem', fontWeight: 500, color: 'var(--color-text-secondary)',
@@ -92,18 +114,18 @@ export default function Hero() {
             ))}
           </div>
 
-          <div className="hero-actions" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '3rem' }}>
-            <a href="#order" className="btn-primary">{t('ctaPrimary')}</a>
-            <a href="#products" className="btn-outline">{t('ctaSecondary')}</a>
+          <div className="hero-actions hero-anim" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '3rem' }}>
+            <Magnetic><a href="#order" className="btn-primary">{t('ctaPrimary')}</a></Magnetic>
+            <Magnetic strength={0.25}><a href="#products" className="btn-outline">{t('ctaSecondary')}</a></Magnetic>
           </div>
 
-          <div className="hero-stats" style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center', paddingTop: '1.75rem', borderTop: '1px solid rgba(10,10,10,0.1)' }}>
+          <div className="hero-stats hero-anim" style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center', paddingTop: '1.75rem', borderTop: '1px solid rgba(10,10,10,0.1)' }}>
             <span className="hero-stat"><strong>{t('stat1Value')}</strong>{t('stat1Label')}</span>
             <span className="hero-stat"><strong>{t('stat2Value')}</strong>{t('stat2Label')}</span>
             <span className="hero-stat"><strong>{t('stat3Value')}</strong>{t('stat3Label')}</span>
           </div>
 
-          <a href="#products" className="hero-scroll" aria-label={t('scrollAria')} style={{
+          <a href="#products" className="hero-scroll hero-anim" aria-label={t('scrollAria')} style={{
             position: 'absolute', bottom: '1.5rem', left: '50%', transform: 'translateX(-50%)',
             color: 'var(--color-text-muted)', textDecoration: 'none',
           }}>
