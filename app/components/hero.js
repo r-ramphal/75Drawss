@@ -23,6 +23,7 @@ export default function Hero() {
         .fromTo('.hero-desc', { y: 22 }, { autoAlpha: 1, y: 0 }, '-=0.55')
         .fromTo('.hero-chips', { y: 18 }, { autoAlpha: 1, y: 0 }, '-=0.6')
         .fromTo('.hero-actions', { y: 18 }, { autoAlpha: 1, y: 0 }, '-=0.6')
+        .fromTo('.hero-trust', { y: 14 }, { autoAlpha: 1, y: 0 }, '-=0.6')
         .fromTo('.hero-stats', { y: 14 }, { autoAlpha: 1, y: 0 }, '-=0.55')
         .fromTo('.hero-scroll', {}, { autoAlpha: 1, duration: 0.5 }, '-=0.3')
     })
@@ -62,6 +63,13 @@ export default function Hero() {
 
         .hero-stat { font-size: 0.72rem; font-weight: 500; color: var(--color-text-muted); font-family: var(--font-ui); letter-spacing: 0.04em; }
         .hero-stat strong { color: var(--color-text); font-weight: 700; margin-right: 0.3em; }
+
+        .hero-trust-item {
+          display: inline-flex; align-items: center; gap: 0.4rem;
+          font-size: 0.78rem; font-weight: 500; color: var(--color-text-secondary);
+          font-family: var(--font-ui); white-space: nowrap;
+        }
+        .hero-trust-item svg { color: var(--color-accent-text); flex-shrink: 0; }
 
         .hero-section {
           min-height: 92vh; /* fallback for browsers without dvh */
@@ -114,9 +122,20 @@ export default function Hero() {
             ))}
           </div>
 
-          <div className="hero-actions hero-anim" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '3rem' }}>
+          <div className="hero-actions hero-anim" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '1.5rem' }}>
             <Magnetic><a href="#order" className="btn-primary">{t('ctaPrimary')}</a></Magnetic>
             <Magnetic strength={0.25}><a href="#products" className="btn-outline">{t('ctaSecondary')}</a></Magnetic>
+          </div>
+
+          <div className="hero-trust hero-anim" style={{ display: 'flex', gap: '0.6rem 1.4rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '3rem', maxWidth: '560px' }}>
+            {[t('trust1'), t('trust2'), t('trust3')].map((item) => (
+              <span key={item} className="hero-trust-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                {item}
+              </span>
+            ))}
           </div>
 
           <div className="hero-stats hero-anim" style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center', paddingTop: '1.75rem', borderTop: '1px solid rgba(10,10,10,0.1)' }}>
