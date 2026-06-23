@@ -5,6 +5,7 @@ import { useRouter, Link } from '@/i18n/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { trackLead } from '@/app/lib/track'
 
 const CLOUDINARY_CLOUD = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD
 const CLOUDINARY_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_PRESET
@@ -170,6 +171,9 @@ export default function OrderForm() {
       })
       const json = await res.json().catch(() => ({}))
       if (res.ok && json.success) {
+        // Conversion event — cookieless Vercel Analytics always; ad pixels only
+        // if consent was granted. Non-PII props only.
+        trackLead({ service, product: data.product_type })
         setSubmitted(true)
         router.push('/bedankt')
       } else {

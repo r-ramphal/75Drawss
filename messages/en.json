@@ -250,10 +250,10 @@
       { "h": "Who we are", "p": ["75Drawss makes handcrafted custom accessories for trading card games (binders, deck boxes, display cases and more) in the Netherlands. For any questions about your privacy or this policy, contact us at 75drawss@gmail.com."] },
       { "h": "What data we collect", "p": ["When you fill in the order form, we process: your name, your email address, the details of your request (product type, card game, colour, quantity, description and any special requirements) and the design files/artwork you upload.", "We also process limited technical data (such as your IP address) needed to protect the form against spam and abuse."] },
       { "h": "Why we use your data", "p": ["We use your data only to assess your request, provide a quote and — if you agree — produce and deliver your order. The legal basis for this is the performance of (or steps towards) a contract and your consent."] },
-      { "h": "Who we share data with", "p": ["We never sell your data. To provide our service we use a number of processors:", "• Resend — to send the order email to us.\n• Cloudinary — to securely store the design files you upload.\n• Vercel — to host the website.\n• Cloudflare (Turnstile) — to protect against spam and bots.", "Some of these providers may process data outside the EU; where that happens, appropriate safeguards apply."] },
+      { "h": "Who we share data with", "p": ["We never sell your data. To provide our service we use a number of processors:", "• Resend — to send the order email to us.\n• Cloudinary — to securely store the design files you upload.\n• Vercel — to host the website.\n• Cloudflare (Turnstile) — to protect against spam and bots.\n• Meta Platforms Ireland — for ad measurement via the Meta pixel (only after your consent).\n• TikTok Technology Limited — for ad measurement via the TikTok pixel (only after your consent).", "Some of these providers may process data outside the EU; where that happens, appropriate safeguards apply."] },
       { "h": "How long we keep data", "p": ["We keep your data no longer than necessary for the purpose for which it was collected and for our administrative and legal obligations. Uploaded design files are deleted after the order is completed, unless we agree otherwise with you."] },
       { "h": "Your rights", "p": ["You have the right to access, correct or delete your data, and to object to or request restriction of processing. You may also request a copy of your data. Email 75drawss@gmail.com and we will respond as soon as possible."] },
-      { "h": "Cookies", "p": ["The website uses functional and security-related techniques needed to make the form and the spam filter work. Any analytics we use are solely to improve the site."] },
+      { "h": "Cookies and tracking", "p": ["Necessary techniques: these are required to make the order form and the spam protection (Cloudflare Turnstile) work. They are always on and need no consent.", "Anonymous statistics: we use Vercel Analytics to measure visitor numbers and improve the site. This is cookieless and does not identify you — so no consent is needed for it either.", "Marketing cookies (TikTok Pixel and Meta Pixel): we only place these after you accept them in the cookie banner. We use them to measure how well our ads perform and to show more relevant ads on TikTok, Facebook and Instagram. This shares data with TikTok and Meta, who may also process it outside the EU (with appropriate safeguards).", "Withdrawing or changing your consent: if you decline in the banner, no marketing cookies are placed. You can revisit an earlier choice at any time by clearing this site's cookies in your browser; the banner will reappear on your next visit."] },
       { "h": "Security", "p": ["We take appropriate technical measures to protect your data, including an encrypted (HTTPS) connection, server-side validation and protection against automated abuse."] },
       { "h": "Filing a complaint", "p": ["If you disagree with how we handle your data, please contact us first. You also have the right to file a complaint with the Dutch Data Protection Authority (autoriteitpersoonsgegevens.nl)."] },
       { "h": "Changes", "p": ["We may update this privacy policy from time to time. The most recent version is always available on this page."] }
@@ -296,5 +296,12 @@
     "heading": "Unexpected error",
     "body": "Something went wrong on our end. Try refreshing the page or come back in a moment.",
     "retry": "Try again"
+  },
+  "consent": {
+    "aria": "Cookie consent",
+    "text": "We use TikTok and Meta cookies to measure and improve our ads. Anonymous, cookieless analytics are always on.",
+    "more": "More in our privacy policy",
+    "accept": "Accept",
+    "reject": "Reject"
   }
 }

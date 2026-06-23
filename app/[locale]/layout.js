@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import ConsentBanner from "@/app/components/consentbanner";
+import Pixels from "@/app/components/pixels";
 import "../globals.css";
 
 const rubik = Rubik({
@@ -117,9 +119,11 @@ export default async function LocaleLayout({ children, params }) {
         </noscript>
         <NextIntlClientProvider messages={messages}>
           {children}
+          <ConsentBanner />
         </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />
+        <Pixels />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
