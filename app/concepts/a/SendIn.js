@@ -1,6 +1,7 @@
 'use client'
 import { useRef } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
+import Image from 'next/image'
 import { useRevealOnScroll } from '@/app/lib/useReveal'
 import { WORKS } from '../shared/work'
 
@@ -27,7 +28,7 @@ export default function SendIn() {
         .ca-sendin-step p { font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.65; margin: 0; }
         .ca-sendin-cta { margin-top: 2rem; }
         .ca-sendin-photo { position: relative; }
-        .ca-sendin-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); display: block; box-shadow: var(--shadow-hard-lg); position: relative; }
+        .ca-sendin-photo img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); display: block; box-shadow: var(--shadow-hard-lg); position: relative; }
         .ca-sendin-photo::before { content: ''; position: absolute; inset: 1.25rem -1.25rem -1.25rem 1.25rem; background: var(--color-accent); border-radius: var(--radius); }
         @media (max-width: 900px) {
           .ca-sendin-grid { grid-template-columns: 1fr; }
@@ -52,7 +53,7 @@ export default function SendIn() {
             </div>
           </div>
           <div className="ca-sendin-photo reveal-item">
-            <img src={PHOTO.card} alt={PHOTO.alt[locale] || PHOTO.alt.en} loading="lazy" />
+            <Image src={PHOTO.img} alt={PHOTO.alt[locale] || PHOTO.alt.en} sizes="(max-width: 900px) 360px, 30vw" placeholder="blur" />
           </div>
         </div>
       </section>

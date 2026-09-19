@@ -79,15 +79,11 @@ const THEME = `
   @media (prefers-reduced-motion: reduce) { .ca-anim { opacity: 1 !important; } }
   /* App-like mobile: no tap flash, room for the bottom tab bar, safe areas */
   .ca a, .ca button { -webkit-tap-highlight-color: transparent; }
+  .ca section[id], .ca #order { scroll-margin-top: 4.5rem; }
   @media (max-width: 960px) {
     .ca { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
     .ca .ca-btn { min-height: 48px; }
     .consent { bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important; }
-  }
-  @media (display-mode: standalone) {
-    .ca { overscroll-behavior-y: none; }
-    .ca-nav { padding-top: calc(0.9rem + env(safe-area-inset-top, 0px)) !important; }
-    .ca-hero { padding-top: calc(6rem + env(safe-area-inset-top, 0px)) !important; }
   }
 `
 

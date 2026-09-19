@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
+import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { useRevealOnScroll } from '@/app/lib/useReveal'
 import { WORKS, WORK_COUNT, CATEGORIES } from '../shared/work'
@@ -92,13 +93,14 @@ export default function Work() {
         }
         .ca-work-row.on .ca-work-link, .ca-work-link:focus-visible { background: var(--color-hover-tint); border-left-color: var(--color-accent); padding-left: 0.6rem; outline: none; }
         .ca-work-nr { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; color: var(--color-text-muted); }
-        .ca-work-thumb { width: 48px; height: 60px; object-fit: cover; border-radius: 3px; display: block; background: var(--color-hover-tint); }
+        .ca-work-thumb { position: relative; width: 48px; height: 60px; border-radius: 3px; overflow: hidden; display: block; background: var(--color-hover-tint); }
+        .ca-work-thumb img { object-fit: cover; }
         .ca-work-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.05rem, 2vw, 1.5rem); letter-spacing: -0.02em; line-height: 1.1; }
         .ca-work-meta { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-muted); }
         .ca-work-preview { position: sticky; top: 6rem; }
         .ca-work-preview-img { position: relative; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; background: var(--color-hover-tint); box-shadow: var(--shadow-hard-lg); }
-        .ca-work-preview-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.35s ease; }
-        .ca-work-preview-img img.on { opacity: 1; }
+        .ca-work-preview-img img { object-fit: cover; animation: ca-fade 0.35s ease; }
+        @keyframes ca-fade { from { opacity: 0; } }
         .ca-work-preview-cap { display: flex; justify-content: space-between; gap: 1rem; margin-top: 0.75rem; font-size: 0.8rem; color: var(--color-text-secondary); }
         .ca-work-preview-cap strong { color: var(--color-text); }
         .ca-work-preview-btn { margin-top: 0.9rem; width: 100%; justify-content: center; }
@@ -172,7 +174,7 @@ export default function Work() {
                     aria-label={`${title(w)} — ${t('openLabel')}`}
                   >
                     <span className="ca-work-nr">{w.nr}</span>
-                    <img className="ca-work-thumb" src={w.card} alt="" loading="lazy" width={48} height={60} />
+                    <span className="ca-work-thumb"><Image src={w.img} alt="" fill sizes="48px" placeholder="blur" /></span>
                     <span className="ca-work-title">{title(w)}</span>
                     <span className="ca-work-meta game">{w.game}</span>
                     <span className="ca-work-meta">{label(w.category)}</span>
@@ -183,9 +185,7 @@ export default function Work() {
 
             <aside className="ca-work-preview" aria-hidden="true">
               <div className="ca-work-preview-img">
-                {list.map((w, i) => (
-                  <img key={w.id} src={w.card} alt="" className={i === active ? 'on' : ''} loading={i < 2 ? 'eager' : 'lazy'} />
-                ))}
+                {cur && <Image key={cur.id} src={cur.img} alt="" fill sizes="360px" placeholder="blur" className="on" />}
               </div>
               {cur && (
                 <>
@@ -215,7 +215,7 @@ export default function Work() {
           </button>
           <button type="button" className="ca-lb-nav prev" onClick={() => setOpen((o) => (o - 1 + list.length) % list.length)} aria-label={t('prev')}>←</button>
           <figure className="ca-lb-fig">
-            <img src={lb.img.src} alt={alt(lb)} />
+            <Image src={lb.img} alt={alt(lb)} sizes="(max-width: 800px) 100vw, 60vw" placeholder="blur" priority />
             <figcaption className="ca-lb-cap">
               <span className="ca-work-nr">{lb.nr} / {String(list.length).padStart(2, '0')}</span>
               <h3>{title(lb)}</h3>
