@@ -306,5 +306,128 @@
     "more": "Meer in onze privacyverklaring",
     "accept": "Accepteren",
     "reject": "Weigeren"
+  },
+  "concept": {
+    "a": {
+      "navWork": "Werk",
+      "navProcess": "Proces",
+      "navContact": "Contact",
+      "order": "Bestellen",
+      "heroL1": "Ontworpen",
+      "heroL2": "door jou.",
+      "heroL3": "Gemaakt door ons.",
+      "heroSub": "Custom TCG-binders, deckboxes en displaycases. Met de hand gemaakt in Nederland, naar jouw idee — van eerste schets tot op je deurmat.",
+      "ctaPrimary": "Start je ontwerp",
+      "ctaSecondary": "Bekijk het werk",
+      "scroll": "Scroll",
+      "manifestoEyebrow": "Wie",
+      "manifestoTitle": "Wij hebben geen huisstijl. Jij hebt er een.",
+      "manifestoBody": "Elke binder begint bij een verzamelaar met een idee. Wij vertalen dat idee naar een stuk dat je collectie draagt — geen templates, geen catalogus, geen compromis. Alleen origineel werk, met de hand gemaakt op bestelling.",
+      "manifestoAside": "Pokémon · One Piece · Lorcana · Magic",
+      "servicesEyebrow": "Wat we maken",
+      "servicesHint": "Beweeg over een regel",
+      "serviceTags": [
+        [
+          "4-pocket",
+          "9-pocket",
+          "Elke kleur",
+          "Rand tot rand bedrukt"
+        ],
+        [
+          "Magnetisch",
+          "Schuifdeksel",
+          "Volledig gesleeved deck"
+        ],
+        [
+          "Graded slabs",
+          "Topkaarten",
+          "Op maat"
+        ],
+        [
+          "Playmats",
+          "Sleeves",
+          "Verpakking"
+        ]
+      ],
+      "workEyebrow": "Werk",
+      "workTitle": "Index",
+      "workHint": "Beweeg over een titel voor het beeld",
+      "workAll": "Volledig portfolio",
+      "processEyebrow": "Proces",
+      "processTitle": "Van idee tot deurmat",
+      "sendinEyebrow": "Opstuur-service",
+      "sendinTitle": "Heb je al een product? Wij maken het van jou.",
+      "contactKicker": "Start hier",
+      "faqEyebrow": "Vragen",
+      "footerLine": "Custom TCG-accessoires, handgemaakt in Nederland. Levering in NL, BE en FR."
+    },
+    "b": {
+      "tagline1": "Custom TCG-accessoires.",
+      "tagline2": "Handgemaakt in Nederland.",
+      "navWork": "Werk",
+      "navAbout": "Over",
+      "navContact": "Contact",
+      "viewSlider": "Slider",
+      "viewGrid": "Grid",
+      "viewList": "Lijst",
+      "heroSub": "Een designstudio voor verzamelaars met een eigen visie.",
+      "enter": "Bekijk het werk",
+      "order": "Open brief",
+      "prev": "Vorige",
+      "next": "Volgende",
+      "workLabel": "Werk",
+      "colNr": "Nr",
+      "colTitle": "Titel",
+      "colGame": "Game",
+      "colCat": "Categorie",
+      "aboutLabel": "Over",
+      "aboutTitle": "Geen templates. Geen catalogus.",
+      "aboutBody": "Elk stuk wordt op bestelling gemaakt, naar jouw idee. Upload je artwork of beschrijf wat je voor je ziet — wij maken er een binder, deckbox of displaycase van die nergens anders bestaat.",
+      "processLabel": "Shot list",
+      "processTitle": "Van brief tot bezorging",
+      "processMeta": [
+        "Formulier",
+        "1–2 werkdagen",
+        "Handgemaakt",
+        "PostNL / DHL"
+      ],
+      "sendinLabel": "Take 2",
+      "sendinTitle": "Jouw eigen product, door ons gecustomized",
+      "contactLabel": "Brief",
+      "contactTitle": "Open brief",
+      "faqLabel": "Vragen",
+      "serves": "Levert aan NL / BE / FR",
+      "madeIn": "Gemaakt in Nederland"
+    },
+    "c": {
+      "navMenu": [
+        "Wat we maken",
+        "Portfolio",
+        "Proces",
+        "Vragen"
+      ],
+      "order": "Bestel",
+      "heroL1": "Met de hand gemaakt,",
+      "heroL2": "helemaal van jou.",
+      "heroCaption": "Handgemaakt in Nederland · Levering in NL, BE en FR",
+      "heroSub": "Custom TCG-binders, deckboxes en displaycases, ontworpen samen met jou en op bestelling gemaakt.",
+      "ctaPrimary": "Start je bestelling",
+      "ctaSecondary": "Bekijk het portfolio",
+      "m1Eyebrow": "Maak je product",
+      "m1Title": "Van jouw idee naar een binder die niemand anders heeft.",
+      "m1Cta": "Ontwerp mee",
+      "m2Eyebrow": "Opstuur-service",
+      "m2Title": "Heb je al een product? Wij maken het van jou.",
+      "m2Cta": "Customize mijn product",
+      "rangeEyebrow": "Wat we maken",
+      "rangeTitle": "Eén studio, je hele collectie.",
+      "galleryEyebrow": "Het werk",
+      "galleryTitle": "Zestien stukken, zestien verzamelaars.",
+      "processEyebrow": "Het proces",
+      "processTitle": "Van idee tot op je deurmat.",
+      "contactEyebrow": "Start een project",
+      "faqEyebrow": "Veelgestelde vragen",
+      "footerLine": "Custom TCG-accessoires, handgemaakt in Nederland."
+    }
   }
 }

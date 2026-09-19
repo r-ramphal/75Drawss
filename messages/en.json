@@ -306,5 +306,128 @@
     "more": "More in our privacy policy",
     "accept": "Accept",
     "reject": "Reject"
+  },
+  "concept": {
+    "a": {
+      "navWork": "Work",
+      "navProcess": "Process",
+      "navContact": "Contact",
+      "order": "Order",
+      "heroL1": "Designed",
+      "heroL2": "by you.",
+      "heroL3": "Made by us.",
+      "heroSub": "Custom TCG binders, deck boxes and display cases. Handmade in the Netherlands to your idea — from first sketch to your doorstep.",
+      "ctaPrimary": "Start your design",
+      "ctaSecondary": "See the work",
+      "scroll": "Scroll",
+      "manifestoEyebrow": "Who",
+      "manifestoTitle": "We don’t have a house style. You do.",
+      "manifestoBody": "Every binder starts with a collector and an idea. We turn that idea into a piece that carries your collection — no templates, no catalogue, no compromise. Only original work, handmade to order.",
+      "manifestoAside": "Pokémon · One Piece · Lorcana · Magic",
+      "servicesEyebrow": "What we make",
+      "servicesHint": "Hover a line",
+      "serviceTags": [
+        [
+          "4-pocket",
+          "9-pocket",
+          "Any colour",
+          "Edge-to-edge print"
+        ],
+        [
+          "Magnetic",
+          "Slide lid",
+          "Fully sleeved deck"
+        ],
+        [
+          "Graded slabs",
+          "Top cards",
+          "Made to measure"
+        ],
+        [
+          "Playmats",
+          "Sleeves",
+          "Packaging"
+        ]
+      ],
+      "workEyebrow": "Work",
+      "workTitle": "Index",
+      "workHint": "Hover a title to see the piece",
+      "workAll": "Full portfolio",
+      "processEyebrow": "Process",
+      "processTitle": "From idea to doorstep",
+      "sendinEyebrow": "Send-in service",
+      "sendinTitle": "Already own a product? We make it yours.",
+      "contactKicker": "Start here",
+      "faqEyebrow": "Questions",
+      "footerLine": "Custom TCG accessories, handmade in the Netherlands. Shipping to NL, BE and FR."
+    },
+    "b": {
+      "tagline1": "Custom TCG accessories.",
+      "tagline2": "Handmade in the Netherlands.",
+      "navWork": "Work",
+      "navAbout": "About",
+      "navContact": "Contact",
+      "viewSlider": "Slider",
+      "viewGrid": "Grid",
+      "viewList": "List",
+      "heroSub": "A design studio for collectors with a vision of their own.",
+      "enter": "See the work",
+      "order": "Open brief",
+      "prev": "Previous",
+      "next": "Next",
+      "workLabel": "Work",
+      "colNr": "No",
+      "colTitle": "Title",
+      "colGame": "Game",
+      "colCat": "Category",
+      "aboutLabel": "About",
+      "aboutTitle": "No templates. No catalogue.",
+      "aboutBody": "Every piece is made to order, to your idea. Upload your artwork or describe what you see — we turn it into a binder, deck box or display case that exists nowhere else.",
+      "processLabel": "Shot list",
+      "processTitle": "From brief to delivery",
+      "processMeta": [
+        "Form",
+        "1–2 working days",
+        "Handmade",
+        "PostNL / DHL"
+      ],
+      "sendinLabel": "Take 2",
+      "sendinTitle": "Your own product, customized by us",
+      "contactLabel": "Brief",
+      "contactTitle": "Open brief",
+      "faqLabel": "Questions",
+      "serves": "Ships to NL / BE / FR",
+      "madeIn": "Made in the Netherlands"
+    },
+    "c": {
+      "navMenu": [
+        "What we make",
+        "Portfolio",
+        "Process",
+        "Questions"
+      ],
+      "order": "Order",
+      "heroL1": "Made by hand,",
+      "heroL2": "entirely yours.",
+      "heroCaption": "Handmade in the Netherlands · Shipping to NL, BE and FR",
+      "heroSub": "Custom TCG binders, deck boxes and display cases, designed together with you and made to order.",
+      "ctaPrimary": "Start your order",
+      "ctaSecondary": "View the portfolio",
+      "m1Eyebrow": "Build your product",
+      "m1Title": "From your idea to a binder nobody else has.",
+      "m1Cta": "Design with us",
+      "m2Eyebrow": "Send-in service",
+      "m2Title": "Already own a product? We make it yours.",
+      "m2Cta": "Customize my product",
+      "rangeEyebrow": "What we make",
+      "rangeTitle": "One studio, your whole collection.",
+      "galleryEyebrow": "The work",
+      "galleryTitle": "Sixteen pieces, sixteen collectors.",
+      "processEyebrow": "The process",
+      "processTitle": "From idea to your doorstep.",
+      "contactEyebrow": "Start a project",
+      "faqEyebrow": "Frequently asked questions",
+      "footerLine": "Custom TCG accessories, handmade in the Netherlands."
+    }
   }
 }
