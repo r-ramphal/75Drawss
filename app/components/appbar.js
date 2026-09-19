@@ -20,7 +20,7 @@ const TABS = [
 export default function AppBar() {
   const t = useTranslations('home')
   const locale = useLocale()
-  const [active, setActive] = useState('hero')
+  const [active, setActive] = useState(null) // no tab lit on pages without these sections
 
   useEffect(() => {
     const sections = TABS.map((tab) => document.getElementById(tab.id)).filter(Boolean)
