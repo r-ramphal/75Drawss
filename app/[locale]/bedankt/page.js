@@ -43,7 +43,7 @@ export default async function Bedankt({ params }) {
       <p style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)' }}>
         {t('eyebrow')}
       </p>
-      <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', fontWeight: 300, letterSpacing: '-0.025em', color: 'var(--color-text)', lineHeight: 1.05 }}>
+      <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-0.025em', color: 'var(--color-text)', lineHeight: 1.05 }}>
         {t('heading')}
       </h1>
       <p style={{ fontSize: '0.95rem', color: 'var(--color-text-secondary)', maxWidth: '440px', lineHeight: 1.75 }}>

@@ -9,13 +9,8 @@ import { useRef } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { SplitText } from 'gsap/SplitText'
-import { useGSAP } from '@gsap/react'
+import { gsap, useGSAP, ScrollTrigger, SplitText } from '@/app/lib/gsap'
 import { BINDERS } from '@/app/data/binders'
-
-gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText)
 
 export default function DesignShowcase() {
   const t = useTranslations('portfolioPage')
@@ -96,7 +91,7 @@ export default function DesignShowcase() {
           color: var(--color-accent-text); margin-bottom: 1.4rem; font-family: var(--font-ui);
         }
         .dsa-h1 {
-          font-family: var(--font-display); font-weight: 300; letter-spacing: -0.03em;
+          font-family: var(--font-display); font-weight: 800; text-transform: uppercase; letter-spacing: -0.03em;
           font-size: clamp(2.6rem, 8vw, 6rem); line-height: 1.02; color: var(--color-text);
         }
         .dsa-intro {
@@ -133,7 +128,7 @@ export default function DesignShowcase() {
         }
         .dsa-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
         .dsa-ptitle {
-          font-family: var(--font-display); font-weight: 300; letter-spacing: -0.02em;
+          font-family: var(--font-display); font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em;
           font-size: clamp(1.9rem, 4.2vw, 3.2rem); line-height: 1.04; color: var(--color-text);
           margin-bottom: 1.1rem; overflow: hidden;
         }
@@ -155,7 +150,7 @@ export default function DesignShowcase() {
           text-align: center; padding: 6rem clamp(1.5rem, 6vw, 6rem); gap: 1.5rem;
           border-top: 2px solid var(--color-border);
         }
-        .dsa-end h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(2rem, 5vw, 3.6rem); letter-spacing: -0.025em; }
+        .dsa-end h2 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: clamp(2rem, 5vw, 3.6rem); letter-spacing: -0.025em; }
         .dsa-cta {
           display: inline-block; background: var(--color-accent); color: var(--color-text);
           font-family: var(--font-ui); font-size: 0.95rem; font-weight: 600; padding: 1rem 2.4rem;

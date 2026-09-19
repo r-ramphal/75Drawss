@@ -1,18 +1,15 @@
 import dynamic from 'next/dynamic'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
-import Navbar from '@/app/components/navbar'
-import Hero from '@/app/components/hero'
-import Ticker from '@/app/components/ticker'
+import Hero from '@/app/components/home/Hero'
+import Manifesto from '@/app/components/home/Manifesto'
+import Services from '@/app/components/home/Services'
 
-const ProductRange = dynamic(() => import('@/app/components/productrange'))
-const Portfolio = dynamic(() => import('@/app/components/portfolio'))
-const HowItWorks = dynamic(() => import('@/app/components/howitworks'))
-const SendIn = dynamic(() => import('@/app/components/sendin'))
-const Features = dynamic(() => import('@/app/components/features'))
-const OrderForm = dynamic(() => import('@/app/components/orderform'))
+const Work = dynamic(() => import('@/app/components/home/Work'))
+const Process = dynamic(() => import('@/app/components/home/Process'))
+const SendIn = dynamic(() => import('@/app/components/home/SendIn'))
+const Contact = dynamic(() => import('@/app/components/home/Contact'))
 const FAQ = dynamic(() => import('@/app/components/faq'))
 const Footer = dynamic(() => import('@/app/components/footer'))
-const StickyOrder = dynamic(() => import('@/app/components/stickyorder'))
 
 export default async function Home({ params }) {
   const { locale } = await params
@@ -36,18 +33,15 @@ export default async function Home({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
-      <Navbar />
       <Hero />
-      <Ticker />
-      <ProductRange />
-      <Portfolio />
-      <HowItWorks />
+      <Manifesto />
+      <Services />
+      <Work />
+      <Process />
       <SendIn />
-      <Features />
-      <OrderForm />
+      <Contact />
       <FAQ />
       <Footer />
-      <StickyOrder />
     </main>
   )
 }

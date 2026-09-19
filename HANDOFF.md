@@ -4,16 +4,13 @@
 > Laatst bijgewerkt: **2026-09-19**
 
 ## ▶️ VOLGENDE SESSIE — START HIER
-**Redesign-traject (gestart 2026-09-19, branch `redesign`).** Ravi wil de site fundamenteel artistieker met dezelfde stack. Drie conceptversies staan live op tijdelijke routes `/nl/concept/a`, `/b`, `/c` (+ `/en/…`, noindex, niet in sitemap):
-- **A · Index** (voorkeur van Ravi, 2026-09-19) — nu in de **originele huisstijl** (crème/zwart/goud, Rubik body, Archivo display), zonder foto naast de herotitel. Werk-index met categoriefilters, thumbnails per rij, vaste preview-kolom en lightbox (pijltjes/Esc, CTA naar formulier). Diensten als uitklapregels, horizontaal gepind proces. Map `app/concepts/a/`.
-- **B · Darkroom** — near-black met signaalrood, Space Grotesk + JetBrains Mono HUD-labels, viewfinder-hero-slider met korrel, werk in slider/grid/lijst (GSAP Flip), liniaal onderaan met scroll-voortgang. Map `app/concepts/b/`.
-- **C · Paper** — papier-wit, inkt, ultramarijn, Fraunces italic + Instrument Sans, full-bleed hero, editorial modules, productcarrousel, masonry-galerij, tijdlijn. Map `app/concepts/c/`.
+**Redesign afgerond op branch `redesign` (2026-09-19).** Concept A ("Index") is de site: crème/zwart/goud in de originele tokens, oversized uppercase **Archivo** voor koppen (`.site-display`), **Rubik** voor lopende tekst. Homepage = `app/components/home/` (Hero → Manifesto → Services → Work → Process → SendIn → Contact/OrderForm → FAQ → Footer). `Navbar` en `AppBar` (mobiele onderste tabbalk) staan in de locale-layout en werken op elke pagina via locale-geprefixte home-ankers. Tokens + utilities (`.site-wrap`, `.site-btn`, `.site-eyebrow`, `.site-mark`, reveal-baselines, tabbalk-ruimte) in `app/globals.css`.
 
-Gedeeld: `app/[locale]/concept/[variant]/page.js` (route), `app/concepts/shared/` (werkdata + iconen), teksten in namespace `concept.a|b|c` (nl + en), afgeleide crops via `npm run images:derive` → `public/portfolio/derived/`. Het bestelformulier is ongewijzigd en wordt per concept via CSS-tokens hertekend.
-
-**Stap 2 (na keuze van Ravi):** gekozen concept doortrekken naar homepage + `/portfolio`, `/inspiratie`, `/bedankt`, legal, error/404; tokens en typografie-basis naar `globals.css`; copy definitief in de bestaande namespaces; Unsplash/Pixabay-sfeerfoto's (eerst lijst met bronnen, pas na akkoord downloaden naar `public/atmos/`); `og.jpg` opnieuw; concept-routes + ongebruikte concepten verwijderen; HANDOFF + README bijwerken; mergen naar `main` en pushen na bevestiging.
-
-**Mobiel als app (2026-09-19):** concept A heeft op ≤960px een vaste onderste tabbalk (`app/concepts/a/AppBar.js`: Home/Werk/Bestel/Proces/Vragen, actieve tab via IntersectionObserver, safe-area-insets via `viewport-fit=cover` in `layout.js`), compacte topbar zonder bestelknop, `scroll-margin-top` op secties. **Bewust géén PWA** (manifest/service worker/installeer-banner zijn op verzoek van Ravi weer verwijderd — te veel). Beeld: alle foto's in concept A via `next/image` met `sizes` (thumbnails 48px → 96px-varianten, preview 360px, lightbox 100vw), AVIF+WebP aan in `next.config.mjs`; op mobiel wordt de preview-kolom niet geladen.
+**Open acties:**
+1. Ravi bekijkt de volledige site lokaal (`/nl`, `/en`, `/portfolio`, `/inspiratie`, `/privacy`, `/voorwaarden`, `/bedankt`) — daarna mergen naar `main` en pushen (Vercel-deploy). **Push alleen na bevestiging.**
+2. Optioneel: sfeerfoto's (Unsplash/Pixabay) — alleen als Ravi ze wil; het ontwerp is typografisch en heeft ze niet nodig. Eerst lijst met bronnen, pas na akkoord downloaden naar `public/atmos/`.
+3. `og.jpg` is ongewijzigd (crème/goud/serif) — past nog bij de huisstijl; evt. later opnieuw genereren met Archivo.
+4. Na deploy: Speed Insights/LCP checken (hero-H1 onthult via GSAP na hydration), Turnstile + formulier live testen.
 
 ⚠️ **Lokaal draaien:** `next dev` (Turbopack) hangt op deze machine (fs-event-assertion op het pad, daarna een proces van 5+ GB dat nooit antwoordt). Gebruik `npm run build` + `npx next start -p 3101` (`.claude/dev.cmd`). Node staat niet op PATH (winget, per gebruiker).
 
@@ -31,37 +28,43 @@ Marketing-/bestel-one-pager voor een design studio die handgemaakte **custom TCG
 - **Commits:** géén Claude co-author trailer toevoegen. Commit/push alleen op verzoek.
 
 ## Stack
-- **Next.js 16.2.6** (App Router, Turbopack) + **React 19**
+- **Next.js 16.2.6** (App Router) + **React 19**
 - **next-intl 4** — talen: `en` (default) + `nl`, locale-prefix altijd in URL (`/en`, `/nl`)
 - **react-hook-form + zod** (`@hookform/resolvers`) — formuliervalidatie
-- **GSAP 3.15 + @gsap/react** — centraal geregistreerd in `app/lib/gsap.js` (één plek; exporteert `gsap`, `useGSAP`, `ScrollTrigger`). Gebruikt op: `/portfolio` (DesignShowcase: ScrollTrigger + SplitText), **homepage-hero** (entree-timeline + magnetische CTA's via `app/components/magnetic.js`) en **Features** (USP-kaarten reveal via `ScrollTrigger.batch()`). Homepage-portfolio-preview gebruikt géén GSAP (plain rAF). Conventie: `useGSAP({ scope })` + `gsap.matchMedia('(prefers-reduced-motion: no-preference)')`; verborgen begin-staat via een `*-anim { opacity:0 }`-CSS-baseline met reduced-motion-override + `<noscript>`-fallback (geen FOUC, degradeert netjes). Bron-bonusbundel lokaal in `Downloads\gsap-public` (alle plugins gratis sinds v3.13). _framer-motion is verwijderd; Motion (motion.dev) bewust (nog) niet toegevoegd — GSAP-only._
-- **@vercel/analytics + @vercel/speed-insights** — bezoekers + Core Web Vitals (activeren pas na deploy op Vercel; lokaal no-op).
+- **GSAP 3.15 + @gsap/react** — centraal geregistreerd in `app/lib/gsap.js` (ScrollTrigger, SplitText, Flip, ScrambleText; exporteert `gsap`, `useGSAP`, `ScrollTrigger`, `SplitText`, `Flip`). Hero-entree = SplitText-lijnen + magnetische CTA's (`app/components/magnetic.js`); scroll-reveals via `app/lib/useReveal.js` (`.reveal-item`-baseline in `globals.css`, `<noscript>`-fallback in de layout); proces = horizontaal gepinde strip (≥1000px, ScrollTrigger pin); portfolio-showcase eigen SplitText/parallax. Conventie: `useGSAP({ scope })` + `gsap.matchMedia('(prefers-reduced-motion: no-preference)')`.
+- **@vercel/analytics + @vercel/speed-insights** — bezoekers + Core Web Vitals.
 - **Cloudinary** — client-side upload van design-bestanden (unsigned preset)
 - **Cloudflare Turnstile** — captcha, server-side geverifieerd
 - **Resend** — order-mails (eigenaar + klantbevestiging)
+- **Fonts** via `next/font/google` in `layout.js`: Rubik (`--font-rubik`, UI) en Archivo variable met wdth-as (`--font-archivo`, display). Geen Cormorant meer.
+- **Beeld** via `next/image` (AVIF/WebP aan in `next.config.mjs`), static imports uit `app/data/binders.js` (auto width/height + blur).
 
 ## Mappenstructuur
 ```
-app/[locale]/        page.js (homepage, lazy-loadt secties + FAQ JSON-LD)
-                     layout.js (SEO: metadata, hreflang, OG/Twitter, Store JSON-LD, fonts)
-                     bedankt/ privacy/ voorwaarden/ error.js not-found.js
+app/[locale]/        page.js (homepage: Hero → Manifesto → Services → Work → Process → SendIn → Contact → FAQ → Footer + FAQ JSON-LD)
+                     layout.js (SEO, fonts, Navbar + AppBar + ConsentBanner, Store JSON-LD)
+                     portfolio/ inspiratie/ bedankt/ privacy/ voorwaarden/ error.js not-found.js
 app/api/submit-order/route.js   ← order-backend (honeypot, rate-limit, Turnstile, Resend)
-app/components/      navbar hero ticker productrange portfolio howitworks
-                     sendin features orderform faq footer stickyorder
-                     languageswitcher legalpage
-app/globals.css      design tokens (CSS variables)  ·  app/sitemap.js  ·  app/page.module.css
+app/components/home/ Hero Manifesto Services Work Process SendIn Contact   ← homepage-secties
+app/components/      navbar (vaste topbar) · appbar (mobiele onderste tabbalk) · footer · orderform · faq
+                     languageswitcher · legalpage · consentbanner · pixels · magnetic
+                     portfolio/DesignShowcase.js · inspiration/InspirationView.js
+app/components/shared/  work.js (WORKS = BINDERS + volgnummer) · Social.js (iconen, logo, socials, e-mail)
+app/data/binders.js  16 portfoliostukken (single source) · app/data/inspiration.js
+app/globals.css      design tokens + utilities (.site-display .site-wrap .site-btn .site-eyebrow .site-mark)
 i18n/                routing.js (locales) · request.js · navigation.js
-messages/            nl.json · en.json   ← ALLE zichtbare teksten staan hier
-public/portfolio/    9 product-foto's (jpeg) + icon/og assets
+messages/            nl.json · en.json   ← ALLE zichtbare teksten; namespace `home` = homepage-koppen, nav, index, tabbalk
+public/portfolio/    16 product-foto's (jpeg) + icon/og assets
 ```
 
 ## Design tokens (`app/globals.css`)
-Component-styling gebeurt grotendeels via inline `<style>`-blokken per component, met deze CSS-variabelen:
-- Fonts: `--font-ui` (Rubik), `--font-display` (Cormorant Garamond, serif)
+Component-styling via `<style>`-blokken per component, uitsluitend met deze variabelen en utilities:
+- Fonts: `--font-ui` (Rubik), `--font-display` (Archivo). Koppen krijgen `.site-display` (850, 92% breedte, uppercase, -0.035em, line-height 0.9); losse koppen in orderform/faq/subpagina's zetten inline `fontWeight: 800` + `textTransform: uppercase`.
 - Achtergrond `--color-bg #FAFAF8`, surface `#fff`, tekst `#0A0A0A` / secondary `#555` / muted `#888`
 - Borders `--color-border` / `--color-border-strong`
-- Accent (geel) `--color-accent #F5B301`, hover `#D99A00`, accent-tekst `#8A5E00`
-- `--radius 6px`, `--shadow-hard`, `--shadow-hard-lg`
+- Accent (goud) `--color-accent #F5B301`, hover `#D99A00`, accent-tekst `#8A5E00`; `--color-hover-tint #FFFBEB`; `--color-numeral #D0D0CC`
+- `--radius 6px`, `--shadow-hard`, `--shadow-hard-lg`; `--nav-h` (anker-offset onder de vaste topbar), `--tabbar-h` (mobiele tabbalk, body-padding + consent-offset)
+- Utilities: `.site-wrap` (max 1440px), `.site-btn` (+ `.accent`), `.site-eyebrow` (gouden streepje), `.site-mark` (gouden marker achter tekst), `.site-anim`/`.reveal-item` (verborgen tot GSAP)
 - `prefers-reduced-motion` wordt gerespecteerd (globaal + per component).
 
 ## Bestelflow (kern)
@@ -93,28 +96,22 @@ Flow: bestand → Cloudinary upload → Turnstile-token → `POST /api/submit-or
 - Houd CSP in `next.config.mjs` in de gaten bij nieuwe externe scripts/domeinen.
 
 ## Lokaal draaien
-- `npm run dev` (Turbopack). `.claude/launch.json` start op poort 3001; `dev.log` toonde eerder poort 3007.
+- `npm run dev` hangt op deze machine (zie ▶️-blok): gebruik `npm run build` + `npx next start -p 3101` (`.claude/dev.cmd`, launch-config `75drawss`).
 - Build: `npm run build` · Lint: `npm run lint`.
 
 ## Portfolio — architectuur
-**Eén databron:** `app/data/binders.js` exporteert `BINDERS` (**16 stuks**) (+ afgeleide `CATEGORIES`). Elk object: `id, img (static import → auto width/height + blur), category, game, featured, title{en,nl}, alt{en,nl}`. Beschrijvingen zijn geverifieerd tegen de échte foto.
+**Eén databron:** `app/data/binders.js` exporteert `BINDERS` (**16 stuks**) (+ afgeleide `CATEGORIES`). Elk object: `id, img (static import → auto width/height + blur), category, game, featured, title{en,nl}, alt{en,nl}`. `app/components/shared/work.js` wikkelt dat tot `WORKS` met een volgnummer (`nr`). Beschrijvingen zijn geverifieerd tegen de échte foto.
 
-**Navigatie naar portfolio:** link in de navbar (desktop + mobiel menu, `nav.portfolio`), in de footer (`footer.portfolio`) en als CTA in de homepage-preview — alle naar `/portfolio`.
-
-**Een binder toevoegen** (alles werkt daarna automatisch — preview, alle designs, filters):
+**Een binder toevoegen** (alles werkt daarna automatisch — homepage-index, filters, portfolio):
 1. Foto in `public/portfolio/<naam>.jpeg`.
 2. `import <naam> from '@/public/portfolio/<naam>.jpeg'` boven in `binders.js`.
 3. Eén object aan `BINDERS` toevoegen.
 
-**Homepage = preview:** `app/components/portfolio.js` is een **vrije swipe-strip** (geen GSAP, geen scroll-hijack). Horizontale rij die je swipet/sleept; zachte auto-scroll (ping-pong via `requestAnimationFrame`) die pauzeert bij hover/touch/drag en bij off-screen (IntersectionObserver), respecteert reduced-motion. Verticaal scrollen wordt nooit geblokkeerd. **Kaarten in eigen verhouding** (geen crop): `--ar = img.width/img.height`, vaste hoogte. CTA → `/portfolio` (key `portfolio.viewAll`). _Bewust géén pin meer: een gepinde sectie dwong bezoekers eerst door de hele preview voor ze verder konden — slechte UX voor een teaser._
+**Homepage = index** (`app/components/home/Work.js`): categoriefilters met aantallen, genummerde rijen met thumbnail (`next/image`, 48px), op desktop een sticky preview-kolom die hover/focus volgt, klik = lightbox (volledige foto, pijltjes/Esc/swipe, CTA naar `#order`). Op mobiel geen preview-kolom (wordt ook niet geladen).
 
-**Volledige pagina:** `app/[locale]/portfolio/page.js` → **gekozen design = A** (Immersive Showcase), rendert `DesignShowcase` direct. i18n-namespace `portfolioPage` (incl. `categories`-map).
-- **A · Immersive Showcase** (`app/components/portfolio/DesignShowcase.js`, ACTIEF) — één binder per scherm, afwisselend L/R, SplitText-reveals + frame-parallax + vaste voortgangsrail. **Foto's in eigen verhouding** (geen crop): `<Image>` zonder `fill`, `width/height` uit static import, `max-height: 76vh` (58vh mobiel). Parallax beweegt het hele frame (niet de uitsnede).
-- Designs B (Living Grid) en C (Kinetic Marquee) zijn **verwijderd** (afgewezen). `next.config.mjs` heeft nog `distDir` via `NEXT_DIST_DIR` (inert, default `.next`) mocht je opnieuw varianten naast elkaar willen draaien.
+**Volledige pagina:** `app/[locale]/portfolio/page.js` → `DesignShowcase` (Immersive Showcase: één binder per scherm, afwisselend L/R, SplitText-reveals + frame-parallax + voortgangsrail; foto's in eigen verhouding, `max-height: 76vh`/58vh mobiel). i18n-namespace `portfolioPage` (incl. `categories`-map, ook gebruikt door de homepage-filters).
 
 **Beschrijvingen geverifieerd tegen de foto:** o.a. gecorrigeerd — `koi.jpeg` = **Croconaw** (id `croconaw`), Mimikyu = wolkenlucht (géén Amsterdam-skyline), starters = Pikachu + Kanto-starters bij sterrenregen, kid = Eustass Kid.
-
-GSAP-conventies: `useGSAP()` + `gsap.matchMedia()` (auto-cleanup, reduced-motion), plugins één keer registreren, `SplitText`/`Flip` reverten in cleanup. framer-motion is verwijderbaar (dood).
 
 ## Vercel (Pro)
 - `@vercel/analytics` + `@vercel/speed-insights` in `app/[locale]/layout.js` (`<Analytics />`, `<SpeedInsights />`).
@@ -123,10 +120,8 @@ GSAP-conventies: `useGSAP()` + `gsap.matchMedia()` (auto-cleanup, reduced-motion
 - Mogelijke vervolgstappen (nog niet gedaan): dynamische OG-images via `next/og`, Vercel Firewall / Attack Challenge Mode.
 
 ## Bekende aandachtspunten
-- `README.md` is nog standaard create-next-app boilerplate (niet projectspecifiek).
 - `middleware.js` geeft een Next 16 deprecation-warning → ooit migreren naar `proxy`.
-- Project bevat een lokale skill `.claude/skills/ui-ux-pro-max/`.
-
+- Alle foto's gaan via `next/image`; bij nieuwe beeldcomponenten `no-img-element` in de gaten houden.
 ## Inspiratie & community — `/inspiratie`  (LIVE)
 `app/[locale]/inspiratie/page.js` → `app/components/inspiration/InspirationView.js` (client). Secties: hero, **blader op vibe** (filter op `CATEGORIES`, masonry van `BINDERS`, natuurlijke verhouding), **idee-starters** (stijlen, kleurpaletten, populaire thema's — uit `app/data/inspiration.js`), **community** (Instagram/TikTok follow-CTA's + werk-teaser) en CTA. i18n-namespace `inspiratie`. Gelinkt vanuit navbar-menu + footer; in `sitemap.js`. Content uitbreiden = objecten toevoegen in `app/data/inspiration.js`.
 
@@ -165,3 +160,4 @@ Community-sectie toont nu follow-CTA's; voor een **live IG/TikTok-feed** nog pos
 - **2026-09-19 (concept A → huisstijl + index)** — Ravi kiest richting A. A omgezet naar de originele tokens (crème `#FAFAF8`, goud `#F5B301`, accent-tekst `#8A5E00`, radius 6px), herofoto verwijderd, trust-regels onder de CTA's, gouden marker op de derde heroregel. Werk-index herbouwd voor gebruik: filterchips met aantallen, thumbnail in elke rij, sticky preview-kolom (hover/focus), lightbox met toetsenbord en scroll-lock, teller "x van 16". Send-in met foto + gouden kader, contact-kicker als outline-tekst, footer zwart. Build + lint schoon. Commit `1b0da4c`.
 - **2026-09-19 (mobiel als app + PWA)** — Onderste tabbalk + installeer-banner voor concept A, compacte mobiele topbar (bestelknop weg, zit in de tabbalk), kleinere herotitel op mobiel, swipe in de lightbox. PWA-fundament: manifest, service worker met offline-pagina, iconen uit het merkicoon, viewport-fit cover + safe-areas, Apple web-app-meta, CSP-directives. Geverifieerd: manifest 200, sw.js geregistreerd en actief, tabbalk volgt de sectie, lightbox op mobiel. Build + lint schoon.
 - **2026-09-19 (PWA eruit, mobiel geoptimaliseerd)** — Op verzoek van Ravi manifest, service worker, offline-pagina, installeer-banner, PWA-iconen en Apple-web-app-meta verwijderd (CSP-directives ook). Tabbalk blijft. Optimalisatie: `next/image` voor thumbnails/preview/lightbox/send-in-foto met passende `sizes` en blur-placeholder, één preview-afbeelding i.p.v. 16 gestapelde, AVIF/WebP ingeschakeld, anker-offset voor de vaste topbar. ⚠️ Wie de site tijdens de PWA-fase op localhost bezocht heeft nog een oude service worker in de browser; die verdwijnt vanzelf (sw.js = 404) of via DevTools → Application → Unregister.
+- **2026-09-19 (stap 2: concept A = de site)** — `app/concepts/*` en de concept-route verwijderd; A verhuisd naar `app/components/home/` + `navbar`/`footer`/`appbar`, klasse-prefix `ca-` → `site-`, tokens en utilities naar `globals.css`, Archivo i.p.v. Cormorant in de layout. Oude homepage-componenten (hero, ticker, productrange, portfolio-preview, howitworks, sendin, features, stickyorder, oude navbar/footer), `page.module.css`, `public/portfolio/derived` en het derive-script verwijderd (alle foto's gaan nu via `next/image`). Namespace `concept.a` → `home`; `nav`, `portfolio`, `features` en ongebruikte `hero`-keys opgeruimd. Subpagina's (portfolio-showcase, inspiratie, legal, bedankt, 404, error) op de nieuwe kopstijl; DesignShowcase gebruikt de gedeelde GSAP-setup. README projectspecifiek. Build + lint schoon.

@@ -1,19 +1,30 @@
+/* Design tokens — the single source for colour, type and spacing.
+   Component styling lives in a <style> block per component and only uses
+   these variables. */
 :root {
   --font-ui: var(--font-rubik), system-ui, sans-serif;
-  --font-display: var(--font-display-serif), Georgia, serif;
+  --font-display: var(--font-archivo), system-ui, sans-serif;
+
   --color-bg: #FAFAF8;
   --color-surface: #ffffff;
   --color-text: #0A0A0A;
   --color-text-secondary: #555;
   --color-text-muted: #888;
-  --color-border: rgba(10,10,10,0.12);
-  --color-border-strong: rgba(10,10,10,0.28);
+  --color-border: rgba(10, 10, 10, 0.12);
+  --color-border-strong: rgba(10, 10, 10, 0.28);
   --color-accent: #F5B301;
   --color-accent-hover: #D99A00;
   --color-accent-text: #8A5E00;
+  --color-hover-tint: #FFFBEB;
+  --color-numeral: #D0D0CC;
+
   --radius: 6px;
-  --shadow-hard: 0 1px 2px rgba(10,10,10,0.04), 0 8px 24px rgba(10,10,10,0.06);
-  --shadow-hard-lg: 0 6px 16px rgba(10,10,10,0.07), 0 20px 48px rgba(10,10,10,0.10);
+  --shadow-hard: 0 1px 2px rgba(10, 10, 10, 0.04), 0 8px 24px rgba(10, 10, 10, 0.06);
+  --shadow-hard-lg: 0 6px 16px rgba(10, 10, 10, 0.07), 0 20px 48px rgba(10, 10, 10, 0.10);
+
+  /* Fixed chrome: top bar height (anchor offset) and mobile tab bar height. */
+  --nav-h: 4.5rem;
+  --tabbar-h: 64px;
 }
 
 *, *::before, *::after {
@@ -27,24 +38,85 @@ html, body {
   color: var(--color-text);
   font-family: var(--font-ui);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  /* Offset for the fixed navbar so anchor targets (#order, #faq, …) don't
-     land hidden behind it when a CTA scrolls to them. */
-  scroll-padding-top: 84px;
+  scroll-padding-top: var(--nav-h);
+  overflow-x: clip;
 }
 
 a { color: inherit; }
+a, button { -webkit-tap-highlight-color: transparent; }
+section[id], #order { scroll-margin-top: var(--nav-h); }
+::selection { background: var(--color-accent); color: #0A0A0A; }
 
-/* Scroll-reveal baseline: elements with .reveal-item start hidden and are
-   revealed by useRevealOnScroll (GSAP) as they enter the viewport. Visitors who
-   prefer reduced motion see them immediately; the <noscript> fallback in the
-   layout covers visitors without JS. */
-.reveal-item { opacity: 0; }
-@media (prefers-reduced-motion: reduce) { .reveal-item { opacity: 1 !important; } }
+/* Display type: oversized, uppercase, tight. */
+.site-display {
+  font-family: var(--font-display);
+  font-weight: 850;
+  font-stretch: 92%;
+  text-transform: uppercase;
+  letter-spacing: -0.035em;
+  line-height: 0.9;
+}
+.site-mark {
+  background: var(--color-accent);
+  color: #0A0A0A;
+  padding: 0 0.12em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.site-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+}
+.site-eyebrow::before { content: ''; width: 22px; height: 2px; background: var(--color-accent); }
 
+/* Layout + buttons shared by every section. */
+.site-wrap { max-width: 1440px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3.5rem); }
+.site-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--color-text);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+}
+.site-btn:hover { background: var(--color-text); color: #fff; }
+.site-btn.accent { background: var(--color-accent); border-color: var(--color-accent); color: #0A0A0A; }
+.site-btn.accent:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); color: #0A0A0A; }
+
+/* Scroll-reveal baselines: hidden until GSAP runs (see app/lib/useReveal.js
+   and the hero timeline). Reduced-motion and no-JS visitors see everything. */
+.reveal-item, .site-anim { opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
+  .reveal-item, .site-anim { opacity: 1 !important; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Mobile: room for the fixed bottom tab bar (app/components/appbar.js). */
+@media (max-width: 960px) {
+  body { padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px)); }
+  .site-btn { min-height: 48px; }
+  .consent { bottom: calc(var(--tabbar-h) + 0.5rem + env(safe-area-inset-bottom, 0px)) !important; }
 }

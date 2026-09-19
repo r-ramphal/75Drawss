@@ -34,11 +34,11 @@ export default function InspirationView() {
         .insp-wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
         .insp-hero { padding: 9rem 0 3rem; }
         .insp-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-accent-text); margin-bottom: 1.2rem; }
-        .insp-h1 { font-family: var(--font-display); font-weight: 300; letter-spacing: -0.03em; font-size: clamp(2.3rem, 6vw, 4.5rem); line-height: 1.03; }
+        .insp-h1 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; letter-spacing: -0.03em; font-size: clamp(2.3rem, 6vw, 4.5rem); line-height: 1.03; }
         .insp-intro { max-width: 560px; margin-top: 1.3rem; color: var(--color-text-secondary); font-size: 1.05rem; line-height: 1.7; }
 
         .insp-section { padding: 3.5rem 0; border-top: 1px solid var(--color-border); }
-        .insp-h2 { font-family: var(--font-display); font-weight: 300; letter-spacing: -0.02em; font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
+        .insp-h2 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
         .insp-sub { color: var(--color-text-secondary); font-size: 0.95rem; margin-top: 0.5rem; margin-bottom: 1.75rem; }
 
         .insp-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; }
@@ -76,7 +76,7 @@ export default function InspirationView() {
         .insp-teaser img { object-fit: cover; }
 
         .insp-cta { text-align: center; padding: 5rem 0 6rem; border-top: 1px solid var(--color-border); }
-        .insp-cta h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.8rem, 4.5vw, 3rem); letter-spacing: -0.025em; }
+        .insp-cta h2 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: clamp(1.8rem, 4.5vw, 3rem); letter-spacing: -0.025em; }
         .insp-cta p { max-width: 480px; margin: 0.9rem auto 1.75rem; color: var(--color-text-secondary); line-height: 1.7; }
         .insp-btn { display: inline-block; background: var(--color-accent); color: var(--color-text); font-size: 0.95rem; font-weight: 600; padding: 1rem 2.4rem; border-radius: var(--radius); text-decoration: none; border: 1px solid var(--color-accent); transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; }
         .insp-btn:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); transform: translateY(-1px); box-shadow: 0 10px 24px rgba(10,10,10,0.14); }

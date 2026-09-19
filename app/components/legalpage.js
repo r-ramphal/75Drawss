@@ -10,12 +10,12 @@ export default async function LegalPage({ locale, namespace }) {
 
   return (
     <div style={{ background: 'var(--color-bg)', minHeight: '100vh', fontFamily: 'var(--font-ui)' }}>
-      <div style={{ maxWidth: '760px', margin: '0 auto', padding: '4rem 1.5rem 5rem' }}>
-        <Link href="/" style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-text-secondary)', textDecoration: 'none', letterSpacing: '0.01em' }}>
+      <div style={{ maxWidth: '760px', margin: '0 auto', padding: '7rem 1.5rem 5rem' }}>
+        <Link href="/" style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-text-secondary)', textDecoration: 'none' }}>
           ← {t('back')}
         </Link>
 
-        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem, 5vw, 3.25rem)', fontWeight: 300, letterSpacing: '-0.025em', lineHeight: 1.1, color: 'var(--color-text)', marginTop: '2rem' }}>
+        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem, 5vw, 3.25rem)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-0.025em', lineHeight: 1.1, color: 'var(--color-text)', marginTop: '2rem' }}>
           {t('title')}
         </h1>
         <p style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', marginTop: '0.75rem', fontWeight: 500 }}>

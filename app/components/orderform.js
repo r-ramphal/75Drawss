@@ -268,7 +268,7 @@ export default function OrderForm() {
             {/* LEFT INFO */}
             <div>
               <p style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '1rem', fontFamily: 'var(--font-ui)' }}>{t('eyebrow')}</p>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 300, letterSpacing: '-0.025em', lineHeight: 1.1, marginBottom: '1rem', color: 'var(--color-text)' }}>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-0.025em', lineHeight: 1.1, marginBottom: '1rem', color: 'var(--color-text)' }}>
                 {t('titleLine1')}<br/>{t('titleLine2')}
               </h2>
               <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', lineHeight: 1.8, fontWeight: 400, marginBottom: '2.5rem', fontFamily: 'var(--font-ui)' }}>
@@ -299,7 +299,7 @@ export default function OrderForm() {
               {submitted ? (
                 <div style={{ textAlign: 'center', padding: '3.5rem 2rem' }}>
                   <div style={{ width: 48, height: 48, background: 'var(--color-text)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', color: '#fff', fontSize: '1.1rem' }}>✓</div>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 300, marginBottom: '0.75rem', color: 'var(--color-text)' }}>{tThanks('heading')}</h3>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.75rem', color: 'var(--color-text)' }}>{tThanks('heading')}</h3>
                   <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', fontWeight: 400, lineHeight: 1.7, fontFamily: 'var(--font-ui)' }}>
                     {tThanks('body')}
                   </p>

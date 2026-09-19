@@ -1,4 +1,4 @@
-import { Rubik, Cormorant_Garamond } from "next/font/google";
+import { Rubik, Archivo } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -7,6 +7,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ConsentBanner from "@/app/components/consentbanner";
 import Pixels from "@/app/components/pixels";
+import Navbar from "@/app/components/navbar";
+import AppBar from "@/app/components/appbar";
 import "../globals.css";
 
 const rubik = Rubik({
@@ -16,11 +18,11 @@ const rubik = Rubik({
   display: 'swap',
 });
 
-const displaySerif = Cormorant_Garamond({
-  variable: "--font-display-serif",
-  subsets: ["latin"],
-  weight: ['300', '400', '500', '600'],
-  style: ['normal', 'italic'],
+// Display face for all headings; the wdth axis lets .site-display sit at 92%.
+const archivo = Archivo({
+  variable: '--font-archivo',
+  subsets: ['latin'],
+  axes: ['wdth'],
   display: 'swap',
 });
 
@@ -119,15 +121,17 @@ export default async function LocaleLayout({ children, params }) {
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${rubik.variable} ${displaySerif.variable}`}>
+    <html lang={locale} className={`${rubik.variable} ${archivo.variable}`}>
       <body>
         {/* No-JS fallback: scroll-reveal elements stay hidden until GSAP runs,
             so reveal everything when scripts are unavailable. */}
         <noscript>
-          <style>{`.reveal-item { opacity: 1 !important; }`}</style>
+          <style>{`.reveal-item, .site-anim { opacity: 1 !important; }`}</style>
         </noscript>
         <NextIntlClientProvider messages={messages}>
+          <Navbar />
           {children}
+          <AppBar />
           <ConsentBanner />
         </NextIntlClientProvider>
         <Analytics />

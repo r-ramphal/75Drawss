@@ -1,103 +1,53 @@
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { Link } from '@/i18n/navigation'
+import { InstagramIcon, TikTokIcon, INSTAGRAM_URL, TIKTOK_URL, CONTACT_EMAIL } from '@/app/components/shared/Social'
 
 export default function Footer() {
-  const t = useTranslations('footer')
+  const t = useTranslations('home')
+  const tf = useTranslations('footer')
+  const locale = useLocale()
   return (
     <>
       <style>{`
-        .footer-link {
-          font-size: 0.78rem;
-          font-weight: 500;
-          color: var(--color-text-secondary);
-          text-decoration: none;
-          transition: color 0.15s;
-          letter-spacing: 0.01em;
-        }
-        .footer-link:hover { color: var(--color-accent); }
-        .footer-inner {
-          padding: 3rem;
-          display: grid;
-          grid-template-columns: 1fr auto 1fr;
-          align-items: center;
-          gap: 2rem;
-        }
-        .footer-links { display: flex; gap: 2rem; justify-content: center; }
-        .footer-copy { text-align: right; }
-        .footer-brand { display: flex; flex-direction: column; gap: 1rem; }
-        .footer-social { display: flex; gap: 0.6rem; }
-        .social-link {
-          width: 34px; height: 34px;
-          display: flex; align-items: center; justify-content: center;
-          border: 1.5px solid rgba(255,255,255,0.2);
-          border-radius: 50%;
-          color: #ffffff;
-          transition: color 0.15s, border-color 0.15s, background 0.15s;
-        }
-        .social-link:hover {
-          color: var(--color-text);
-          background: var(--color-accent);
-          border-color: var(--color-accent);
-        }
-        @media (max-width: 768px) {
-          .footer-inner {
-            grid-template-columns: 1fr !important;
-            padding: 2rem 1.5rem !important;
-            text-align: left;
-          }
-          .footer-links { justify-content: flex-start; flex-wrap: wrap; gap: 1.25rem; }
-          .footer-copy { text-align: left !important; }
-        }
+        .site-footer { background: var(--color-text); color: #fff; overflow: hidden; }
+        .site-footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2rem; padding: 3.5rem 0 2rem; }
+        .site-footer p { margin: 0; color: rgba(255,255,255,0.7); line-height: 1.7; max-width: 380px; }
+        .site-footer-col { display: flex; flex-direction: column; gap: 0.6rem; }
+        .site-footer-col a { color: #fff; text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
+        .site-footer-col a:hover { color: var(--color-accent); }
+        .site-footer-social { display: flex; gap: 0.6rem; margin-bottom: 0.5rem; }
+        .site-footer-social a { display: inline-flex; width: 34px; height: 34px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; }
+        .site-footer-social a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+        .site-footer-mark { font-size: clamp(5rem, 19vw, 19rem); line-height: 0.78; margin: 1rem 0 0; transform: translateY(0.14em); white-space: nowrap; color: #fff; }
+        .site-footer-mark span { color: var(--color-accent); }
+        .site-footer-rights { font-size: 0.68rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; padding-bottom: 1rem; }
+        @media (max-width: 800px) { .site-footer-grid { grid-template-columns: 1fr; } }
       `}</style>
-      <footer style={{ borderTop: '2px solid var(--color-border)', background: 'var(--color-text)' }}>
-        <div className="footer-inner" style={{ maxWidth: '1200px', margin: '0 auto', fontFamily: 'var(--font-ui)' }}>
-          <div className="footer-brand">
-            <div style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '1.1rem',
-              fontWeight: 300,
-              letterSpacing: '-0.02em',
-              color: '#ffffff',
-              display: 'flex',
-              alignItems: 'baseline',
-              gap: '0.05em',
-            }}>
-              <span style={{ fontFamily: 'var(--font-ui)', fontWeight: 700, fontSize: '1rem', color: 'var(--color-accent)' }}>75</span>
-              <span>Drawss</span>
+      <footer className="site-footer">
+        <div className="site-wrap">
+          <div className="site-footer-grid">
+            <div>
+              <p>{t('footerLine')}</p>
+              <p style={{ marginTop: '1rem' }}><a href={`mailto:${CONTACT_EMAIL}`} style={{ color: 'var(--color-accent)' }}>{CONTACT_EMAIL}</a></p>
             </div>
-            <div className="footer-social">
-              <a href="https://www.instagram.com/75.drawss" target="_blank" rel="noopener noreferrer" className="social-link" aria-label={t('instagram')}>
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                </svg>
-              </a>
-              <a href="https://www.tiktok.com/@75drawss" target="_blank" rel="noopener noreferrer" className="social-link" aria-label={t('tiktok')}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                </svg>
-              </a>
+            <div className="site-footer-col">
+              <Link href="/portfolio">{tf('portfolio')}</Link>
+              <Link href="/inspiratie">{tf('inspiration')}</Link>
+              <a href={`/${locale}#process`}>{tf('howItWorks')}</a>
+              <a href={`/${locale}#faq`}>{tf('faq')}</a>
+              <a href={`/${locale}#order`}>{tf('order')}</a>
+            </div>
+            <div className="site-footer-col">
+              <div className="site-footer-social">
+                <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label={tf('instagram')}><InstagramIcon /></a>
+                <a href={TIKTOK_URL} target="_blank" rel="noopener noreferrer" aria-label={tf('tiktok')}><TikTokIcon /></a>
+              </div>
+              <Link href="/privacy">{tf('privacy')}</Link>
+              <Link href="/voorwaarden">{tf('terms')}</Link>
             </div>
           </div>
-
-          <nav className="footer-links" aria-label={t('nav')}>
-            <a href="#how-it-works" className="footer-link">{t('howItWorks')}</a>
-            <a href="#features" className="footer-link">{t('whyUs')}</a>
-            <Link href="/portfolio" className="footer-link">{t('portfolio')}</Link>
-            <Link href="/inspiratie" className="footer-link">{t('inspiration')}</Link>
-            <a href="#faq" className="footer-link">{t('faq')}</a>
-            <a href="#order" className="footer-link">{t('order')}</a>
-            <Link href="/privacy" className="footer-link">{t('privacy')}</Link>
-            <Link href="/voorwaarden" className="footer-link">{t('terms')}</Link>
-          </nav>
-
-          <div className="footer-copy">
-            <p style={{ fontSize: '0.72rem', color: '#888', fontWeight: 400, lineHeight: 1.6 }}>
-              {t('rights')}<br/>
-              <a href="mailto:75Drawss@gmail.com" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontWeight: 500 }}>75Drawss@gmail.com</a>
-            </p>
-          </div>
+          <div className="site-footer-rights">{tf('rights')}</div>
+          <div className="site-display site-footer-mark" aria-hidden="true"><span>75</span>Drawss</div>
         </div>
       </footer>
     </>

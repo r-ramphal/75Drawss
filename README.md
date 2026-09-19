@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 75Drawss
 
-## Getting Started
+Marketing- en bestelsite van 75Drawss: handgemaakte custom TCG-accessoires (binders, deckboxes, displaycases, sleeves) op bestelling, gemaakt in Nederland, geleverd in NL, BE en FR. Live op [www.75drawss.com](https://www.75drawss.com), Nederlands en Engels.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Next.js 16 (App Router) + React 19
+- next-intl — talen `nl` en `en`, altijd met locale-prefix in de URL; alle teksten in `messages/nl.json` en `messages/en.json`
+- GSAP 3 — centrale plugin-registratie in `app/lib/gsap.js`, scroll-reveals via `app/lib/useReveal.js`
+- react-hook-form + zod — bestelformulier
+- Cloudinary (upload), Cloudflare Turnstile (captcha), Resend (order-mails)
+- Vercel Analytics + Speed Insights
+
+## Structuur
+
+```
+app/[locale]/           homepage, portfolio, inspiratie, bedankt, privacy, voorwaarden
+app/[locale]/layout.js  fonts (Rubik, Archivo), SEO-metadata, Navbar + AppBar + ConsentBanner
+app/api/submit-order/   order-backend (honeypot, rate-limit, Turnstile, Resend)
+app/components/home/    secties van de homepage: Hero, Manifesto, Services, Work, Process, SendIn, Contact
+app/components/         navbar, appbar (mobiele tabbalk), footer, orderform, faq, languageswitcher, ...
+app/components/shared/  werkdata (WORKS) en iconen/logo
+app/data/binders.js     de 16 portfoliostukken (single source)
+app/globals.css         design tokens en gedeelde utilities (.site-*)
+public/portfolio/       productfoto's
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Lokaal draaien
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Kopieer `.env.example` naar `.env.local` en vul de sleutels in; zonder sleutels rendert het formulier wel, maar upload, captcha en verzenden werken niet.
 
-## Learn More
+Controle voor een push:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run lint
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Werkafspraken
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Teksten alleen via next-intl; nieuwe keys in **beide** taalbestanden.
+- Styling per component in een `<style>`-blok, uitsluitend met de tokens uit `app/globals.css`.
+- Een binder toevoegen: foto in `public/portfolio/`, import + object in `app/data/binders.js`; homepage-index, portfolio en filters volgen automatisch.
+- Nieuwe externe scripts of domeinen: CSP in `next.config.mjs` aanpassen.
+- `HANDOFF.md` bevat de projectstand, beslissingen en het sessielog.
