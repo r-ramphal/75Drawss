@@ -40,6 +40,8 @@ export default function Nav() {
           .ca-nav-links { gap: 1rem; }
           .ca-nav-link.hide-m { display: none; }
           .ca-nav-brand span { display: none; }
+          .ca-nav-order { display: none; } /* the bottom tab bar carries the order action */
+          .ca-nav { padding-top: 0.9rem; padding-bottom: 0.9rem; background: rgba(250,250,248,0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--color-border); }
         }
       `}</style>
       <nav className="ca-nav" aria-label="Concept A">

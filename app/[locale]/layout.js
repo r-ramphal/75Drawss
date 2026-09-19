@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ConsentBanner from "@/app/components/consentbanner";
 import Pixels from "@/app/components/pixels";
+import Pwa from "@/app/components/pwa";
 import "../globals.css";
 
 const rubik = Rubik({
@@ -68,8 +69,23 @@ export async function generateMetadata({ params }) {
     verification: {
       google: '4n7f3GSEAdSc6A9H4XlPCpjwmtHAGZAkjUIXEHTGLOY',
     },
+    // Installed-app behaviour on iOS (Android/desktop read app/manifest.js).
+    appleWebApp: {
+      capable: true,
+      title: '75Drawss',
+      statusBarStyle: 'default',
+    },
   };
 }
+
+// viewport-fit=cover lets the layout extend under the notch / home indicator;
+// components pad with env(safe-area-inset-*) where needed.
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#0A0A0A',
+};
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -124,6 +140,7 @@ export default async function LocaleLayout({ children, params }) {
         <Analytics />
         <SpeedInsights />
         <Pixels />
+        <Pwa />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

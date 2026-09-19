@@ -10,6 +10,8 @@ const ContentSecurityPolicy = [
   "img-src 'self' data: blob: https://res.cloudinary.com",
   "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.googleadservices.com https://www.google.com https://www.gstatic.com https://va.vercel-scripts.com",
   "style-src 'self' 'unsafe-inline'",
+  "worker-src 'self'",
+  "manifest-src 'self'",
   "font-src 'self' data:",
   "frame-src 'self' https://challenges.cloudflare.com",
   "connect-src 'self' https://api.cloudinary.com https://challenges.cloudflare.com https://www.google-analytics.com https://region1.google-analytics.com https://va.vercel-scripts.com https://vitals.vercel-insights.com",

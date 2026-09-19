@@ -53,7 +53,8 @@ export default function Hero() {
         @keyframes ca-tick { to { transform: translateX(-50%); } }
         @media (prefers-reduced-motion: reduce) { .ca-marquee-track { animation: none; } }
         @media (max-width: 900px) {
-          .ca-hero { padding-top: 6rem; }
+          .ca-hero { padding-top: 5.5rem; min-height: calc(100svh - 64px); }
+          .ca-hero-title { font-size: clamp(2.7rem, 13.5vw, 5rem); }
           .ca-hero-row { grid-template-columns: 1fr; gap: 1.5rem; }
           .ca-hero-actions { justify-self: start; }
           .ca-hero-scroll { display: none; }

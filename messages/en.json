@@ -367,7 +367,17 @@
       "close": "Close",
       "prev": "Previous",
       "next": "Next",
-      "lbCta": "Request a similar design"
+      "lbCta": "Request a similar design",
+      "tabBarLabel": "App navigation",
+      "tabHome": "Home",
+      "tabWork": "Work",
+      "tabOrder": "Order",
+      "tabProcess": "Process",
+      "tabFaq": "FAQ",
+      "installTitle": "Add 75Drawss to your home screen",
+      "installBody": "Opens as an app, without the browser bar.",
+      "installBtn": "Install",
+      "installIos": "Tap Share and choose “Add to Home Screen”."
     },
     "b": {
       "tagline1": "Custom TCG accessories.",

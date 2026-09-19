@@ -51,6 +51,17 @@ export default function Work() {
     return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = prev }
   }, [open, list.length])
 
+  // Swipe left/right in the lightbox on touch screens.
+  const touchX = useRef(null)
+  const onTouchStart = (e) => { touchX.current = e.touches[0].clientX }
+  const onTouchEnd = (e) => {
+    if (touchX.current === null) return
+    const dx = e.changedTouches[0].clientX - touchX.current
+    touchX.current = null
+    if (Math.abs(dx) < 50) return
+    setOpen((o) => (dx < 0 ? (o + 1) % list.length : (o - 1 + list.length) % list.length))
+  }
+
   const cur = list[Math.min(active, list.length - 1)]
   const lb = open !== null ? list[open] : null
 
@@ -118,7 +129,7 @@ export default function Work() {
         .ca-lb-cap .ca-btn.accent:hover { background: var(--color-accent-hover); }
         .ca-lb-keys { font-size: 0.68rem; color: rgba(255,255,255,0.5); margin-top: 1rem; letter-spacing: 0.08em; text-transform: uppercase; }
         @media (max-width: 800px) {
-          .ca-lb { grid-template-columns: 1fr; padding: 0.75rem; overflow: auto; align-items: start; }
+          .ca-lb { grid-template-columns: 1fr; padding: 0.75rem; overflow: auto; align-items: start; background: rgba(10,10,10,0.98); }
           .ca-lb-nav { position: fixed; top: 50%; transform: translateY(-50%); }
           .ca-lb-nav.prev { left: 0.75rem; } .ca-lb-nav.next { right: 0.75rem; }
           .ca-lb-fig { grid-template-columns: 1fr; gap: 1rem; max-height: none; padding-top: 3.5rem; }
@@ -198,7 +209,7 @@ export default function Work() {
       </section>
 
       {lb && (
-        <div className="ca-lb" role="dialog" aria-modal="true" aria-label={title(lb)} onClick={(e) => { if (e.target === e.currentTarget) setOpen(null) }}>
+        <div className="ca-lb" role="dialog" aria-modal="true" aria-label={title(lb)} onClick={(e) => { if (e.target === e.currentTarget) setOpen(null) }} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
           <button type="button" ref={closeRef} className="ca-btn ca-lb-close" style={{ borderColor: '#fff', color: '#fff' }} onClick={() => setOpen(null)}>
             {t('close')} ×
           </button>

@@ -367,7 +367,17 @@
       "close": "Sluiten",
       "prev": "Vorige",
       "next": "Volgende",
-      "lbCta": "Vergelijkbaar ontwerp aanvragen"
+      "lbCta": "Vergelijkbaar ontwerp aanvragen",
+      "tabBarLabel": "App-navigatie",
+      "tabHome": "Home",
+      "tabWork": "Werk",
+      "tabOrder": "Bestel",
+      "tabProcess": "Proces",
+      "tabFaq": "Vragen",
+      "installTitle": "Zet 75Drawss op je beginscherm",
+      "installBody": "Opent als app, zonder browserbalk.",
+      "installBtn": "Installeren",
+      "installIos": "Tik op Delen en kies “Zet op beginscherm”."
     },
     "b": {
       "tagline1": "Custom TCG-accessoires.",
