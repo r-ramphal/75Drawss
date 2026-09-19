@@ -16,7 +16,7 @@ export default function Nav() {
           position: fixed; inset: 0 0 auto 0; z-index: 60;
           display: flex; align-items: center; justify-content: space-between;
           padding: 1.1rem clamp(1.25rem, 4vw, 3.5rem);
-          background: linear-gradient(to bottom, rgba(10,10,10,0.92), rgba(10,10,10,0));
+          background: linear-gradient(to bottom, rgba(250,250,248,0.95), rgba(250,250,248,0));
           pointer-events: none;
         }
         .ca-nav > * { pointer-events: auto; }
@@ -27,15 +27,15 @@ export default function Nav() {
           font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
           color: var(--color-text); text-decoration: none; position: relative;
         }
-        .ca-nav-link sup { color: var(--color-accent); font-size: 0.6em; margin-left: 0.15em; }
+        .ca-nav-link sup { color: var(--color-accent-text); font-size: 0.6em; margin-left: 0.15em; }
         .ca-nav-link::after {
           content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px;
           background: var(--color-accent); transform: scaleX(0); transform-origin: left; transition: transform 0.25s;
         }
         .ca-nav-link:hover::after { transform: scaleX(1); }
-        .ca-nav-order { padding: 0.6rem 1rem; border: 1px solid var(--color-accent); color: var(--color-accent); }
+        .ca-nav-order { padding: 0.6rem 1rem; border: 1px solid var(--color-accent); background: var(--color-accent); color: #0A0A0A; border-radius: var(--radius); }
         .ca-nav-order::after { display: none; }
-        .ca-nav-order:hover { background: var(--color-accent); color: #0A0A0A; }
+        .ca-nav-order:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
         @media (max-width: 720px) {
           .ca-nav-links { gap: 1rem; }
           .ca-nav-link.hide-m { display: none; }
@@ -44,7 +44,7 @@ export default function Nav() {
       `}</style>
       <nav className="ca-nav" aria-label="Concept A">
         <a href={home} className="ca-nav-brand" aria-label="75Drawss">
-          <Logo75 size={30} bg="#F2F2F0" fg="#0A0A0A" />
+          <Logo75 size={30} bg="#0A0A0A" fg="#ffffff" />
           <span>75Drawss</span>
         </a>
         <div className="ca-nav-links">

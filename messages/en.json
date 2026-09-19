@@ -351,7 +351,7 @@
       ],
       "workEyebrow": "Work",
       "workTitle": "Index",
-      "workHint": "Hover a title to see the piece",
+      "workHint": "Filter by category and open a design to see it in full.",
       "workAll": "Full portfolio",
       "processEyebrow": "Process",
       "processTitle": "From idea to doorstep",
@@ -359,7 +359,15 @@
       "sendinTitle": "Already own a product? We make it yours.",
       "contactKicker": "Start here",
       "faqEyebrow": "Questions",
-      "footerLine": "Custom TCG accessories, handmade in the Netherlands. Shipping to NL, BE and FR."
+      "footerLine": "Custom TCG accessories, handmade in the Netherlands. Shipping to NL, BE and FR.",
+      "filterLabel": "Filter by category",
+      "filterAll": "All",
+      "openLabel": "View large",
+      "countLabel": "{shown} of {total} designs",
+      "close": "Close",
+      "prev": "Previous",
+      "next": "Next",
+      "lbCta": "Request a similar design"
     },
     "b": {
       "tagline1": "Custom TCG accessories.",

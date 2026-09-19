@@ -41,8 +41,8 @@ export default function Process() {
           border-left: 1px solid var(--color-border); min-height: 52vh; display: flex; flex-direction: column; justify-content: space-between;
         }
         .ca-proc-step:last-child { border-right: 1px solid var(--color-border); }
-        .ca-proc-nr { font-size: clamp(5rem, 12vw, 11rem); color: transparent; -webkit-text-stroke: 1px var(--color-text-muted); line-height: 0.85; }
-        .ca-proc-step h3 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin: 2rem 0 0.75rem; }
+        .ca-proc-nr { font-size: clamp(5rem, 12vw, 11rem); color: transparent; -webkit-text-stroke: 1px var(--color-numeral); line-height: 0.85; }
+        .ca-proc-step h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin: 2rem 0 0.75rem; }
         .ca-proc-step p { margin: 0; color: var(--color-text-secondary); line-height: 1.7; max-width: 420px; }
         @media (max-width: 999px) {
           .ca-proc-track { flex-direction: column; }

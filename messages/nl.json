@@ -351,7 +351,7 @@
       ],
       "workEyebrow": "Werk",
       "workTitle": "Index",
-      "workHint": "Beweeg over een titel voor het beeld",
+      "workHint": "Filter op categorie en open een ontwerp om het groot te bekijken.",
       "workAll": "Volledig portfolio",
       "processEyebrow": "Proces",
       "processTitle": "Van idee tot deurmat",
@@ -359,7 +359,15 @@
       "sendinTitle": "Heb je al een product? Wij maken het van jou.",
       "contactKicker": "Start hier",
       "faqEyebrow": "Vragen",
-      "footerLine": "Custom TCG-accessoires, handgemaakt in Nederland. Levering in NL, BE en FR."
+      "footerLine": "Custom TCG-accessoires, handgemaakt in Nederland. Levering in NL, BE en FR.",
+      "filterLabel": "Filter op categorie",
+      "filterAll": "Alle",
+      "openLabel": "Bekijk groot",
+      "countLabel": "{shown} van {total} ontwerpen",
+      "close": "Sluiten",
+      "prev": "Vorige",
+      "next": "Volgende",
+      "lbCta": "Vergelijkbaar ontwerp aanvragen"
     },
     "b": {
       "tagline1": "Custom TCG-accessoires.",

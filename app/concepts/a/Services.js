@@ -30,11 +30,11 @@ export default function Services() {
           padding: clamp(1rem, 2.4vw, 1.6rem) 0; background: none; border: 0; color: inherit; cursor: pointer; text-align: left;
           font-family: inherit;
         }
-        .ca-svc-nr { font-size: 0.72rem; letter-spacing: 0.2em; color: var(--color-text-muted); }
+        .ca-svc-nr { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; color: var(--color-text-muted); }
         .ca-svc-name { font-size: clamp(2.2rem, 7.5vw, 6.8rem); transition: filter 0.35s, color 0.35s, transform 0.35s; }
         .ca-svc-plus { font-size: 1.4rem; color: var(--color-text-muted); transition: transform 0.3s; }
         .ca-svc-list.has-active .ca-svc-row:not(.active) .ca-svc-name { filter: blur(6px); opacity: 0.55; }
-        .ca-svc-row.active .ca-svc-name { color: var(--color-accent); transform: translateX(0.5vw); }
+        .ca-svc-row.active .ca-svc-name { color: var(--color-accent-text); transform: translateX(0.5vw); }
         .ca-svc-row.active .ca-svc-plus { transform: rotate(45deg); }
         .ca-svc-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.45s cubic-bezier(.2,.8,.2,1); }
         .ca-svc-row.active .ca-svc-panel { grid-template-rows: 1fr; }
@@ -42,7 +42,7 @@ export default function Services() {
         .ca-svc-body { display: grid; grid-template-columns: 4rem 1fr 1fr; gap: 1rem; padding: 0 0 1.75rem; }
         .ca-svc-body p { margin: 0; color: var(--color-text-secondary); line-height: 1.65; max-width: 460px; }
         .ca-svc-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; align-content: start; justify-content: flex-end; }
-        .ca-svc-tags span { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.4rem 0.7rem; border: 1px solid var(--color-border-strong); }
+        .ca-svc-tags span { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.4rem 0.7rem; border: 1px solid var(--color-border-strong); border-radius: 100px; }
         @media (max-width: 720px) {
           .ca-svc-btn { grid-template-columns: 2.5rem 1fr auto; }
           .ca-svc-body { grid-template-columns: 1fr; padding-left: 2.5rem; }
