@@ -60,6 +60,11 @@ export default function Hero() {
           .site-hero-scroll { display: none; }
           .site-hero-trust { gap: 0.75rem 1.25rem; }
         }
+        @media (max-width: 560px) {
+          .site-hero-actions { display: grid; grid-template-columns: 1fr; width: 100%; justify-self: stretch; }
+          .site-hero-actions > span { display: block !important; }
+          .site-hero-actions .site-btn { width: 100%; justify-content: center; }
+        }
       `}</style>
       <section className="site-hero" ref={root} id="hero">
         <div className="site-wrap">

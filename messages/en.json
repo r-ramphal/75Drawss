@@ -75,7 +75,10 @@
     "tabOrder": "Order",
     "tabProcess": "Process",
     "tabFaq": "FAQ",
-    "navLabel": "Main navigation"
+    "navLabel": "Main navigation",
+    "menuTitle": "Menu",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
   },
   "ticker": {
     "items": [

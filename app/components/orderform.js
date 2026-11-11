@@ -342,13 +342,13 @@ export default function OrderForm() {
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <label htmlFor="name" style={labelStyle}>{t('labelName')} {req}</label>
-                      <input id="name" className="order-input" style={{ ...inputStyle, ...inputBorder(errors.name) }} type="text" placeholder={t('phName')} {...register('name')} />
+                      <input id="name" className="order-input" style={{ ...inputStyle, ...inputBorder(errors.name) }} type="text" autoComplete="name" autoCapitalize="words" enterKeyHint="next" placeholder={t('phName')} {...register('name')} />
                       {errors.name && <span style={errorStyle} role="alert">{errors.name.message}</span>}
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <label htmlFor="email" style={labelStyle}>{t('labelEmail')} {req}</label>
-                      <input id="email" className="order-input" style={{ ...inputStyle, ...inputBorder(errors.email) }} type="email" placeholder={t('phEmail')} {...register('email')} />
+                      <input id="email" className="order-input" style={{ ...inputStyle, ...inputBorder(errors.email) }} type="email" inputMode="email" autoComplete="email" autoCapitalize="none" autoCorrect="off" enterKeyHint="next" placeholder={t('phEmail')} {...register('email')} />
                       {errors.email && <span style={errorStyle} role="alert">{errors.email.message}</span>}
                     </div>
 

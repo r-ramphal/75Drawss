@@ -27,7 +27,7 @@
   --shadow-hard-lg: 0 6px 16px rgba(10, 10, 10, 0.07), 0 20px 48px rgba(10, 10, 10, 0.10);
 
   /* Fixed chrome: top bar height (anchor offset) and mobile tab bar height. */
-  --nav-h: 4rem;
+  --nav-h: 3.75rem;
   --tabbar-h: 64px;
 
   /* Vertical rhythm: one value for the space above and below every section. */
@@ -39,6 +39,8 @@
   margin: 0;
   padding: 0;
 }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 html, body {
   background: var(--color-bg);
@@ -53,7 +55,8 @@ html, body {
 
 a { color: inherit; }
 a, button { -webkit-tap-highlight-color: transparent; }
-section[id], #order { scroll-margin-top: var(--nav-h); }
+/* No double-tap zoom delay on controls: taps respond immediately. */
+a, button, input, select, textarea, label, summary { touch-action: manipulation; }
 ::selection { background: var(--color-accent); color: var(--color-on-accent); }
 
 /* Display type: oversized, uppercase, tight. */
@@ -105,9 +108,13 @@ section[id], #order { scroll-margin-top: var(--nav-h); }
   cursor: pointer;
   transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
 }
-.site-btn:hover { background: var(--color-text); color: #fff; }
 .site-btn.accent { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-on-accent); }
-.site-btn.accent:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); color: var(--color-on-accent); }
+/* Hover only where a pointer can hover, so it never sticks after a tap. */
+@media (hover: hover) {
+  .site-btn:hover { background: var(--color-text); color: #fff; }
+  .site-btn.accent:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); color: var(--color-on-accent); }
+}
+.site-btn:active { transform: scale(0.97); }
 
 /* Scroll-reveal baselines: hidden until GSAP runs (see app/lib/useReveal.js
    and the hero timeline). Reduced-motion and no-JS visitors see everything. */

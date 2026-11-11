@@ -75,7 +75,10 @@
     "tabOrder": "Bestel",
     "tabProcess": "Proces",
     "tabFaq": "Vragen",
-    "navLabel": "Hoofdnavigatie"
+    "navLabel": "Hoofdnavigatie",
+    "menuTitle": "Menu",
+    "menuOpen": "Menu openen",
+    "menuClose": "Menu sluiten"
   },
   "ticker": {
     "items": [

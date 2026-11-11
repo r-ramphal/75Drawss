@@ -56,7 +56,9 @@ export default function ConsentBanner() {
         }
         .consent-accept:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
         @media (max-width: 520px) {
-          .consent { left: 0.75rem; right: 0.75rem; bottom: 0.75rem; width: auto; }
+          .consent { left: 0.75rem; right: 0.75rem; bottom: 0.75rem; width: auto; padding: 0.8rem 0.9rem 0.9rem; }
+          .consent-text { font-size: 0.76rem; line-height: 1.5; margin-bottom: 0.65rem; }
+          .consent-btn { flex: 1; min-height: 44px; }
         }
       `}</style>
       <p className="consent-text">

@@ -45,10 +45,20 @@ export default function Process() {
         .site-proc-step h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin: 1.25rem 0 0.6rem; }
         .site-proc-step p { margin: 0; color: var(--color-text-secondary); line-height: 1.7; max-width: 420px; }
         @media (max-width: 999px) {
-          .site-proc-track { flex-direction: column; }
-          .site-proc-step { flex-basis: auto; min-height: 0; border-left: 0; border-top: 1px solid var(--color-border); padding: 1.5rem 0 1.75rem; }
-          .site-proc-step:last-child { border-right: 0; }
-          .site-proc-nr { font-size: 4.5rem; }
+          /* swipeable cards; the next card peeks in to show there is more */
+          .site-proc-track {
+            overflow-x: auto; scroll-snap-type: x mandatory; gap: 0.75rem; scrollbar-width: none;
+            margin-inline: calc(-1 * clamp(1.25rem, 4vw, 3.5rem)); padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+            scroll-padding-inline: clamp(1.25rem, 4vw, 3.5rem); padding-bottom: var(--section-y);
+          }
+          .site-proc-track::-webkit-scrollbar { display: none; }
+          .site-proc-step, .site-proc-step:last-child {
+            flex: 0 0 min(82%, 420px); scroll-snap-align: start; min-height: 0; gap: 1.25rem;
+            border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-surface);
+            padding: 1.1rem 1.1rem 1.35rem;
+          }
+          .site-proc-nr { font-size: 4rem; }
+          .site-proc-step h3 { margin-top: 0; font-size: 1.25rem; }
         }
       `}</style>
       <section className="site-proc" ref={root} id="process">

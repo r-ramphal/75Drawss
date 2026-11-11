@@ -21,6 +21,7 @@ export default function AppBar() {
   const t = useTranslations('home')
   const locale = useLocale()
   const [active, setActive] = useState(null) // no tab lit on pages without these sections
+  const [typing, setTyping] = useState(false) // on-screen keyboard is up
 
   useEffect(() => {
     const sections = TABS.map((tab) => document.getElementById(tab.id)).filter(Boolean)
@@ -30,6 +31,17 @@ export default function AppBar() {
     }, { rootMargin: '-40% 0px -45% 0px', threshold: [0, 0.2, 0.5] })
     sections.forEach((s) => io.observe(s))
     return () => io.disconnect()
+  }, [])
+
+  // Slide the bar away while a text field has focus, so it never sits on top
+  // of the form above the on-screen keyboard.
+  useEffect(() => {
+    const isField = (el) => el && (el.tagName === 'TEXTAREA' || (el.tagName === 'INPUT' && !['checkbox', 'radio', 'file', 'button', 'submit'].includes(el.type)))
+    const onIn = (e) => { if (isField(e.target)) setTyping(true) }
+    const onOut = () => setTyping(false)
+    document.addEventListener('focusin', onIn)
+    document.addEventListener('focusout', onOut)
+    return () => { document.removeEventListener('focusin', onIn); document.removeEventListener('focusout', onOut) }
   }, [])
 
   return (
@@ -43,7 +55,11 @@ export default function AppBar() {
             padding: 0.35rem 0.25rem calc(0.35rem + env(safe-area-inset-bottom, 0px));
             background: rgba(250,250,248,0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
             border-top: 1px solid var(--color-border);
+            transition: transform 0.22s ease;
           }
+          .site-tabbar.typing { transform: translateY(120%); }
+          .site-tab .ic { transition: transform 0.12s ease; }
+          .site-tab:active .ic { transform: scale(0.9); }
           .site-tab {
             display: flex; flex-direction: column; align-items: center; justify-content: end; gap: 0.25rem; padding: 0.35rem 0;
             min-height: 48px; font-family: var(--font-ui); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
@@ -55,7 +71,7 @@ export default function AppBar() {
           .site-tab.primary .ic { width: 46px; height: 46px; border-radius: 50%; background: var(--color-accent); color: var(--color-on-accent); display: grid; place-items: center; margin-top: -18px; box-shadow: 0 6px 16px rgba(10,10,10,0.18); }
         }
       `}</style>
-      <nav className="site-tabbar" aria-label={t('tabBarLabel')}>
+      <nav className={`site-tabbar ${typing ? 'typing' : ''}`} aria-label={t('tabBarLabel')}>
         {TABS.map((tab) => (
           <a key={tab.id} href={`/${locale}#${tab.id}`} className={`site-tab ${tab.primary ? 'primary' : ''} ${active === tab.id ? 'on' : ''}`} aria-current={active === tab.id ? 'true' : undefined}>
             <span className="ic">

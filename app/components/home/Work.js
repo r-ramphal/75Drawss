@@ -1,9 +1,11 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useTranslations, useLocale } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { useRevealOnScroll } from '@/app/lib/useReveal'
+import { useOverlayHistory } from '@/app/lib/useOverlayHistory'
 import { WORKS, WORK_COUNT, CATEGORIES } from '@/app/components/shared/work'
 
 /*
@@ -27,6 +29,10 @@ export default function Work() {
   const [filter, setFilter] = useState(ALL)
   const [active, setActive] = useState(0)
   const [open, setOpen] = useState(null)
+  const router = useRouter()
+  // The phone's back button closes the photo instead of leaving the page.
+  const closeLightbox = () => setOpen(null)
+  const closeThen = useOverlayHistory(open !== null, closeLightbox)
   useRevealOnScroll(root, '.site-work-head, .site-work-filters', { y: 16 })
 
   const list = filter === ALL ? WORKS : WORKS.filter((w) => w.category === filter)
@@ -113,6 +119,12 @@ export default function Work() {
           .site-work-meta.game { display: none; }
           .site-work-thumb { width: 44px; height: 55px; }
           .site-work-hint { text-align: left; }
+          /* filters: one swipeable row that bleeds to the screen edges */
+          .site-work-filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: calc(-1 * clamp(1.25rem, 4vw, 3.5rem)); padding-inline: clamp(1.25rem, 4vw, 3.5rem); }
+          .site-work-filters::-webkit-scrollbar { display: none; }
+          .site-chip { flex-shrink: 0; white-space: nowrap; min-height: 42px; padding-inline: 1rem; }
+          .site-work-link { min-height: 64px; }
+          .site-work-link:active { background: var(--color-hover-tint); }
         }
         /* Lightbox */
         .site-lb { position: fixed; inset: 0; z-index: 90; background: rgba(10,10,10,0.92); display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 1rem; }
@@ -131,7 +143,8 @@ export default function Work() {
         .site-lb-cap .site-btn.accent:hover { background: var(--color-accent-on-dark); border-color: var(--color-accent-on-dark); color: var(--color-accent); }
         .site-lb-keys { font-size: 0.68rem; color: rgba(255,255,255,0.5); margin-top: 1rem; letter-spacing: 0.08em; text-transform: uppercase; }
         @media (max-width: 800px) {
-          .site-lb { grid-template-columns: 1fr; padding: 0.75rem; overflow: auto; align-items: start; background: rgba(10,10,10,0.98); }
+          .site-lb { grid-template-columns: 1fr; padding: calc(0.75rem + env(safe-area-inset-top, 0px)) 0.75rem calc(0.75rem + env(safe-area-inset-bottom, 0px)); overflow: auto; overscroll-behavior: contain; align-items: start; background: rgba(10,10,10,0.98); }
+          .site-lb-cap .site-btn { flex: 1 1 100%; justify-content: center; }
           .site-lb-nav { position: fixed; top: 50%; transform: translateY(-50%); }
           .site-lb-nav.prev { left: 0.75rem; } .site-lb-nav.next { right: 0.75rem; }
           .site-lb-fig { grid-template-columns: 1fr; gap: 1rem; max-height: none; padding-top: 3.5rem; }
@@ -221,8 +234,8 @@ export default function Work() {
               <h3>{title(lb)}</h3>
               <p>{alt(lb)}</p>
               <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
-                <a href="#order" className="site-btn accent" onClick={() => setOpen(null)}>{t('lbCta')}</a>
-                <Link href="/portfolio" className="site-btn">{t('workAll')}</Link>
+                <a href="#order" className="site-btn accent" onClick={(e) => { e.preventDefault(); closeThen(() => document.getElementById('order')?.scrollIntoView()) }}>{t('lbCta')}</a>
+                <Link href="/portfolio" className="site-btn" onClick={(e) => { e.preventDefault(); closeThen(() => router.push(`/${locale}/portfolio`)) }}>{t('workAll')}</Link>
               </div>
               <div className="site-lb-keys">← → · Esc</div>
             </figcaption>
