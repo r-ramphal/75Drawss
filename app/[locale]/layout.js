@@ -89,7 +89,7 @@ const jsonLd = {
   description: 'Custom TCG binder, deck box and accessory design, handcrafted to order in the Netherlands.',
   url: SITE_URL,
   email: '75Drawss@gmail.com',
-  image: `${SITE_URL}/icon.svg`,
+  image: `${SITE_URL}/logo.png`,
   sameAs: [
     'https://www.instagram.com/75.drawss',
     'https://www.tiktok.com/@75drawss',

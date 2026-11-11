@@ -69,12 +69,12 @@ export default function Work() {
   return (
     <>
       <style>{`
-        .site-work { padding: clamp(4rem, 10vw, 8rem) 0; border-top: 1px solid var(--color-border); }
-        .site-work-head { display: flex; justify-content: space-between; align-items: end; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .site-work { padding: var(--section-y) 0; border-top: 1px solid var(--color-border); }
+        .site-work-head { display: flex; justify-content: space-between; align-items: end; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.1rem; }
         .site-work-head h2 { font-size: clamp(3rem, 9vw, 8rem); margin: 0.75rem 0 0; }
         .site-work-head h2 sup { font-size: 0.28em; color: var(--color-accent-text); letter-spacing: 0; vertical-align: top; margin-left: 0.2em; font-weight: 700; }
         .site-work-hint { font-size: 0.8rem; color: var(--color-text-secondary); max-width: 30ch; text-align: right; margin: 0; }
-        .site-work-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .site-work-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.1rem; }
         .site-chip {
           font-family: var(--font-ui); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em;
           padding: 0.5rem 0.9rem; border: 1px solid var(--color-border-strong); border-radius: 100px;
@@ -88,7 +88,7 @@ export default function Work() {
         .site-work-row { border-bottom: 1px solid var(--color-border); }
         .site-work-link {
           width: 100%; display: grid; grid-template-columns: 2.75rem 48px 1fr auto auto; align-items: center; gap: 1rem;
-          padding: 0.8rem 0.5rem 0.8rem 0; background: none; border: 0; color: inherit; text-align: left; cursor: pointer;
+          padding: 0.6rem 0.5rem 0.6rem 0; background: none; border: 0; color: inherit; text-align: left; cursor: pointer;
           font-family: var(--font-ui); border-left: 3px solid transparent; transition: background 0.15s, border-color 0.15s, padding-left 0.2s;
         }
         .site-work-row.on .site-work-link, .site-work-link:focus-visible { background: var(--color-hover-tint); border-left-color: var(--color-accent); padding-left: 0.6rem; outline: none; }
@@ -104,7 +104,7 @@ export default function Work() {
         .site-work-preview-cap { display: flex; justify-content: space-between; gap: 1rem; margin-top: 0.75rem; font-size: 0.8rem; color: var(--color-text-secondary); }
         .site-work-preview-cap strong { color: var(--color-text); }
         .site-work-preview-btn { margin-top: 0.9rem; width: 100%; justify-content: center; }
-        .site-work-foot { margin-top: 2rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+        .site-work-foot { margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
         .site-work-count { font-size: 0.8rem; color: var(--color-text-secondary); }
         @media (max-width: 960px) {
           .site-work-grid { grid-template-columns: 1fr; }

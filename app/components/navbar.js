@@ -2,7 +2,7 @@
 import { useTranslations, useLocale } from 'next-intl'
 import { Link } from '@/i18n/navigation'
 import LanguageSwitcher from '@/app/components/languageswitcher'
-import { Logo75 } from '@/app/components/shared/Social'
+import { Logo } from '@/app/components/shared/Social'
 import { WORK_COUNT } from '@/app/components/shared/work'
 
 /*
@@ -22,12 +22,12 @@ export default function Navbar() {
         .nav {
           position: fixed; inset: 0 0 auto 0; z-index: 60;
           display: flex; align-items: center; justify-content: space-between;
-          padding: 1.1rem clamp(1.25rem, 4vw, 3.5rem);
-          background: linear-gradient(to bottom, rgba(250,250,248,0.95), rgba(250,250,248,0));
-          pointer-events: none;
+          padding: 0.6rem clamp(1.25rem, 4vw, 3.5rem);
+          background: rgba(250,250,248,0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+          border-bottom: 1px solid var(--color-border);
         }
-        .nav > * { pointer-events: auto; }
-        .nav-brand { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; color: var(--color-text); }
+        .nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--color-text); }
+        .nav-logo { display: block; height: 42px; width: auto; }
         .nav-brand span { font-weight: 800; letter-spacing: -0.02em; font-size: 1.05rem; }
         .nav-links { display: flex; align-items: center; gap: 1.75rem; }
         .nav-link {
@@ -46,7 +46,7 @@ export default function Navbar() {
         @media (max-width: 960px) {
           .nav-link.hide-m { display: none; }
           .nav-order { display: none; } /* the bottom tab bar carries the order action */
-          .nav { padding-top: 0.9rem; padding-bottom: 0.9rem; background: rgba(250,250,248,0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--color-border); }
+          .nav { padding-top: 0.5rem; padding-bottom: 0.5rem; }
         }
         @media (max-width: 720px) {
           .nav-links { gap: 1rem; }
@@ -55,7 +55,7 @@ export default function Navbar() {
       `}</style>
       <nav className="nav" aria-label={t('navLabel')}>
         <a href={home} className="nav-brand" aria-label="75Drawss">
-          <Logo75 size={30} bg="#0A0A0A" fg="#ffffff" />
+          <Logo className="nav-logo" priority />
           <span>75Drawss</span>
         </a>
         <div className="nav-links">

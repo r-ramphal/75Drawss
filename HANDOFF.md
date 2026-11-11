@@ -1,7 +1,7 @@
 # 75Drawss — HANDOFF
 
 > Lees dit eerst bij elke sessie. Werk het na elke sessie bij (stand, beslissingen, TODO's).
-> Laatst bijgewerkt: **2026-09-19**
+> Laatst bijgewerkt: **2026-11-11**
 
 ## ▶️ VOLGENDE SESSIE — START HIER
 **Redesign afgerond op branch `redesign` (2026-09-19).** Concept A ("Index") is de site: crème/zwart/goud in de originele tokens, oversized uppercase **Archivo** voor koppen (`.site-display`), **Rubik** voor lopende tekst. Homepage = `app/components/home/` (Hero → Manifesto → Services → Work → Process → SendIn → Contact/OrderForm → FAQ → Footer). `Navbar` en `AppBar` (mobiele onderste tabbalk) staan in de locale-layout en werken op elke pagina via locale-geprefixte home-ankers. Tokens + utilities (`.site-wrap`, `.site-btn`, `.site-eyebrow`, `.site-mark`, reveal-baselines, tabbalk-ruimte) in `app/globals.css`.
@@ -9,7 +9,7 @@
 **Open acties:**
 1. Ravi bekijkt de volledige site lokaal (`/nl`, `/en`, `/portfolio`, `/inspiratie`, `/privacy`, `/voorwaarden`, `/bedankt`) — daarna mergen naar `main` en pushen (Vercel-deploy). **Push alleen na bevestiging.**
 2. Optioneel: sfeerfoto's (Unsplash/Pixabay) — alleen als Ravi ze wil; het ontwerp is typografisch en heeft ze niet nodig. Eerst lijst met bronnen, pas na akkoord downloaden naar `public/atmos/`.
-3. `og.jpg` is ongewijzigd (crème/goud/serif) — past nog bij de huisstijl; evt. later opnieuw genereren met Archivo.
+3. Order-mails (`app/api/submit-order/route.js`) gebruiken nog een tekst-wordmark in goud/serif; evt. het nieuwe logo erin verwerken (vereist een publiek gehoste PNG, dus pas na deploy).
 4. Na deploy: Speed Insights/LCP checken (hero-H1 onthult via GSAP na hydration), Turnstile + formulier live testen.
 
 ⚠️ **Lokaal draaien:** `next dev` (Turbopack) hangt op deze machine (fs-event-assertion op het pad, daarna een proces van 5+ GB dat nooit antwoordt). Gebruik `npm run build` + `npx next start -p 3101` (`.claude/dev.cmd`). Node staat niet op PATH (winget, per gebruiker).
@@ -63,6 +63,7 @@ Component-styling via `<style>`-blokken per component, uitsluitend met deze vari
 - Achtergrond `--color-bg #FAFAF8`, surface `#fff`, tekst `#0A0A0A` / secondary `#555` / muted `#888`
 - Borders `--color-border` / `--color-border-strong`
 - Accent (goud) `--color-accent #F5B301`, hover `#D99A00`, accent-tekst `#8A5E00`; `--color-hover-tint #FFFBEB`; `--color-numeral #D0D0CC`
+- `--color-ink #112C4C` = navy uit het logo, voor donkere vlakken (footer, marquee); `--section-y` = verticale ruimte boven/onder elke sectie (één plek om de witruimte te regelen)
 - `--radius 6px`, `--shadow-hard`, `--shadow-hard-lg`; `--nav-h` (anker-offset onder de vaste topbar), `--tabbar-h` (mobiele tabbalk, body-padding + consent-offset)
 - Utilities: `.site-wrap` (max 1440px), `.site-btn` (+ `.accent`), `.site-eyebrow` (gouden streepje), `.site-mark` (gouden marker achter tekst), `.site-anim`/`.reveal-item` (verborgen tot GSAP)
 - `prefers-reduced-motion` wordt gerespecteerd (globaal + per component).
@@ -161,3 +162,4 @@ Community-sectie toont nu follow-CTA's; voor een **live IG/TikTok-feed** nog pos
 - **2026-09-19 (mobiel als app + PWA)** — Onderste tabbalk + installeer-banner voor concept A, compacte mobiele topbar (bestelknop weg, zit in de tabbalk), kleinere herotitel op mobiel, swipe in de lightbox. PWA-fundament: manifest, service worker met offline-pagina, iconen uit het merkicoon, viewport-fit cover + safe-areas, Apple web-app-meta, CSP-directives. Geverifieerd: manifest 200, sw.js geregistreerd en actief, tabbalk volgt de sectie, lightbox op mobiel. Build + lint schoon.
 - **2026-09-19 (PWA eruit, mobiel geoptimaliseerd)** — Op verzoek van Ravi manifest, service worker, offline-pagina, installeer-banner, PWA-iconen en Apple-web-app-meta verwijderd (CSP-directives ook). Tabbalk blijft. Optimalisatie: `next/image` voor thumbnails/preview/lightbox/send-in-foto met passende `sizes` en blur-placeholder, één preview-afbeelding i.p.v. 16 gestapelde, AVIF/WebP ingeschakeld, anker-offset voor de vaste topbar. ⚠️ Wie de site tijdens de PWA-fase op localhost bezocht heeft nog een oude service worker in de browser; die verdwijnt vanzelf (sw.js = 404) of via DevTools → Application → Unregister.
 - **2026-09-19 (stap 2: concept A = de site)** — `app/concepts/*` en de concept-route verwijderd; A verhuisd naar `app/components/home/` + `navbar`/`footer`/`appbar`, klasse-prefix `ca-` → `site-`, tokens en utilities naar `globals.css`, Archivo i.p.v. Cormorant in de layout. Oude homepage-componenten (hero, ticker, productrange, portfolio-preview, howitworks, sendin, features, stickyorder, oude navbar/footer), `page.module.css`, `public/portfolio/derived` en het derive-script verwijderd (alle foto's gaan nu via `next/image`). Namespace `concept.a` → `home`; `nav`, `portfolio`, `features` en ongebruikte `hero`-keys opgeruimd. Subpagina's (portfolio-showcase, inspiratie, legal, bedankt, 404, error) op de nieuwe kopstijl; DesignShowcase gebruikt de gedeelde GSAP-setup. README projectspecifiek. Build + lint schoon.
+- **2026-11-11 (nieuw logo + minder witruimte)** — Nieuw logo (75 met potlood, navy `#112C4C` + grijs) aangeleverd als JPG op wit; vrijstaand gemaakt naar `public/logo.png` en `public/logo-light.png` (wit/lichtgrijs voor donkere vlakken). Verwerkt via `Logo` in `app/components/shared/Social.js` (next/image): topbar (42px, naast de wordmark; op mobiel alleen het logo) en footer (lichte variant). Favicon/app-iconen opnieuw: `app/favicon.ico`, `app/icon.png` (vervangt `icon.svg`), `app/apple-icon.png`; `og.jpg` opnieuw met logo; JSON-LD `image` → `/logo.png`. Footer + marquee van zwart naar logo-navy (`--color-ink`). Topbar nu op alle formaten dicht (blur + rand) i.p.v. een gradient waar tekst doorheen schemerde. Witruimte: alle sectie-paddings naar `--section-y` (clamp 2.75–4.5rem, was tot 10rem), hero zonder `min-height: 100svh`, compactere rijen in diensten/index/FAQ/formulier, kortere hero’s en panelen op portfolio/inspiratie/legal. Build + lint schoon.

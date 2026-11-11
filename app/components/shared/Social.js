@@ -1,4 +1,8 @@
-// Instagram / TikTok links with inline icons, shared by the concept footers.
+import Image from 'next/image'
+import logoColour from '@/public/logo.png'
+import logoLight from '@/public/logo-light.png'
+
+// Instagram / TikTok links with inline icons, shared by the navbar and footer.
 export const INSTAGRAM_URL = 'https://www.instagram.com/75.drawss'
 export const TIKTOK_URL = 'https://www.tiktok.com/@75drawss'
 export const CONTACT_EMAIL = '75Drawss@gmail.com'
@@ -21,12 +25,12 @@ export function TikTokIcon({ size = 16 }) {
   )
 }
 
-export function Logo75({ size = 34, bg = '#000', fg = '#fff' }) {
-  // Same mark as public/icon.svg (rounded square with serif "75").
-  return (
-    <svg width={size} height={size} viewBox="0 0 512 512" aria-hidden="true">
-      <rect width="512" height="512" rx="80" fill={bg} />
-      <text x="256" y="340" textAnchor="middle" fontFamily="Georgia, serif" fontSize="240" fill={fg}>75</text>
-    </svg>
-  )
+/*
+  The 75Drawss mark (public/logo.png, navy + grey on transparent). Use
+  variant="light" on dark surfaces. Size it with CSS via className (set a
+  height, width auto); the intrinsic size comes from the static import.
+*/
+export function Logo({ variant = 'colour', className, priority = false }) {
+  const src = variant === 'light' ? logoLight : logoColour
+  return <Image src={src} alt="75Drawss" className={className} priority={priority} sizes="120px" />
 }

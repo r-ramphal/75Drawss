@@ -83,8 +83,8 @@ export default function DesignShowcase() {
       <style>{`
         .dsa { background: var(--color-bg); color: var(--color-text); overflow: clip; }
         .dsa-hero {
-          min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
-          padding: 9rem clamp(1.5rem, 6vw, 6rem) 5rem; max-width: 1100px; margin: 0 auto;
+          min-height: 62vh; display: flex; flex-direction: column; justify-content: center;
+          padding: 7rem clamp(1.5rem, 6vw, 6rem) 3rem; max-width: 1100px; margin: 0 auto;
         }
         .dsa-eyebrow {
           font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
@@ -106,9 +106,9 @@ export default function DesignShowcase() {
         .dsa-scroll::after { content: ''; width: 34px; height: 1px; background: var(--color-text-muted); }
 
         .dsa-panel {
-          min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+          min-height: 84vh; display: grid; grid-template-columns: 1fr 1fr;
           align-items: center; gap: clamp(2rem, 5vw, 5rem);
-          max-width: 1200px; margin: 0 auto; padding: 8vh clamp(1.5rem, 6vw, 6rem);
+          max-width: 1200px; margin: 0 auto; padding: 4vh clamp(1.5rem, 6vw, 6rem);
         }
         .dsa-figure-col { display: flex; justify-content: center; align-items: center; min-width: 0; }
         .dsa-panel.alt .dsa-figure-col { order: 2; }
@@ -147,7 +147,7 @@ export default function DesignShowcase() {
 
         .dsa-end {
           min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-          text-align: center; padding: 6rem clamp(1.5rem, 6vw, 6rem); gap: 1.5rem;
+          text-align: center; padding: var(--section-y) clamp(1.5rem, 6vw, 6rem); gap: 1.25rem;
           border-top: 2px solid var(--color-border);
         }
         .dsa-end h2 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: clamp(2rem, 5vw, 3.6rem); letter-spacing: -0.025em; }

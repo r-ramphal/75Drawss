@@ -32,12 +32,12 @@ export default function InspirationView() {
       <style>{`
         .insp { background: var(--color-bg); color: var(--color-text); font-family: var(--font-ui); }
         .insp-wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
-        .insp-hero { padding: 9rem 0 3rem; }
+        .insp-hero { padding: 6.5rem 0 2rem; }
         .insp-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-accent-text); margin-bottom: 1.2rem; }
         .insp-h1 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; letter-spacing: -0.03em; font-size: clamp(2.3rem, 6vw, 4.5rem); line-height: 1.03; }
         .insp-intro { max-width: 560px; margin-top: 1.3rem; color: var(--color-text-secondary); font-size: 1.05rem; line-height: 1.7; }
 
-        .insp-section { padding: 3.5rem 0; border-top: 1px solid var(--color-border); }
+        .insp-section { padding: 2.5rem 0; border-top: 1px solid var(--color-border); }
         .insp-h2 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
         .insp-sub { color: var(--color-text-secondary); font-size: 0.95rem; margin-top: 0.5rem; margin-bottom: 1.75rem; }
 

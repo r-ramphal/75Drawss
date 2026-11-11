@@ -20,14 +20,14 @@ export default function Services() {
   return (
     <>
       <style>{`
-        .site-services { padding: 0 0 clamp(4rem, 10vw, 8rem); }
-        .site-svc-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .site-services { padding: 0 0 var(--section-y); }
+        .site-svc-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1rem; }
         .site-svc-hint { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-text-muted); }
         .site-svc-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-border); }
         .site-svc-row { border-bottom: 1px solid var(--color-border); }
         .site-svc-btn {
           width: 100%; display: grid; grid-template-columns: 4rem 1fr auto; align-items: baseline; gap: 1rem;
-          padding: clamp(1rem, 2.4vw, 1.6rem) 0; background: none; border: 0; color: inherit; cursor: pointer; text-align: left;
+          padding: clamp(0.7rem, 1.6vw, 1.1rem) 0; background: none; border: 0; color: inherit; cursor: pointer; text-align: left;
           font-family: inherit;
         }
         .site-svc-nr { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; color: var(--color-text-muted); }

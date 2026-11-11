@@ -10,7 +10,7 @@ export default async function LegalPage({ locale, namespace }) {
 
   return (
     <div style={{ background: 'var(--color-bg)', minHeight: '100vh', fontFamily: 'var(--font-ui)' }}>
-      <div style={{ maxWidth: '760px', margin: '0 auto', padding: '7rem 1.5rem 5rem' }}>
+      <div style={{ maxWidth: '760px', margin: '0 auto', padding: '6rem 1.5rem 3.5rem' }}>
         <Link href="/" style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-text-secondary)', textDecoration: 'none' }}>
           ← {t('back')}
         </Link>

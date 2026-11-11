@@ -217,8 +217,8 @@ export default function OrderForm() {
         .submit-btn:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(10,10,10,0.12); }
         .submit-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
         .qty-btn { font-size: 0.82rem; font-weight: 500; padding: 0.5rem 1rem; cursor: pointer; transition: all 0.15s; font-family: var(--font-ui); }
-        .order-section { padding: 7rem 3rem; }
-        .order-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 6rem; align-items: start; }
+        .order-section { padding: 3rem 3rem var(--section-y); }
+        .order-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
         .form-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 2rem; padding-top: 1.75rem; border-top: 2px solid var(--color-border); gap: 1rem; flex-wrap: wrap; }
         .service-toggle { display: flex; border: 1px solid var(--color-border-strong); border-radius: var(--radius); overflow: hidden; margin-bottom: 2rem; }
@@ -240,8 +240,8 @@ export default function OrderForm() {
         .turnstile-wrap { max-width: 100%; }
         .turnstile-wrap .cf-turnstile { transform-origin: left top; }
         @media (max-width: 768px) {
-          .order-section { padding: 4rem 1.5rem !important; }
-          .order-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
+          .order-section { padding: 2rem 1.25rem 2.75rem !important; }
+          .order-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
           .form-grid { grid-template-columns: 1fr !important; }
           .form-footer { flex-direction: column; align-items: stretch; }
           .submit-btn { text-align: center; }
