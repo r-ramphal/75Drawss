@@ -102,6 +102,7 @@ const jsonLd = {
     { '@type': 'Country', name: 'France' },
   ],
   address: { '@type': 'PostalAddress', addressCountry: 'NL' },
+  identifier: { '@type': 'PropertyValue', propertyID: 'KVK', value: '42216053' },
   makesOffer: [
     { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Custom TCG Binder Design' } },
     { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Custom Deck Box Design' } },

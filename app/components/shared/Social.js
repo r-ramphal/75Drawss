@@ -6,6 +6,7 @@ import logoLight from '@/public/logo-light.png'
 export const INSTAGRAM_URL = 'https://www.instagram.com/75.drawss'
 export const TIKTOK_URL = 'https://www.tiktok.com/@75drawss'
 export const CONTACT_EMAIL = '75Drawss@gmail.com'
+export const KVK_NUMBER = '42216053' // Kamer van Koophandel registration
 
 export function InstagramIcon({ size = 17 }) {
   return (

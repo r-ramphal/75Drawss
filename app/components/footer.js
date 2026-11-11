@@ -1,6 +1,6 @@
 import { useTranslations, useLocale } from 'next-intl'
 import { Link } from '@/i18n/navigation'
-import { Logo, InstagramIcon, TikTokIcon, INSTAGRAM_URL, TIKTOK_URL, CONTACT_EMAIL } from '@/app/components/shared/Social'
+import { Logo, InstagramIcon, TikTokIcon, INSTAGRAM_URL, TIKTOK_URL, CONTACT_EMAIL, KVK_NUMBER } from '@/app/components/shared/Social'
 
 export default function Footer() {
   const t = useTranslations('home')
@@ -48,7 +48,7 @@ export default function Footer() {
               <Link href="/voorwaarden">{tf('terms')}</Link>
             </div>
           </div>
-          <div className="site-footer-rights">{tf('rights')}</div>
+          <div className="site-footer-rights">{tf('rights')} · {tf('kvk', { number: KVK_NUMBER })}</div>
           <div className="site-display site-footer-mark" aria-hidden="true"><span>75</span>Drawss</div>
         </div>
       </footer>
