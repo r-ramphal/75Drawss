@@ -40,7 +40,7 @@ export default function NotFound() {
       </p>
       <Link href="/" style={{
         background: 'var(--color-accent)',
-        color: 'var(--color-text)',
+        color: 'var(--color-on-accent)',
         fontSize: '0.9rem',
         fontWeight: 600,
         padding: '0.95rem 2.1rem',

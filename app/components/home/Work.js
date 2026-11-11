@@ -118,17 +118,17 @@ export default function Work() {
         .site-lb { position: fixed; inset: 0; z-index: 90; background: rgba(10,10,10,0.92); display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 1rem; }
         .site-lb-close { position: absolute; top: 1rem; right: 1rem; }
         .site-lb-nav { background: none; border: 1px solid rgba(255,255,255,0.35); color: #fff; width: 48px; height: 48px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; }
-        .site-lb-nav:hover, .site-lb-nav:focus-visible { background: var(--color-accent); color: #0A0A0A; border-color: var(--color-accent); outline: none; }
+        .site-lb-nav:hover, .site-lb-nav:focus-visible { background: #fff; color: var(--color-accent); border-color: #fff; outline: none; }
         .site-lb-fig { margin: 0; display: grid; grid-template-columns: auto 300px; gap: 2rem; align-items: center; justify-content: center; max-height: calc(100vh - 2rem); }
         .site-lb-fig img { max-height: calc(100vh - 6rem); max-width: 100%; height: auto; width: auto; display: block; border-radius: var(--radius); }
         .site-lb-cap { color: #fff; font-family: var(--font-ui); }
-        .site-lb-cap .site-work-nr { color: var(--color-accent); }
+        .site-lb-cap .site-work-nr { color: var(--color-accent-on-dark); }
         .site-lb-cap h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin: 0.5rem 0 0.75rem; text-transform: uppercase; }
         .site-lb-cap p { color: rgba(255,255,255,0.75); line-height: 1.65; font-size: 0.9rem; margin: 0 0 1.5rem; }
         .site-lb-cap .site-btn { border-color: #fff; color: #fff; }
         .site-lb-cap .site-btn:hover { background: #fff; color: #0A0A0A; }
-        .site-lb-cap .site-btn.accent { border-color: var(--color-accent); color: #0A0A0A; }
-        .site-lb-cap .site-btn.accent:hover { background: var(--color-accent-hover); }
+        .site-lb-cap .site-btn.accent { background: #fff; border-color: #fff; color: var(--color-accent); }
+        .site-lb-cap .site-btn.accent:hover { background: var(--color-accent-on-dark); border-color: var(--color-accent-on-dark); color: var(--color-accent); }
         .site-lb-keys { font-size: 0.68rem; color: rgba(255,255,255,0.5); margin-top: 1rem; letter-spacing: 0.08em; text-transform: uppercase; }
         @media (max-width: 800px) {
           .site-lb { grid-template-columns: 1fr; padding: 0.75rem; overflow: auto; align-items: start; background: rgba(10,10,10,0.98); }

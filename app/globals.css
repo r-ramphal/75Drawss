@@ -12,12 +12,15 @@
   --color-text-muted: #888;
   --color-border: rgba(10, 10, 10, 0.12);
   --color-border-strong: rgba(10, 10, 10, 0.28);
-  --color-accent: #F5B301;
-  --color-accent-hover: #D99A00;
-  --color-accent-text: #8A5E00;
-  --color-hover-tint: #FFFBEB;
+  --color-accent: #112C4C;          /* navy from the logo */
+  --color-accent-hover: #0A1D35;
+  --color-accent-text: #112C4C;
+  --color-on-accent: #ffffff;       /* text and icons on an accent background */
+  --color-accent-on-dark: #9FB6D6;  /* accent for dark surfaces (footer, marquee, lightbox) */
+  --color-accent-soft: rgba(17, 44, 76, 0.07);
+  --color-hover-tint: #EDF1F6;
   --color-numeral: #D0D0CC;
-  --color-ink: #112C4C; /* navy from the logo — dark surfaces (footer, marquee) */
+  --color-ink: #112C4C; /* dark surfaces (footer, marquee) */
 
   --radius: 6px;
   --shadow-hard: 0 1px 2px rgba(10, 10, 10, 0.04), 0 8px 24px rgba(10, 10, 10, 0.06);
@@ -51,7 +54,7 @@ html, body {
 a { color: inherit; }
 a, button { -webkit-tap-highlight-color: transparent; }
 section[id], #order { scroll-margin-top: var(--nav-h); }
-::selection { background: var(--color-accent); color: #0A0A0A; }
+::selection { background: var(--color-accent); color: var(--color-on-accent); }
 
 /* Display type: oversized, uppercase, tight. */
 .site-display {
@@ -64,7 +67,7 @@ section[id], #order { scroll-margin-top: var(--nav-h); }
 }
 .site-mark {
   background: var(--color-accent);
-  color: #0A0A0A;
+  color: var(--color-on-accent);
   padding: 0 0.12em;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
@@ -103,8 +106,8 @@ section[id], #order { scroll-margin-top: var(--nav-h); }
   transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
 }
 .site-btn:hover { background: var(--color-text); color: #fff; }
-.site-btn.accent { background: var(--color-accent); border-color: var(--color-accent); color: #0A0A0A; }
-.site-btn.accent:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); color: #0A0A0A; }
+.site-btn.accent { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-on-accent); }
+.site-btn.accent:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); color: var(--color-on-accent); }
 
 /* Scroll-reveal baselines: hidden until GSAP runs (see app/lib/useReveal.js
    and the hero timeline). Reduced-motion and no-JS visitors see everything. */

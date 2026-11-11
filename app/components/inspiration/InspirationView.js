@@ -51,7 +51,7 @@ export default function InspirationView() {
         .insp-card img { width: 100%; height: auto; display: block; }
         .insp-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.6rem 0.9rem 0.7rem; color: #fff; font-size: 0.74rem; font-weight: 600; background: linear-gradient(to top, rgba(10,10,10,0.8), rgba(10,10,10,0)); opacity: 0; transition: opacity 0.25s ease; }
         .insp-card:hover .insp-cap { opacity: 1; }
-        .insp-cap .cat { display: block; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 0.15rem; }
+        .insp-cap .cat { display: block; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent-on-dark); margin-bottom: 0.15rem; }
 
         .insp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
         .insp-tile { display: flex; flex-direction: column; gap: 0.4rem; padding: 1.4rem; border-radius: 10px; border: 1px solid var(--color-border-strong); background: var(--color-surface); color: inherit; }
@@ -78,7 +78,7 @@ export default function InspirationView() {
         .insp-cta { text-align: center; padding: 5rem 0 6rem; border-top: 1px solid var(--color-border); }
         .insp-cta h2 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: clamp(1.8rem, 4.5vw, 3rem); letter-spacing: -0.025em; }
         .insp-cta p { max-width: 480px; margin: 0.9rem auto 1.75rem; color: var(--color-text-secondary); line-height: 1.7; }
-        .insp-btn { display: inline-block; background: var(--color-accent); color: var(--color-text); font-size: 0.95rem; font-weight: 600; padding: 1rem 2.4rem; border-radius: var(--radius); text-decoration: none; border: 1px solid var(--color-accent); transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; }
+        .insp-btn { display: inline-block; background: var(--color-accent); color: var(--color-on-accent); font-size: 0.95rem; font-weight: 600; padding: 1rem 2.4rem; border-radius: var(--radius); text-decoration: none; border: 1px solid var(--color-accent); transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; }
         .insp-btn:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); transform: translateY(-1px); box-shadow: 0 10px 24px rgba(10,10,10,0.14); }
 
         @media (max-width: 1000px) { .insp-grid { columns: 3; } }

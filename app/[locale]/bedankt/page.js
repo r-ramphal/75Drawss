@@ -35,7 +35,7 @@ export default async function Bedankt({ params }) {
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         marginBottom: '0.5rem',
       }}>
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--color-text)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--color-on-accent)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M20 6 9 17l-5-5"/>
         </svg>
       </div>
@@ -56,7 +56,7 @@ export default async function Bedankt({ params }) {
         gap: '0.7rem',
         maxWidth: '440px',
         textAlign: 'left',
-        background: 'var(--color-accent-soft, rgba(245, 179, 1, 0.12))',
+        background: 'var(--color-accent-soft)',
         border: '1px solid var(--color-accent)',
         borderRadius: 'var(--radius)',
         padding: '0.95rem 1.1rem',
@@ -73,7 +73,7 @@ export default async function Bedankt({ params }) {
       <Link href="/" style={{
         marginTop: '0.5rem',
         background: 'var(--color-accent)',
-        color: 'var(--color-text)',
+        color: 'var(--color-on-accent)',
         fontSize: '0.9rem',
         fontWeight: 600,
         padding: '0.95rem 2.1rem',

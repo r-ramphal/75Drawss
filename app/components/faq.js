@@ -51,6 +51,8 @@ export default function FAQ() {
         }
         .faq-icon.open {
           background: var(--color-accent);
+          border-color: var(--color-accent);
+          color: var(--color-on-accent);
           transform: rotate(45deg);
         }
         .faq-answer {

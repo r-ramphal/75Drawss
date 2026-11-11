@@ -52,7 +52,7 @@ export default function AppBar() {
           .site-tab svg { width: 22px; height: 22px; }
           .site-tab.on { color: var(--color-text); }
           .site-tab.primary { color: var(--color-text); }
-          .site-tab.primary .ic { width: 46px; height: 46px; border-radius: 50%; background: var(--color-accent); color: #0A0A0A; display: grid; place-items: center; margin-top: -18px; box-shadow: 0 6px 16px rgba(10,10,10,0.18); }
+          .site-tab.primary .ic { width: 46px; height: 46px; border-radius: 50%; background: var(--color-accent); color: var(--color-on-accent); display: grid; place-items: center; margin-top: -18px; box-shadow: 0 6px 16px rgba(10,10,10,0.18); }
         }
       `}</style>
       <nav className="site-tabbar" aria-label={t('tabBarLabel')}>

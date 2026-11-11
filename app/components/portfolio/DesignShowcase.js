@@ -152,7 +152,7 @@ export default function DesignShowcase() {
         }
         .dsa-end h2 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: clamp(2rem, 5vw, 3.6rem); letter-spacing: -0.025em; }
         .dsa-cta {
-          display: inline-block; background: var(--color-accent); color: var(--color-text);
+          display: inline-block; background: var(--color-accent); color: var(--color-on-accent);
           font-family: var(--font-ui); font-size: 0.95rem; font-weight: 600; padding: 1rem 2.4rem;
           border-radius: var(--radius); text-decoration: none; border: 1px solid var(--color-accent);
           transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;

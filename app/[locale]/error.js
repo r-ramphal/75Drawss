@@ -35,7 +35,7 @@ export default function Error({ error, reset }) {
         onClick={reset}
         style={{
           background: 'var(--color-accent)',
-          color: 'var(--color-text)',
+          color: 'var(--color-on-accent)',
           fontSize: '0.875rem',
           fontWeight: 600,
           padding: '0.95rem 2rem',

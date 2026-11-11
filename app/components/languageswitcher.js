@@ -38,7 +38,7 @@ export default function LanguageSwitcher() {
           background: var(--color-text);
           color: #fff;
         }
-        .lang-btn:not(.active):hover { background: #FFFBEB; color: var(--color-text); }
+        .lang-btn:not(.active):hover { background: var(--color-hover-tint); color: var(--color-text); }
       `}</style>
       <div className="lang-switch" role="group" aria-label="Language">
         {locales.map(({ code, label }) => (

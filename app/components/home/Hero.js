@@ -49,7 +49,7 @@ export default function Hero() {
         .site-marquee { background: var(--color-ink); overflow: hidden; padding: 0.85rem 0; }
         .site-marquee-track { display: flex; gap: 3rem; white-space: nowrap; animation: site-tick 34s linear infinite; }
         .site-marquee span { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; flex-shrink: 0; }
-        .site-marquee span::after { content: '·'; color: var(--color-accent); margin-left: 3rem; }
+        .site-marquee span::after { content: '·'; color: var(--color-accent-on-dark); margin-left: 3rem; }
         @keyframes site-tick { to { transform: translateX(-50%); } }
         @media (prefers-reduced-motion: reduce) { .site-marquee-track { animation: none; } }
         @media (max-width: 900px) {

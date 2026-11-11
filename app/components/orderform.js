@@ -200,10 +200,10 @@ export default function OrderForm() {
   return (
     <>
       <style>{`
-        .order-input:focus { background: #FFFBEB !important; }
+        .order-input:focus { background: var(--color-hover-tint) !important; }
         .submit-btn {
           background: var(--color-accent);
-          color: var(--color-text);
+          color: var(--color-on-accent);
           font-size: 0.875rem;
           font-weight: 600;
           padding: 0.95rem 2rem;
@@ -225,8 +225,8 @@ export default function OrderForm() {
         .service-btn { flex: 1; padding: 0.875rem 1rem; font-family: var(--font-ui); font-size: 0.875rem; font-weight: 600; cursor: pointer; border: none; transition: all 0.15s; text-align: center; letter-spacing: 0.01em; }
         .service-btn.active { background: var(--color-text); color: #fff; }
         .service-btn.inactive { background: var(--color-surface); color: var(--color-text); }
-        .service-btn.inactive:hover { background: #FFFBEB; }
-        .send-in-box { background: #FFFBEB; border: 2px solid var(--color-border); padding: 1.5rem; margin-bottom: 1.25rem; grid-column: 1 / -1; }
+        .service-btn.inactive:hover { background: var(--color-hover-tint); }
+        .send-in-box { background: var(--color-hover-tint); border: 2px solid var(--color-border); padding: 1.5rem; margin-bottom: 1.25rem; grid-column: 1 / -1; }
         .send-in-box h4 { font-size: 0.82rem; font-weight: 600; margin-bottom: 0.5rem; font-family: var(--font-ui); }
         .send-in-box p { font-size: 0.82rem; color: var(--color-text-secondary); line-height: 1.7; font-weight: 400; }
         .send-in-box ul { margin-top: 0.5rem; padding-left: 1.25rem; }

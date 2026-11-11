@@ -52,7 +52,7 @@ export default function ConsentBanner() {
         }
         .consent-reject:hover { background: var(--color-bg); }
         .consent-accept {
-          background: var(--color-accent); border-color: var(--color-accent);
+          background: var(--color-accent); border-color: var(--color-accent); color: var(--color-on-accent);
         }
         .consent-accept:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
         @media (max-width: 520px) {

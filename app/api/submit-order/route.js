@@ -133,7 +133,7 @@ function buildConfirmation(locale, clean, ref) {
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f4f4f2">
     <tr><td align="center" style="padding:32px 16px">
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:100%;background:#ffffff;border:1px solid #e7e7e3;border-radius:8px;overflow:hidden">
-        <tr><td style="height:4px;background:#F5B301;font-size:0;line-height:0">&nbsp;</td></tr>
+        <tr><td style="height:4px;background:#112C4C;font-size:0;line-height:0">&nbsp;</td></tr>
         <tr><td style="padding:28px 32px 4px">
           <span style="font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:600;letter-spacing:0.01em;color:#0a0a0a">75Drawss</span>
         </td></tr>
@@ -318,7 +318,7 @@ export async function POST(request) {
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f4f4f2">
     <tr><td align="center" style="padding:32px 16px">
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:100%;background:#ffffff;border:1px solid #e7e7e3;border-radius:8px;overflow:hidden">
-        <tr><td style="height:4px;background:#F5B301;font-size:0;line-height:0">&nbsp;</td></tr>
+        <tr><td style="height:4px;background:#112C4C;font-size:0;line-height:0">&nbsp;</td></tr>
         <tr><td style="padding:24px 32px 0;font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
           <span style="font-family:Georgia,'Times New Roman',serif;font-size:22px;font-weight:600;letter-spacing:0.01em;color:#0a0a0a">75Drawss</span>
           <span style="float:right;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#999;font-weight:700;padding-top:8px">Nieuwe aanvraag</span>
@@ -327,8 +327,8 @@ export async function POST(request) {
           <h2 style="font-weight:600;margin:0 0 2px;font-size:18px">${titleLine}</h2>
           <p style="margin:0 0 18px;color:#666;font-size:13px">${escapeHtml(serviceShort)} · Ref <strong>#${ref}</strong></p>
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-size:14px">${refRow}${rows}</table>
-          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:22px"><tr><td style="border-radius:6px;background:#F5B301">
-            <a href="${quoteHref}" style="display:inline-block;color:#0a0a0a;padding:12px 22px;text-decoration:none;font-weight:600;font-size:14px;font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">✉️ Offerte sturen naar klant</a>
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:22px"><tr><td style="border-radius:6px;background:#112C4C">
+            <a href="${quoteHref}" style="display:inline-block;color:#ffffff;padding:12px 22px;text-decoration:none;font-weight:600;font-size:14px;font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">✉️ Offerte sturen naar klant</a>
           </td></tr></table>
           <p style="font-size:12px;color:#888;margin:8px 0 0">Opent een kant-en-klare offerte-mail aan de klant — vul alleen de prijs en betaallink in.</p>
         </td></tr>

@@ -15,12 +15,12 @@ export default function Footer() {
         .site-footer p { margin: 0; color: rgba(255,255,255,0.7); line-height: 1.7; max-width: 380px; }
         .site-footer-col { display: flex; flex-direction: column; gap: 0.6rem; }
         .site-footer-col a { color: #fff; text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
-        .site-footer-col a:hover { color: var(--color-accent); }
+        .site-footer-col a:hover { color: var(--color-accent-on-dark); }
         .site-footer-social { display: flex; gap: 0.6rem; margin-bottom: 0.5rem; }
         .site-footer-social a { display: inline-flex; width: 34px; height: 34px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; }
-        .site-footer-social a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+        .site-footer-social a:hover { border-color: var(--color-accent-on-dark); color: var(--color-accent-on-dark); }
         .site-footer-mark { font-size: clamp(5rem, 19vw, 19rem); line-height: 0.78; margin: 0.5rem 0 0; transform: translateY(0.14em); white-space: nowrap; color: #fff; }
-        .site-footer-mark span { color: var(--color-accent); }
+        .site-footer-mark span { color: var(--color-accent-on-dark); }
         .site-footer-rights { font-size: 0.68rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; padding-bottom: 1rem; }
         @media (max-width: 800px) { .site-footer-grid { grid-template-columns: 1fr; } }
       `}</style>
@@ -30,7 +30,7 @@ export default function Footer() {
             <div>
               <Logo variant="light" className="site-footer-logo" />
               <p>{t('footerLine')}</p>
-              <p style={{ marginTop: '1rem' }}><a href={`mailto:${CONTACT_EMAIL}`} style={{ color: 'var(--color-accent)' }}>{CONTACT_EMAIL}</a></p>
+              <p style={{ marginTop: '1rem' }}><a href={`mailto:${CONTACT_EMAIL}`} style={{ color: 'var(--color-accent-on-dark)' }}>{CONTACT_EMAIL}</a></p>
             </div>
             <div className="site-footer-col">
               <Link href="/portfolio">{tf('portfolio')}</Link>

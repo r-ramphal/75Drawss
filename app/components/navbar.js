@@ -40,7 +40,7 @@ export default function Navbar() {
           background: var(--color-accent); transform: scaleX(0); transform-origin: left; transition: transform 0.25s;
         }
         .nav-link:hover::after { transform: scaleX(1); }
-        .nav-order { padding: 0.6rem 1rem; border: 1px solid var(--color-accent); background: var(--color-accent); color: #0A0A0A; border-radius: var(--radius); }
+        .nav-order { padding: 0.6rem 1rem; border: 1px solid var(--color-accent); background: var(--color-accent); color: var(--color-on-accent); border-radius: var(--radius); }
         .nav-order::after { display: none; }
         .nav-order:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
         @media (max-width: 960px) {
