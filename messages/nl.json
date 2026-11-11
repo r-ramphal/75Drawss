@@ -126,10 +126,10 @@
     "filterAll": "Alles",
     "empty": "Nog geen stukken in deze categorie.",
     "categories": {
-      "Legendary": "Legendarisch",
-      "Battle": "Gevecht",
-      "Cute": "Schattig",
-      "Scenery": "Landschap",
+      "Legendary": "Legendes",
+      "Battle": "Actie",
+      "Cute": "Speels",
+      "Scenery": "Landschappen",
       "Anime": "Anime"
     }
   },
@@ -401,7 +401,7 @@
     "nav": "Footer-navigatie",
     "instagram": "75Drawss op Instagram",
     "tiktok": "75Drawss op TikTok",
-    "rights": "© 2025 75Drawss · Nederland",
+    "rights": "© 2026 75Drawss · Nederland",
     "kvk": "KvK {number}",
     "privacy": "Privacybeleid",
     "terms": "Algemene voorwaarden"

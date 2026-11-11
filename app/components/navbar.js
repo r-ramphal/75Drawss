@@ -2,7 +2,7 @@
 import { useTranslations, useLocale } from 'next-intl'
 import { Link } from '@/i18n/navigation'
 import LanguageSwitcher from '@/app/components/languageswitcher'
-import { Logo } from '@/app/components/shared/Social'
+import { Logo, InstagramIcon, TikTokIcon, INSTAGRAM_URL, TIKTOK_URL } from '@/app/components/shared/Social'
 import { WORK_COUNT } from '@/app/components/shared/work'
 
 /*
@@ -40,6 +40,9 @@ export default function Navbar() {
           background: var(--color-accent); transform: scaleX(0); transform-origin: left; transition: transform 0.25s;
         }
         .nav-link:hover::after { transform: scaleX(1); }
+        .nav-social { display: flex; align-items: center; gap: 0.15rem; }
+        .nav-social a { display: inline-flex; width: 34px; height: 34px; align-items: center; justify-content: center; border-radius: 50%; color: var(--color-text); transition: background 0.15s, color 0.15s; }
+        .nav-social a:hover { background: var(--color-accent); color: var(--color-on-accent); }
         .nav-order { padding: 0.6rem 1rem; border: 1px solid var(--color-accent); background: var(--color-accent); color: var(--color-on-accent); border-radius: var(--radius); }
         .nav-order::after { display: none; }
         .nav-order:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
@@ -49,7 +52,7 @@ export default function Navbar() {
           .nav { padding-top: 0.5rem; padding-bottom: 0.5rem; }
         }
         @media (max-width: 720px) {
-          .nav-links { gap: 1rem; }
+          .nav-links { gap: 0.6rem; }
           .nav-brand span { display: none; }
         }
       `}</style>
@@ -64,6 +67,10 @@ export default function Navbar() {
           <Link href="/portfolio" className="nav-link hide-m">{tf('portfolio')}</Link>
           <Link href="/inspiratie" className="nav-link hide-m">{tf('inspiration')}</Link>
           <a href={`${home}#order`} className="nav-link hide-m">{t('navContact')}</a>
+          <div className="nav-social">
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label={tf('instagram')}><InstagramIcon size={18} /></a>
+            <a href={TIKTOK_URL} target="_blank" rel="noopener noreferrer" aria-label={tf('tiktok')}><TikTokIcon size={17} /></a>
+          </div>
           <LanguageSwitcher />
           <a href={`${home}#order`} className="nav-link nav-order">{t('order')}</a>
         </div>

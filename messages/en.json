@@ -126,10 +126,10 @@
     "filterAll": "All",
     "empty": "No pieces in this category yet.",
     "categories": {
-      "Legendary": "Legendary",
-      "Battle": "Battle",
-      "Cute": "Cute",
-      "Scenery": "Scenery",
+      "Legendary": "Legends",
+      "Battle": "Action",
+      "Cute": "Playful",
+      "Scenery": "Landscapes",
       "Anime": "Anime"
     }
   },
@@ -401,7 +401,7 @@
     "nav": "Footer navigation",
     "instagram": "75Drawss on Instagram",
     "tiktok": "75Drawss on TikTok",
-    "rights": "© 2025 75Drawss · Netherlands",
+    "rights": "© 2026 75Drawss · Netherlands",
     "kvk": "Chamber of Commerce (KvK) {number}",
     "privacy": "Privacy policy",
     "terms": "Terms & conditions"
